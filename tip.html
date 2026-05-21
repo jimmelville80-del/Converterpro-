@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator Pro - Smart Tipping & Bill Splitting</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-theme {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+        }
+
+        body.blue-theme {
+            background: linear-gradient(135deg, #0056b3 0%, #0d47a1 100%);
+            color: #e0e0e0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            position: relative;
+            padding-top: 60px;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .receipt-icon {
+            font-size: 4em;
+            line-height: 1;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            margin: 0;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            line-height: 1.2;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .tagline {
+            font-size: 1em;
+            opacity: 0.95;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .header-buttons {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .header-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.4);
+            color: white;
+            padding: 8px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.2em;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-btn:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.6);
+        }
+
+        .main-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+        }
+
+        body.dark-theme .main-card {
+            background: #2a2a3e;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 0.95em;
+            color: #333;
+        }
+
+        body.dark-theme .form-group label {
+            color: #e0e0e0;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group input {
+            flex: 1;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1.1em;
+            background: white;
+            color: #333;
+            transition: border-color 0.3s;
+        }
+
+        body.dark-theme .form-group input {
+            background: #444;
+            color: #e0e0e0;
+            border-color: #555;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .currency-selector {
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            background: white;
+            color: #333;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        body.dark-theme .currency-selector {
+            background: #444;
+            color: #e0e0e0;
+            border-color: #555;
+        }
+
+        .currency-selector:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .tip-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .tip-btn {
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            color: #333;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: all 0.3s;
+        }
+
+        body.dark-theme .tip-btn {
+            background: #444;
+            color: #e0e0e0;
+            border-color: #555;
+        }
+
+        .tip-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        body.dark-theme .tip-btn:hover {
+            color: #b8d4ff;
+            border-color: #b8d4ff;
+        }
+
+        .tip-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .custom-tip-input {
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            background: white;
+            color: #333;
+            width: 100%;
+            transition: border-color 0.3s;
+        }
+
+        body.dark-theme .custom-tip-input {
+            background: #444;
+            color: #e0e0e0;
+            border-color: #555;
+        }
+
+        .custom-tip-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .people-adjuster {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .adjuster-btn {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.2em;
+            transition: all 0.2s;
+        }
+
+        body.dark-theme .adjuster-btn {
+            background: #444;
+            border-color: #b8d4ff;
+            color: #b8d4ff;
+        }
+
+        .adjuster-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        body.dark-theme .adjuster-btn:hover {
+            background: #b8d4ff;
+            color: #1a1a2e;
+        }
+
+        .people-count {
+            width: 80px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        .results-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+        }
+
+        body.dark-theme .results-section {
+            background: #2a2a3e;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 0;
+        }
+
+        body.dark-theme .result-item {
+            border-bottom-color: #444;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            font-weight: 500;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        body.dark-theme .result-label {
+            color: #aaa;
+        }
+
+        .result-value {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #667eea;
+            font-family: 'Roboto Mono', monospace;
+            letter-spacing: 1px;
+        }
+
+        body.dark-theme .result-value {
+            color: #b8d4ff;
+        }
+
+        .total-row {
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin-top: 15px;
+            padding: 16px;
+        }
+
+        body.dark-theme .total-row {
+            background: #444;
+        }
+
+        .total-label {
+            font-weight: 600;
+            color: #333;
+            font-size: 1em;
+        }
+
+        body.dark-theme .total-label {
+            color: #e0e0e0;
+        }
+
+        .total-value {
+            font-size: 2em;
+            font-weight: 800;
+            color: #667eea;
+            font-family: 'Roboto Mono', monospace;
+            text-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        body.dark-theme .total-value {
+            color: #b8d4ff;
+            text-shadow: 0 2px 8px rgba(184, 212, 255, 0.4);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        body.dark-theme .btn-secondary {
+            background: #444;
+            color: #e0e0e0;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        body.dark-theme .btn-secondary:hover {
+            background: #555;
+        }
+
+        .history-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        body.dark-theme .history-section {
+            background: #2a2a3e;
+        }
+
+        .history-section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        body.dark-theme .history-section h3 {
+            color: #e0e0e0;
+        }
+
+        .history-item {
+            background: #f9f9f9;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        body.dark-theme .history-item {
+            background: #444;
+        }
+
+        .history-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .history-info {
+            flex: 1;
+        }
+
+        .history-desc {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95em;
+        }
+
+        body.dark-theme .history-desc {
+            color: #e0e0e0;
+        }
+
+        .history-time {
+            font-size: 0.85em;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        body.dark-theme .history-time {
+            color: #aaa;
+        }
+
+        .history-total {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 1.1em;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        body.dark-theme .history-total {
+            color: #b8d4ff;
+        }
+
+        .history-delete {
+            width: 30px;
+            height: 30px;
+            border: none;
+            background: #ff6b6b;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+            margin-left: 10px;
+        }
+
+        .history-delete:hover {
+            background: #ff5252;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #999;
+            padding: 40px 20px;
+            font-size: 0.95em;
+        }
+
+        body.dark-theme .empty-state {
+            color: #aaa;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideDown 0.3s;
+        }
+
+        body.dark-theme .modal-content {
+            background-color: #2a2a3e;
+            color: #e0e0e0;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 15px;
+        }
+
+        body.dark-theme .modal-header {
+            border-bottom-color: #444;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .close {
+            font-size: 2em;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        body.dark-theme .close:hover {
+            color: #e0e0e0;
+        }
+
+        .toggle-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .toggle-option {
+            flex: 1;
+            min-width: 100px;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        body.dark-theme .toggle-option {
+            border-color: #555;
+        }
+
+        .toggle-option.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .btn-primary-modal {
+            width: 100%;
+            padding: 14px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-primary-modal:hover {
+            background: #5568d3;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .main-card,
+            .results-section,
+            .history-section {
+                padding: 20px;
+            }
+
+            .header {
+                padding-top: 40px;
+            }
+
+            .tip-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 20% auto;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-buttons">
+                <button class="header-btn" onclick="openSettingsModal()">⚙️</button>
+            </div>
+            <div class="header-top">
+                <span class="receipt-icon">🧾</span>
+                <h1>Tip Calculator Pro</h1>
+            </div>
+            <p class="tagline">Smart tipping & bill splitting</p>
+        </header>
+
+        <!-- Main Calculator -->
+        <div class="main-card">
+            <div class="form-group">
+                <label>Bill Amount</label>
+                <div class="input-group">
+                    <select class="currency-selector" id="currencySelector" onchange="updateResults()">
+                        <option value="AUD">AUD (Australia)</option>
+                        <option value="USD">USD (USA)</option>
+                        <option value="GBP">GBP (UK)</option>
+                        <option value="EUR">EUR (Europe)</option>
+                        <option value="CAD">CAD (Canada)</option>
+                        <option value="CHF">CHF (Switzerland)</option>
+                        <option value="NZD">NZD (New Zealand)</option>
+                    </select>
+                    <input type="number" id="billAmount" placeholder="0.00" step="0.01" min="0" onchange="updateResults()" oninput="updateResults()" value="">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Tip Percentage</label>
+                <div class="tip-buttons" id="tipButtons"></div>
+                <input type="number" class="custom-tip-input" id="customTip" placeholder="Custom %" step="0.1" min="0" max="100" onchange="updateResults()" oninput="onCustomTipInput()">
+            </div>
+
+            <div class="form-group">
+                <label>Number of People</label>
+                <div class="people-adjuster">
+                    <button class="adjuster-btn" onclick="decrementPeople()">−</button>
+                    <span class="people-count" id="peopleCount">1</span>
+                    <button class="adjuster-btn" onclick="incrementPeople()">+</button>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="roundUp()">💰 Round Up</button>
+                <button class="btn btn-secondary" onclick="resetCalculator()">🔄 Reset</button>
+            </div>
+        </div>
+
+        <!-- Results Display -->
+        <div class="results-section">
+            <div class="result-item">
+                <span class="result-label">Tip Amount</span>
+                <span class="result-value" id="tipAmount">0.00</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Subtotal with Tip</span>
+                <span class="result-value" id="totalBill">0.00</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Per Person</span>
+                <span class="result-value" id="perPerson">0.00</span>
+            </div>
+            <div class="total-row">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="total-label">Total Bill (<span id="currencyDisplay">AUD</span>)</span>
+                    <span class="total-value" id="totalDisplay">0.00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Section -->
+        <div class="history-section">
+            <h3>📋 Recent Calculations</h3>
+            <div id="historyContainer" class="empty-state">No calculations yet</div>
+            <button class="btn btn-secondary" style="margin-top: 15px; width: 100%;" onclick="clearHistory()">Clear History</button>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>⚙️ Settings</h2>
+                <button class="close" onclick="closeSettingsModal()">&times;</button>
+            </div>
+            
+            <div class="form-group">
+                <label id="themeLabel">Theme</label>
+                <div class="toggle-group" id="themeToggle">
+                    <div class="toggle-option active" id="themeLight" onclick="setTheme('light')">☀️ Light</div>
+                    <div class="toggle-option" id="themeDark" onclick="setTheme('dark')">🌙 Dark</div>
+                    <div class="toggle-option" id="themeBlue" onclick="setTheme('blue')">🔵 Blue</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label id="langLabel">Language</label>
+                <select id="languageSelect" style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1em; background: white; color: #333; cursor: pointer;">
+                    <option value="en">English</option>
+                    <option value="es">Español (Spanish)</option>
+                    <option value="fr">Français (French)</option>
+                    <option value="de">Deutsch (German)</option>
+                    <option value="zh">中文 (Chinese)</option>
+                    <option value="ja">日本語 (Japanese)</option>
+                    <option value="ar">العربية (Arabic)</option>
+                </select>
+            </div>
+
+            <button class="btn-primary-modal" onclick="closeSettingsModal()">Save Settings</button>
+        </div>
+    </div>
+
+    <script>
+        // Translation dictionary
+        const translations = {
+            en: {
+                title: 'Tip Calculator Pro - Smart Tipping & Bill Splitting',
+                header: 'Tip Calculator Pro',
+                tagline: 'Smart tipping & bill splitting',
+                billAmount: 'Bill Amount',
+                tipPercentage: 'Tip Percentage',
+                numPeople: 'Number of People',
+                customPlaceholder: 'Custom %',
+                roundUp: 'Round Up',
+                reset: 'Reset',
+                tipAmount: 'Tip Amount',
+                subtotal: 'Subtotal with Tip',
+                perPerson: 'Per Person',
+                totalBill: 'Total Bill',
+                recentCalc: 'Recent Calculations',
+                noCalc: 'No calculations yet',
+                clearHistory: 'Clear History',
+                settings: 'Settings',
+                theme: 'Theme',
+                language: 'Language'
+            },
+            es: {
+                title: 'Calculadora de Propinas Pro - Propinas Inteligentes y División de Cuentas',
+                header: 'Calculadora de Propinas Pro',
+                tagline: 'Propinas inteligentes y división de cuentas',
+                billAmount: 'Monto de la Factura',
+                tipPercentage: 'Porcentaje de Propina',
+                numPeople: 'Número de Personas',
+                customPlaceholder: 'Propina Personalizada %',
+                roundUp: 'Redondear',
+                reset: 'Restablecer',
+                tipAmount: 'Monto de Propina',
+                subtotal: 'Subtotal con Propina',
+                perPerson: 'Por Persona',
+                totalBill: 'Factura Total',
+                recentCalc: 'Cálculos Recientes',
+                noCalc: 'Sin cálculos aún',
+                clearHistory: 'Borrar Historial',
+                settings: 'Configuración',
+                theme: 'Tema',
+                language: 'Idioma'
+            },
+            fr: {
+                title: 'Calculatrice de Pourboires Pro - Pourboires Intelligents et Division des Factures',
+                header: 'Calculatrice de Pourboires Pro',
+                tagline: 'Pourboires intelligents et division des factures',
+                billAmount: 'Montant de la Facture',
+                tipPercentage: 'Pourcentage de Pourboire',
+                numPeople: 'Nombre de Personnes',
+                customPlaceholder: 'Pourboire Personnalisé %',
+                roundUp: 'Arrondir',
+                reset: 'Réinitialiser',
+                tipAmount: 'Montant du Pourboire',
+                subtotal: 'Sous-total avec Pourboire',
+                perPerson: 'Par Personne',
+                totalBill: 'Facture Totale',
+                recentCalc: 'Calculs Récents',
+                noCalc: 'Aucun calcul pour l\'instant',
+                clearHistory: 'Effacer l\'Historique',
+                settings: 'Paramètres',
+                theme: 'Thème',
+                language: 'Langue'
+            },
+            de: {
+                title: 'Trinkgeld-Rechner Pro - Intelligentes Trinkgeld und Rechnungsaufteilung',
+                header: 'Trinkgeld-Rechner Pro',
+                tagline: 'Intelligentes Trinkgeld und Rechnungsaufteilung',
+                billAmount: 'Rechnungsbetrag',
+                tipPercentage: 'Trinkgeld Prozentsatz',
+                numPeople: 'Anzahl der Personen',
+                customPlaceholder: 'Benutzerdefiniertes Trinkgeld %',
+                roundUp: 'Aufrunden',
+                reset: 'Zurücksetzen',
+                tipAmount: 'Trinkgeldbetrag',
+                subtotal: 'Summe mit Trinkgeld',
+                perPerson: 'Pro Person',
+                totalBill: 'Gesamtrechnung',
+                recentCalc: 'Aktuelle Berechnungen',
+                noCalc: 'Noch keine Berechnungen',
+                clearHistory: 'Verlauf Löschen',
+                settings: 'Einstellungen',
+                theme: 'Design',
+                language: 'Sprache'
+            },
+            zh: {
+                title: '小费计算器专业版 - 智能小费和账单分割',
+                header: '小费计算器专业版',
+                tagline: '智能小费和账单分割',
+                billAmount: '账单金额',
+                tipPercentage: '小费百分比',
+                numPeople: '人数',
+                customPlaceholder: '自定义小费 %',
+                roundUp: '四舍五入',
+                reset: '重置',
+                tipAmount: '小费金额',
+                subtotal: '带小费的小计',
+                perPerson: '每人',
+                totalBill: '账单总额',
+                recentCalc: '最近计算',
+                noCalc: '尚无计算',
+                clearHistory: '清除历史记录',
+                settings: '设置',
+                theme: '主题',
+                language: '语言'
+            },
+            ja: {
+                title: 'チップ計算機プロ - スマートなチップと請求書分割',
+                header: 'チップ計算機プロ',
+                tagline: 'スマートなチップと請求書分割',
+                billAmount: '請求額',
+                tipPercentage: 'チップ率',
+                numPeople: '人数',
+                customPlaceholder: 'カスタムチップ %',
+                roundUp: '切り上げ',
+                reset: 'リセット',
+                tipAmount: 'チップ額',
+                subtotal: 'チップ込みの小計',
+                perPerson: '1人あたり',
+                totalBill: '請求書合計',
+                recentCalc: '最近の計算',
+                noCalc: 'まだ計算がありません',
+                clearHistory: '履歴をクリア',
+                settings: '設定',
+                theme: 'テーマ',
+                language: '言語'
+            },
+            ar: {
+                title: 'حاسبة الإكرامية الاحترافية - الإكراميات الذكية وتقسيم الفاتورة',
+                header: 'حاسبة الإكرامية الاحترافية',
+                tagline: 'إكراميات ذكية وتقسيم الفاتورة',
+                billAmount: 'مبلغ الفاتورة',
+                tipPercentage: 'نسبة الإكرامية',
+                numPeople: 'عدد الأشخاص',
+                customPlaceholder: 'إكرامية مخصصة %',
+                roundUp: 'تقريب',
+                reset: 'إعادة تعيين',
+                tipAmount: 'مبلغ الإكرامية',
+                subtotal: 'المجموع الفرعي مع الإكرامية',
+                perPerson: 'لكل شخص',
+                totalBill: 'إجمالي الفاتورة',
+                recentCalc: 'الحسابات الأخيرة',
+                noCalc: 'لا توجد حسابات بعد',
+                clearHistory: 'مسح السجل',
+                settings: 'الإعدادات',
+                theme: 'المظهر',
+                language: 'اللغة'
+            }
+        };
+
+        // Application state
+        let currentTheme = localStorage.getItem('tipTheme') || 'light';
+        let currentLanguage = localStorage.getItem('tipLanguage') || 'en';
+        let billAmount = 0;
+        let tipPercentage = 15;
+        let numPeople = 1;
+        let calculationHistory = JSON.parse(localStorage.getItem('tipHistory')) || [];
+
+        // Initialize
+        initializeApp();
+
+        function initializeApp() {
+            applyTheme();
+            applyLanguage();
+            renderTipButtons();
+            updateResults();
+            renderHistory();
+        }
+
+        function t(key) {
+            return translations[currentLanguage]?.[key] || translations.en[key] || key;
+        }
+
+        function applyLanguage() {
+            document.title = t('title');
+            
+            // Update labels and text
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                el.textContent = t(key);
+            });
+        }
+
+        function applyTheme() {
+            document.body.className = '';
+            if (currentTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+            } else if (currentTheme === 'blue') {
+                document.body.classList.add('blue-theme');
+            }
+            updateThemeButtons();
+        }
+
+        function updateThemeButtons() {
+            document.getElementById('themeLight')?.classList.toggle('active', currentTheme === 'light');
+            document.getElementById('themeDark')?.classList.toggle('active', currentTheme === 'dark');
+            document.getElementById('themeBlue')?.classList.toggle('active', currentTheme === 'blue');
+        }
+
+        function setTheme(theme) {
+            currentTheme = theme;
+            localStorage.setItem('tipTheme', theme);
+            applyTheme();
+        }
+
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('tipLanguage', lang);
+            applyLanguage();
+        }
+
+        function renderTipButtons() {
+            const container = document.getElementById('tipButtons');
+            const percentages = [10, 15, 18, 20, 25];
+            
+            container.innerHTML = percentages.map(percent =>
+                `<button class="tip-btn ${percent === 15 ? 'active' : ''}" onclick="selectTipPercentage(${percent})">${percent}%</button>`
+            ).join('');
+        }
+
+        function selectTipPercentage(percent) {
+            tipPercentage = percent;
+            document.getElementById('customTip').value = '';
+            document.querySelectorAll('.tip-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            updateResults();
+        }
+
+        function onCustomTipInput() {
+            document.querySelectorAll('.tip-btn').forEach(btn => btn.classList.remove('active'));
+            const customValue = parseFloat(document.getElementById('customTip').value);
+            if (customValue) {
+                tipPercentage = customValue;
+            }
+        }
+
+        function incrementPeople() {
+            numPeople++;
+            document.getElementById('peopleCount').textContent = numPeople;
+            updateResults();
+        }
+
+        function decrementPeople() {
+            if (numPeople > 1) {
+                numPeople--;
+                document.getElementById('peopleCount').textContent = numPeople;
+                updateResults();
+            }
+        }
+
+        function updateResults() {
+            billAmount = parseFloat(document.getElementById('billAmount').value) || 0;
+            const customTip = document.getElementById('customTip').value;
+            
+            if (customTip) {
+                tipPercentage = parseFloat(customTip);
+            }
+
+            const tipAmount = billAmount * (tipPercentage / 100);
+            const totalBill = billAmount + tipAmount;
+            const perPerson = totalBill / numPeople;
+            const currency = document.getElementById('currencySelector').value;
+
+            document.getElementById('tipAmount').textContent = tipAmount.toFixed(2);
+            document.getElementById('totalBill').textContent = totalBill.toFixed(2);
+            document.getElementById('perPerson').textContent = perPerson.toFixed(2);
+            document.getElementById('totalDisplay').textContent = totalBill.toFixed(2);
+            document.getElementById('currencyDisplay').textContent = currency;
+        }
+
+        function roundUp() {
+            const totalEl = document.getElementById('totalDisplay');
+            let total = parseFloat(totalEl.textContent);
+            let rounded = Math.ceil(total);
+            totalEl.textContent = rounded.toFixed(2);
+
+            // Save to history
+            const currency = document.getElementById('currencySelector').value;
+            const entry = {
+                bill: billAmount.toFixed(2),
+                tip: tipPercentage,
+                people: numPeople,
+                total: rounded.toFixed(2),
+                currency: currency,
+                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            };
+            calculationHistory.unshift(entry);
+            localStorage.setItem('tipHistory', JSON.stringify(calculationHistory.slice(0, 20)));
+            renderHistory();
+        }
+
+        function resetCalculator() {
+            document.getElementById('billAmount').value = '';
+            document.getElementById('customTip').value = '';
+            numPeople = 1;
+            tipPercentage = 15;
+            document.getElementById('peopleCount').textContent = '1';
+            renderTipButtons();
+            updateResults();
+        }
+
+        function renderHistory() {
+            const container = document.getElementById('historyContainer');
+            
+            if (calculationHistory.length === 0) {
+                container.innerHTML = `<div class="empty-state">${t('noCalc')}</div>`;
+                return;
+            }
+
+            container.innerHTML = calculationHistory.map((entry, index) =>
+                `<div class="history-item" onclick="loadFromHistory(${index})">
+                    <div class="history-info">
+                        <div class="history-desc">${entry.currency} ${entry.bill} (${entry.tip}% tip, ${entry.people} people)</div>
+                        <div class="history-time">${entry.time}</div>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="history-total">${entry.total}</span>
+                        <button class="history-delete" onclick="deleteHistoryItem(event, ${index})">×</button>
+                    </div>
+                </div>`
+            ).join('');
+        }
+
+        function loadFromHistory(index) {
+            const entry = calculationHistory[index];
+            document.getElementById('billAmount').value = entry.bill;
+            document.getElementById('customTip').value = entry.tip;
+            document.getElementById('currencySelector').value = entry.currency;
+            numPeople = entry.people;
+            document.getElementById('peopleCount').textContent = numPeople;
+            updateResults();
+        }
+
+        function deleteHistoryItem(e, index) {
+            e.stopPropagation();
+            calculationHistory.splice(index, 1);
+            localStorage.setItem('tipHistory', JSON.stringify(calculationHistory));
+            renderHistory();
+        }
+
+        function clearHistory() {
+            if (confirm('Clear all calculation history?')) {
+                calculationHistory = [];
+                localStorage.setItem('tipHistory', JSON.stringify(calculationHistory));
+                renderHistory();
+            }
+        }
+
+        function openSettingsModal() {
+            document.getElementById('settingsModal').classList.add('show');
+            document.getElementById('languageSelect').value = currentLanguage;
+        }
+
+        function closeSettingsModal() {
+            document.getElementById('settingsModal').classList.remove('show');
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            const modal = document.getElementById('settingsModal');
+            if (event.target === modal) {
+                closeSettingsModal();
+            }
+        }
+
+        // Language selector
+        document.getElementById('languageSelect').addEventListener('change', function(e) {
+            setLanguage(e.target.value);
+        });
+    </script>
+</body>
+</html>

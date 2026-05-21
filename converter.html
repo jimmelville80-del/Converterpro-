@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --primary-light: #3b82f6;
+            --accent: #06b6d4;
+            --success: #10b981;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border: #e2e8f0;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --card-shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Noto Color Emoji', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--text-primary);
+            transition: background 0.3s ease;
+        }
+
+        /* Dark Theme */
+        body.dark-theme {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f1f5f9;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --bg-light: #1e293b;
+            --bg-white: #334155;
+            --border: #475569;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Blue Theme */
+        body.blue-theme {
+            background: linear-gradient(135deg, #0c4a6e 0%, #164e63 100%);
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --bg-light: #164e63;
+            --bg-white: #0f766e;
+            --border: #475569;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        body.dark-theme .header,
+        body.blue-theme .header {
+            background: rgba(51, 65, 85, 0.95);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .header-icon {
+            font-size: 40px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .header-info h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--primary);
+        }
+
+        body.dark-theme .header-info h1,
+        body.blue-theme .header-info h1 {
+            color: #93c5fd;
+        }
+
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .settings-btn {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--border);
+            background: var(--bg-white);
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.2s ease;
+            color: var(--text-secondary);
+        }
+
+        .settings-btn:hover {
+            background: var(--bg-light);
+            color: var(--primary);
+            transform: rotate(20deg);
+            box-shadow: var(--card-shadow);
+        }
+
+        /* Main Content */
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 1024px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Converter Card */
+        .converter-card {
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--card-shadow-lg);
+            border: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-title-icon {
+            font-size: 20px;
+        }
+
+        /* Currency Input Group */
+        .currency-group {
+            margin-bottom: 24px;
+        }
+
+        .currency-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .currency-input-wrapper {
+            display: flex;
+            gap: 12px;
+            align-items: stretch;
+        }
+
+        .amount-input {
+            flex: 1;
+            padding: 14px 16px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            background: var(--bg-light);
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        .amount-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--bg-white);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+
+        /* Currency Selector */
+        .currency-selector {
+            position: relative;
+            z-index: 10;
+        }
+
+        .currency-trigger {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            min-width: 140px;
+            justify-content: center;
+            white-space: nowrap;
+        }
+
+        body.dark-theme .currency-trigger,
+        body.blue-theme .currency-trigger {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .currency-trigger:hover {
+            background: var(--primary-dark);
+            box-shadow: var(--card-shadow);
+            transform: translateY(-2px);
+        }
+
+        .currency-trigger-flag {
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif !important;
+            width: 24px;
+        }
+
+        .currency-dropdown {
+            position: fixed;
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: var(--card-shadow-lg);
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+            max-height: 400px;
+            width: calc(100vw - 40px);
+            max-width: 340px;
+            left: 20px;
+        }
+
+        body.dark-theme .currency-dropdown {
+            background: var(--bg-white);
+            color: var(--text-primary);
+        }
+
+        .currency-dropdown.active {
+            display: flex;
+        }
+
+        @media (min-width: 768px) {
+            .currency-dropdown {
+                position: absolute;
+                width: auto;
+                max-width: 340px;
+                left: auto;
+                right: auto;
+            }
+        }
+
+        .dropdown-search {
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .dropdown-search input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            background: var(--bg-light);
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-search input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--bg-white);
+        }
+
+        .dropdown-search input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .dropdown-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px 0;
+        }
+
+        .dropdown-option {
+            padding: 12px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.15s ease;
+            color: var(--text-primary);
+            border-left: 3px solid transparent;
+            font-size: 14px;
+        }
+
+        .dropdown-option:hover {
+            background: var(--bg-light);
+            padding-left: 20px;
+        }
+
+        .dropdown-option.selected {
+            background: rgba(30, 64, 175, 0.1);
+            color: var(--primary);
+            font-weight: 600;
+            border-left-color: var(--primary);
+        }
+
+        .option-flag {
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif !important;
+        }
+
+        .option-code {
+            font-weight: 600;
+            min-width: 45px;
+        }
+
+        .option-name {
+            color: var(--text-secondary);
+            font-size: 13px;
+            flex: 1;
+        }
+
+        /* Swap Button */
+        .swap-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        .swap-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            border: 2px solid var(--primary);
+            background: var(--bg-white);
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-theme .swap-btn,
+        body.blue-theme .swap-btn {
+            background: rgba(30, 64, 175, 0.1);
+            color: #60a5fa;
+            border-color: #60a5fa;
+        }
+
+        .swap-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: rotate(180deg);
+            box-shadow: var(--card-shadow);
+        }
+
+        body.dark-theme .swap-btn:hover,
+        body.blue-theme .swap-btn:hover {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        /* Exchange Rate Display */
+        .rate-display {
+            padding: 16px;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
+            margin-top: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--success);
+        }
+
+        .rate-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Favorites Card */
+        .favorites-card {
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--card-shadow-lg);
+            border: 1px solid var(--border);
+        }
+
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        @media (max-width: 1024px) {
+            .favorites-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .favorites-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .favorite-btn {
+            padding: 12px;
+            background: var(--bg-light);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            text-align: center;
+        }
+
+        .favorite-flag {
+            font-size: 24px;
+        }
+
+        .favorite-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: var(--card-shadow);
+        }
+
+        .favorite-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Settings Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 32px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: var(--card-shadow-lg);
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body.dark-theme .close-btn,
+        body.blue-theme .close-btn {
+            color: #cbd5e1;
+        }
+
+        body.dark-theme .close-btn:hover,
+        body.blue-theme .close-btn:hover {
+            color: #f1f5f9;
+            background: rgba(100, 116, 139, 0.3);
+        }
+
+        .close-btn:hover {
+            color: var(--text-primary);
+            background: var(--bg-light);
+            border-radius: 8px;
+        }
+
+        .settings-group {
+            margin-bottom: 28px;
+        }
+
+        .settings-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .settings-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        body.dark-theme .settings-label,
+        body.blue-theme .settings-label {
+            color: #94a3b8;
+        }
+
+        .favorites-checklist {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .favorite-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg-light);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        body.dark-theme .favorite-checkbox,
+        body.blue-theme .favorite-checkbox {
+            background: rgba(51, 65, 85, 0.3);
+            border-color: rgba(148, 163, 184, 0.2);
+        }
+
+        .favorite-checkbox:hover {
+            border-color: var(--primary);
+            background: rgba(30, 64, 175, 0.05);
+        }
+
+        body.dark-theme .favorite-checkbox:hover,
+        body.blue-theme .favorite-checkbox:hover {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .favorite-checkbox input[type="checkbox"] {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
+        body.dark-theme .favorite-checkbox input[type="checkbox"],
+        body.blue-theme .favorite-checkbox input[type="checkbox"] {
+            accent-color: #3b82f6;
+        }
+
+        .favorite-checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        body.dark-theme .favorite-checkbox-label,
+        body.blue-theme .favorite-checkbox-label {
+            color: #e2e8f0;
+        }
+
+        .favorite-checkbox-flag {
+            font-size: 18px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+        }
+
+        .option-btn {
+            padding: 12px;
+            border: 2px solid var(--border);
+            background: var(--bg-light);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        body.dark-theme .option-btn,
+        body.blue-theme .option-btn {
+            background: rgba(51, 65, 85, 0.5);
+            border-color: rgba(148, 163, 184, 0.2);
+            color: #e2e8f0;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary);
+            background: rgba(30, 64, 175, 0.05);
+            color: var(--text-primary);
+        }
+
+        body.dark-theme .option-btn:hover,
+        body.blue-theme .option-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+            color: #e2e8f0;
+        }
+
+        .option-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        body.dark-theme .option-btn.active,
+        body.blue-theme .option-btn.active {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                margin-bottom: 24px;
+            }
+
+            .header-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+
+            .content {
+                margin-bottom: 24px;
+            }
+
+            .converter-card,
+            .favorites-card {
+                padding: 24px;
+            }
+
+            .currency-input-wrapper {
+                flex-direction: column;
+            }
+
+            .swap-wrapper {
+                padding: 12px 0;
+            }
+
+            .swap-btn {
+                width: 44px;
+                height: 44px;
+            }
+
+            .amount-input {
+                padding: 12px 14px;
+                font-size: 16px;
+            }
+
+            .currency-trigger {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-info h1 {
+                font-size: 26px;
+            }
+        }
+
+        /* Scrollbar Styling */
+        .dropdown-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .dropdown-list::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .dropdown-list::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px;
+        }
+
+        .dropdown-list::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+
+        /* Loading */
+        .loading {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid rgba(30, 64, 175, 0.2);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+<!-- Schema Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Currency Converter Pro",
+  "url": "https://converter.converterpro.co",
+  "description": "Free real-time currency converter for 49 currencies. Convert USD, EUR, GBP, AUD, JPY and more with live exchange rates.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "featureList": "Real-time exchange rates, 49 currencies, Country flags, Favorites, Dark mode, 7 languages"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is the current exchange rate for USD to AUD?", "acceptedAnswer": { "@type": "Answer", "text": "Use Currency Converter Pro for live USD to AUD exchange rates updated in real-time from global forex markets." } },
+    { "@type": "Question", "name": "Is Currency Converter Pro free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, Currency Converter Pro is completely free with no sign-up required. It supports 49 currencies with live exchange rates." } },
+    { "@type": "Question", "name": "What is a good free alternative to XE.com?", "acceptedAnswer": { "@type": "Answer", "text": "Currency Converter Pro at converterpro.co is a fast, free alternative to XE.com with live rates for 49 currencies and no ads or sign-up required." } },
+    { "@type": "Question", "name": "How accurate are the exchange rates?", "acceptedAnswer": { "@type": "Answer", "text": "Currency Converter Pro uses live exchange rates from global forex markets, updated in real-time for the most accurate conversions." } }
+  ]
+}
+</script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <div class="header-icon">🌍</div>
+                <div class="header-info">
+                    <h1 data-i18n="title">Currency Converter Pro</h1>
+                    <p class="header-subtitle" data-i18n="subtitle">Real-time exchange rates for 49 currencies</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="settings-btn" id="settingsBtn" title="Settings">⚙️</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Converter Card -->
+            <div class="converter-card">
+                <div class="card-title">
+                    <span class="card-title-icon">🔄</span>
+                    <span data-i18n="converter">Converter</span>
+                </div>
+
+                <!-- From Currency -->
+                <div class="currency-group">
+                    <label class="currency-label" data-i18n="from">From</label>
+                    <div class="currency-input-wrapper">
+                        <input type="number" id="fromAmount" class="amount-input" value="1" min="0" step="0.01" placeholder="Enter amount">
+                        <div class="currency-selector" id="fromSelector">
+                            <button class="currency-trigger">
+                                <span class="currency-trigger-flag"><img src="https://flagcdn.com/24x18/us.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="us"></span>
+                                <span class="currency-code">USD</span>
+                            </button>
+                            <div class="currency-dropdown">
+                                <div class="dropdown-search">
+                                    <input type="text" placeholder="Search currencies..." class="currency-search">
+                                </div>
+                                <div class="dropdown-list"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Swap Button -->
+                <div class="swap-wrapper">
+                    <button class="swap-btn" id="swapBtn" title="Swap currencies">⇅</button>
+                </div>
+
+                <!-- To Currency -->
+                <div class="currency-group">
+                    <label class="currency-label" data-i18n="to">To</label>
+                    <div class="currency-input-wrapper">
+                        <input type="number" id="toAmount" class="amount-input" value="0.92" min="0" step="0.01" readonly placeholder="Result">
+                        <div class="currency-selector" id="toSelector">
+                            <button class="currency-trigger">
+                                <span class="currency-trigger-flag"><img src="https://flagcdn.com/24x18/eu.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="eu"></span>
+                                <span class="currency-code">EUR</span>
+                            </button>
+                            <div class="currency-dropdown">
+                                <div class="dropdown-search">
+                                    <input type="text" placeholder="Search currencies..." class="currency-search">
+                                </div>
+                                <div class="dropdown-list"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exchange Rate -->
+                <div class="rate-display">
+                    <span class="rate-dot"></span>
+                    <span id="rateDisplay">1 USD = 0.92 EUR (Real-time)</span>
+                </div>
+            </div>
+
+            <!-- Favorites Card -->
+            <div class="favorites-card">
+                <div class="card-title">
+                    <span class="card-title-icon">⭐</span>
+                    <span data-i18n="favorites">Quick Access</span>
+                </div>
+                <div class="favorites-grid" id="favoritesGrid"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" data-i18n="settings">Settings</h2>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+
+            <!-- Theme Settings -->
+            <div class="settings-group">
+                <label class="settings-label" data-i18n="theme">Theme</label>
+                <div class="options-grid">
+                    <button class="option-btn active" data-theme="light" data-i18n="themeLight">☀️ Light</button>
+                    <button class="option-btn" data-theme="dark" data-i18n="themeDark">🌙 Dark</button>
+                    <button class="option-btn" data-theme="blue" data-i18n="themeBlue">🌊 Blue</button>
+                </div>
+            </div>
+
+            <!-- Language Settings -->
+            <div class="settings-group">
+                <label class="settings-label" data-i18n="language">Language</label>
+                <div class="options-grid">
+                    <button class="option-btn active" data-language="en">English</button>
+                    <button class="option-btn" data-language="es">Español</button>
+                    <button class="option-btn" data-language="fr">Français</button>
+                    <button class="option-btn" data-language="de">Deutsch</button>
+                    <button class="option-btn" data-language="zh">中文</button>
+                    <button class="option-btn" data-language="ja">日本語</button>
+                </div>
+            </div>
+
+            <!-- Favorites Settings -->
+            <div class="settings-group">
+                <label class="settings-label" data-i18n="manageFavorites">Manage Favorites</label>
+                <div class="favorites-checklist" id="favoritesChecklist"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Comprehensive currency list with flags
+        const currencies = [
+            { code: 'USD', name: 'US Dollar', flag: 'us', flagImg: '<img src="https://flagcdn.com/24x18/us.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="us">' },
+            { code: 'EUR', name: 'Euro', flag: 'eu', flagImg: '<img src="https://flagcdn.com/24x18/eu.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="eu">' },
+            { code: 'GBP', name: 'British Pound', flag: 'gb', flagImg: '<img src="https://flagcdn.com/24x18/gb.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="gb">' },
+            { code: 'AUD', name: 'Australian Dollar', flag: 'au', flagImg: '<img src="https://flagcdn.com/24x18/au.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="au">' },
+            { code: 'JPY', name: 'Japanese Yen', flag: 'jp', flagImg: '<img src="https://flagcdn.com/24x18/jp.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="jp">' },
+            { code: 'CNY', name: 'Chinese Yuan', flag: 'cn', flagImg: '<img src="https://flagcdn.com/24x18/cn.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="cn">' },
+            { code: 'INR', name: 'Indian Rupee', flag: 'in', flagImg: '<img src="https://flagcdn.com/24x18/in.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="in">' },
+            { code: 'CAD', name: 'Canadian Dollar', flag: 'ca', flagImg: '<img src="https://flagcdn.com/24x18/ca.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="ca">' },
+            { code: 'CHF', name: 'Swiss Franc', flag: 'ch', flagImg: '<img src="https://flagcdn.com/24x18/ch.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="ch">' },
+            { code: 'SGD', name: 'Singapore Dollar', flag: 'sg', flagImg: '<img src="https://flagcdn.com/24x18/sg.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="sg">' },
+            { code: 'HKD', name: 'Hong Kong Dollar', flag: 'hk', flagImg: '<img src="https://flagcdn.com/24x18/hk.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="hk">' },
+            { code: 'NZD', name: 'New Zealand Dollar', flag: 'nz', flagImg: '<img src="https://flagcdn.com/24x18/nz.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="nz">' },
+            { code: 'SEK', name: 'Swedish Krona', flag: 'se', flagImg: '<img src="https://flagcdn.com/24x18/se.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="se">' },
+            { code: 'NOK', name: 'Norwegian Krone', flag: 'no', flagImg: '<img src="https://flagcdn.com/24x18/no.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="no">' },
+            { code: 'DKK', name: 'Danish Krone', flag: 'dk', flagImg: '<img src="https://flagcdn.com/24x18/dk.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="dk">' },
+            { code: 'MXN', name: 'Mexican Peso', flag: 'mx', flagImg: '<img src="https://flagcdn.com/24x18/mx.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="mx">' },
+            { code: 'BRL', name: 'Brazilian Real', flag: 'br', flagImg: '<img src="https://flagcdn.com/24x18/br.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="br">' },
+            { code: 'ZAR', name: 'South African Rand', flag: 'za', flagImg: '<img src="https://flagcdn.com/24x18/za.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="za">' },
+            { code: 'KRW', name: 'South Korean Won', flag: 'kr', flagImg: '<img src="https://flagcdn.com/24x18/kr.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="kr">' },
+            { code: 'RUB', name: 'Russian Ruble', flag: 'ru', flagImg: '<img src="https://flagcdn.com/24x18/ru.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="ru">' },
+            { code: 'TRY', name: 'Turkish Lira', flag: 'tr', flagImg: '<img src="https://flagcdn.com/24x18/tr.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="tr">' },
+            { code: 'THB', name: 'Thai Baht', flag: 'th', flagImg: '<img src="https://flagcdn.com/24x18/th.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="th">' },
+            { code: 'MYR', name: 'Malaysian Ringgit', flag: 'my', flagImg: '<img src="https://flagcdn.com/24x18/my.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="my">' },
+            { code: 'IDR', name: 'Indonesian Rupiah', flag: 'id', flagImg: '<img src="https://flagcdn.com/24x18/id.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="id">' },
+            { code: 'PHP', name: 'Philippine Peso', flag: 'ph', flagImg: '<img src="https://flagcdn.com/24x18/ph.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="ph">' },
+            { code: 'VND', name: 'Vietnamese Dong', flag: 'vn', flagImg: '<img src="https://flagcdn.com/24x18/vn.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="vn">' },
+            { code: 'PKR', name: 'Pakistani Rupee', flag: 'pk', flagImg: '<img src="https://flagcdn.com/24x18/pk.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="pk">' },
+            { code: 'BGN', name: 'Bulgarian Lev', flag: 'bg', flagImg: '<img src="https://flagcdn.com/24x18/bg.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="bg">' },
+            { code: 'HRK', name: 'Croatian Kuna', flag: 'hr', flagImg: '<img src="https://flagcdn.com/24x18/hr.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="hr">' },
+            { code: 'HUF', name: 'Hungarian Forint', flag: 'hu', flagImg: '<img src="https://flagcdn.com/24x18/hu.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="hu">' },
+            { code: 'PLN', name: 'Polish Zloty', flag: 'pl', flagImg: '<img src="https://flagcdn.com/24x18/pl.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="pl">' },
+            { code: 'RON', name: 'Romanian Leu', flag: 'ro', flagImg: '<img src="https://flagcdn.com/24x18/ro.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="ro">' },
+            { code: 'ISK', name: 'Icelandic Króna', flag: 'is', flagImg: '<img src="https://flagcdn.com/24x18/is.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="is">' },
+            { code: 'CZK', name: 'Czech Koruna', flag: 'cz', flagImg: '<img src="https://flagcdn.com/24x18/cz.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="cz">' },
+            { code: 'HNL', name: 'Honduran Lempira', flag: 'hn', flagImg: '<img src="https://flagcdn.com/24x18/hn.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="hn">' },
+            { code: 'ARS', name: 'Argentine Peso', flag: 'ar', flagImg: '<img src="https://flagcdn.com/24x18/ar.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="ar">' },
+            { code: 'CLP', name: 'Chilean Peso', flag: 'cl', flagImg: '<img src="https://flagcdn.com/24x18/cl.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="cl">' },
+            { code: 'COP', name: 'Colombian Peso', flag: 'co', flagImg: '<img src="https://flagcdn.com/24x18/co.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="co">' },
+            { code: 'PEN', name: 'Peruvian Sol', flag: 'pe', flagImg: '<img src="https://flagcdn.com/24x18/pe.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="pe">' },
+            { code: 'UYU', name: 'Uruguayan Peso', flag: 'uy', flagImg: '<img src="https://flagcdn.com/24x18/uy.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="uy">' },
+            { code: 'EGP', name: 'Egyptian Pound', flag: 'eg', flagImg: '<img src="https://flagcdn.com/24x18/eg.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="eg">' },
+            { code: 'NGN', name: 'Nigerian Naira', flag: 'ng', flagImg: '<img src="https://flagcdn.com/24x18/ng.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="ng">' },
+            { code: 'GHS', name: 'Ghanaian Cedi', flag: 'gh', flagImg: '<img src="https://flagcdn.com/24x18/gh.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="gh">' },
+            { code: 'KES', name: 'Kenyan Shilling', flag: 'ke', flagImg: '<img src="https://flagcdn.com/24x18/ke.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="ke">' },
+            { code: 'UGX', name: 'Ugandan Shilling', flag: 'ug', flagImg: '<img src="https://flagcdn.com/24x18/ug.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="ug">' },
+            { code: 'TZS', name: 'Tanzanian Shilling', flag: 'tz', flagImg: '<img src="https://flagcdn.com/24x18/tz.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="tz">' },
+            { code: 'QAR', name: 'Qatari Riyal', flag: 'qa', flagImg: '<img src="https://flagcdn.com/24x18/qa.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="qa">' },
+            { code: 'AED', name: 'UAE Dirham', flag: 'ae', flagImg: '<img src="https://flagcdn.com/24x18/ae.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="ae">' },
+            { code: 'SAR', name: 'Saudi Riyal', flag: 'sa', flagImg: '<img src="https://flagcdn.com/24x18/sa.png" style="width:24px;height:18px;object-fit:cover;border-radius:2px;" alt="sa">' }
+        ];
+
+        const defaultFavorites = ['USD', 'EUR', 'GBP', 'AUD', 'JPY', 'CNY'];
+
+        // Translations
+        const translations = {
+            en: {
+                title: 'Currency Converter Pro',
+                subtitle: 'Real-time exchange rates',
+                converter: 'Converter',
+                from: 'From',
+                to: 'To',
+                favorites: 'Quick Access',
+                settings: 'Settings',
+                theme: 'Theme',
+                language: 'Language',
+                themeLight: '☀️ Light',
+                themeDark: '🌙 Dark',
+                themeBlue: '🌊 Blue'
+            },
+            es: {
+                title: 'Convertidor de Divisas',
+                subtitle: 'Tipos de cambio en tiempo real',
+                converter: 'Convertidor',
+                from: 'De',
+                to: 'Para',
+                favorites: 'Acceso Rápido',
+                settings: 'Configuración',
+                theme: 'Tema',
+                language: 'Idioma',
+                themeLight: '☀️ Claro',
+                themeDark: '🌙 Oscuro',
+                themeBlue: '🌊 Azul'
+            },
+            fr: {
+                title: 'Convertisseur de Devises',
+                subtitle: 'Taux de change en temps réel',
+                converter: 'Convertisseur',
+                from: 'De',
+                to: 'Vers',
+                favorites: 'Accès Rapide',
+                settings: 'Paramètres',
+                theme: 'Thème',
+                language: 'Langue',
+                themeLight: '☀️ Clair',
+                themeDark: '🌙 Sombre',
+                themeBlue: '🌊 Bleu'
+            },
+            de: {
+                title: 'Währungsumrechner',
+                subtitle: 'Echtzeit-Wechselkurse',
+                converter: 'Umrechner',
+                from: 'Von',
+                to: 'Zu',
+                favorites: 'Schnellzugriff',
+                settings: 'Einstellungen',
+                theme: 'Design',
+                language: 'Sprache',
+                themeLight: '☀️ Hell',
+                themeDark: '🌙 Dunkel',
+                themeBlue: '🌊 Blau'
+            },
+            zh: {
+                title: '货币转换器',
+                subtitle: '实时汇率',
+                converter: '转换器',
+                from: '从',
+                to: '到',
+                favorites: '快速访问',
+                settings: '设置',
+                theme: '主题',
+                language: '语言',
+                themeLight: '☀️ 浅色',
+                themeDark: '🌙 深色',
+                themeBlue: '🌊 蓝色'
+            },
+            ja: {
+                title: '通貨コンバーター',
+                subtitle: 'リアルタイム為替レート',
+                converter: 'コンバーター',
+                from: 'から',
+                to: 'へ',
+                favorites: 'クイックアクセス',
+                settings: '設定',
+                theme: 'テーマ',
+                language: '言語',
+                themeLight: '☀️ ライト',
+                themeDark: '🌙 ダーク',
+                themeBlue: '🌊 ブルー'
+            }
+        };
+
+        let currentTheme = 'light';
+        let currentLanguage = 'en';
+        let exchangeRates = {};
+        let favorites = [...defaultFavorites];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSettings();
+            initializeCurrencySelectors();
+            setupEventListeners();
+            updateFavoritesGrid();
+            fetchExchangeRates();
+            applyTheme();
+            updateLanguage();
+        });
+
+        // Settings Management
+        function loadSettings() {
+            const saved = localStorage.getItem('currencyConverterSettings');
+            if (saved) {
+                const settings = JSON.parse(saved);
+                currentTheme = settings.theme || 'light';
+                currentLanguage = settings.language || 'en';
+                favorites = settings.favorites || [...defaultFavorites];
+            }
+        }
+
+        function saveSettings() {
+            localStorage.setItem('currencyConverterSettings', JSON.stringify({
+                theme: currentTheme,
+                language: currentLanguage,
+                favorites: favorites
+            }));
+        }
+
+        function populateFavoritesChecklist() {
+            const checklist = document.getElementById('favoritesChecklist');
+            if (!checklist) return;
+            checklist.innerHTML = '';
+            
+            const topCurrencies = currencies.slice(0, 20);
+            
+            topCurrencies.forEach(curr => {
+                const label = document.createElement('label');
+                label.className = 'favorite-checkbox';
+                label.innerHTML = `
+                    <input type="checkbox" value="${curr.code}" ${favorites.includes(curr.code) ? 'checked' : ''}>
+                    <span>${curr.flagImg} ${curr.code} - ${curr.name}</span>
+                `;
+                
+                label.querySelector('input').addEventListener('change', (e) => {
+                    if (e.target.checked) {
+                        if (!favorites.includes(curr.code)) {
+                            favorites.push(curr.code);
+                        }
+                    } else {
+                        favorites = favorites.filter(f => f !== curr.code);
+                    }
+                    saveSettings();
+                    updateFavoritesGrid();
+                });
+                
+                checklist.appendChild(label);
+            });
+        }
+
+        // Theme Management
+        function applyTheme() {
+            document.body.className = '';
+            if (currentTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+            } else if (currentTheme === 'blue') {
+                document.body.classList.add('blue-theme');
+            }
+
+            document.querySelectorAll('[data-theme]').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.theme === currentTheme);
+            });
+        }
+
+        // Language Management
+        function updateLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                const text = translations[currentLanguage]?.[key] || translations.en[key] || '';
+                el.textContent = text;
+            });
+
+            document.querySelectorAll('[data-language]').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.language === currentLanguage);
+            });
+        }
+
+        // Initialize Currency Selectors
+        function initializeCurrencySelectors() {
+            ['fromSelector', 'toSelector'].forEach((selectorId, index) => {
+                const selector = document.getElementById(selectorId);
+                const dropdown = selector.querySelector('.currency-dropdown');
+                const list = dropdown.querySelector('.dropdown-list');
+                const searchInput = dropdown.querySelector('.currency-search');
+
+                // Populate currency options
+                currencies.forEach(curr => {
+                    const option = document.createElement('div');
+                    option.className = 'dropdown-option';
+                    option.innerHTML = `
+                        <span class="option-flag" style="font-size: 1.3em;">${curr.flagImg}</span>
+                        <span class="option-code">${curr.code}</span>
+                        <span class="option-name">${curr.name}</span>
+                    `;
+                    option.dataset.code = curr.code;
+                    option.dataset.flag = curr.flagImg;
+                    option.addEventListener('click', () => selectCurrency(selectorId, curr.code, curr.flagImg));
+                    list.appendChild(option);
+                });
+
+                // Search functionality
+                searchInput.addEventListener('input', (e) => {
+                    const filter = e.target.value.toUpperCase();
+                    list.querySelectorAll('.dropdown-option').forEach(option => {
+                        const matches = option.textContent.toUpperCase().includes(filter);
+                        option.style.display = matches ? 'block' : 'none';
+                    });
+                });
+
+                // Toggle dropdown
+                selector.querySelector('.currency-trigger').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    document.querySelectorAll('.currency-dropdown').forEach(d => {
+                        if (d !== dropdown) d.classList.remove('active');
+                    });
+                    dropdown.classList.toggle('active');
+                });
+            });
+
+            // Close dropdowns on outside click
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.currency-selector')) {
+                    document.querySelectorAll('.currency-dropdown').forEach(d => d.classList.remove('active'));
+                }
+            });
+        }
+
+        function selectCurrency(selectorId, code, flag) {
+            const selector = document.getElementById(selectorId);
+            const currency = currencies.find(c => c.code === code);
+            const trigger = selector.querySelector('.currency-trigger');
+            trigger.innerHTML = `
+                <span class="currency-trigger-flag">${currency ? currency.flagImg : '🌐'}</span>
+                <span class="currency-code">${code}</span>
+            `;
+
+            selector.querySelector('.currency-dropdown').querySelectorAll('.dropdown-option').forEach(opt => {
+                opt.classList.toggle('selected', opt.dataset.code === code);
+            });
+
+            selector.querySelector('.currency-dropdown').classList.remove('active');
+            convertCurrency();
+        }
+
+        // Event Listeners
+        function setupEventListeners() {
+            document.getElementById('fromAmount').addEventListener('input', convertCurrency);
+            document.getElementById('swapBtn').addEventListener('click', swapCurrencies);
+            document.getElementById('settingsBtn').addEventListener('click', () => {
+                document.getElementById('settingsModal').classList.add('active');
+                populateFavoritesChecklist();
+            });
+            document.getElementById('closeModal').addEventListener('click', () => {
+                document.getElementById('settingsModal').classList.remove('active');
+            });
+
+            document.getElementById('settingsModal').addEventListener('click', (e) => {
+                if (e.target.id === 'settingsModal') {
+                    document.getElementById('settingsModal').classList.remove('active');
+                }
+            });
+
+            document.querySelectorAll('[data-theme]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentTheme = btn.dataset.theme;
+                    applyTheme();
+                    saveSettings();
+                });
+            });
+
+            document.querySelectorAll('[data-language]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentLanguage = btn.dataset.language;
+                    updateLanguage();
+                    saveSettings();
+                });
+            });
+        }
+
+        // Currency Conversion
+        async function fetchExchangeRates() {
+            try {
+                const fromCode = document.querySelector('#fromSelector .currency-code').textContent;
+                const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${fromCode}`);
+                const data = await response.json();
+                exchangeRates = data.rates;
+                convertCurrency();
+            } catch (error) {
+                console.error('Error fetching rates:', error);
+                exchangeRates = {
+                    USD: 1, EUR: 0.92, GBP: 0.73, AUD: 1.53, JPY: 149.5, CNY: 7.24,
+                    INR: 83.12, CAD: 1.36, CHF: 0.88, SGD: 1.34, HKD: 7.81, NZD: 1.62
+                };
+                convertCurrency();
+            }
+        }
+
+        function convertCurrency() {
+            const fromAmount = parseFloat(document.getElementById('fromAmount').value) || 0;
+            const fromCode = document.querySelector('#fromSelector .currency-code').textContent;
+            const toCode = document.querySelector('#toSelector .currency-code').textContent;
+
+            if (exchangeRates[toCode]) {
+                const rate = exchangeRates[toCode];
+                const result = (fromAmount * rate).toFixed(2);
+                document.getElementById('toAmount').value = result;
+                
+                const rateText = `1 ${fromCode} = ${rate.toFixed(4)} ${toCode} (Real-time)`;
+                document.getElementById('rateDisplay').textContent = rateText;
+            }
+        }
+
+        function swapCurrencies() {
+            const fromSelector = document.getElementById('fromSelector');
+            const toSelector = document.getElementById('toSelector');
+            const fromTrigger = fromSelector.querySelector('.currency-trigger');
+            const toTrigger = toSelector.querySelector('.currency-trigger');
+            const fromAmount = document.getElementById('fromAmount');
+            const toAmount = document.getElementById('toAmount');
+
+            const temp = fromTrigger.innerHTML;
+            fromTrigger.innerHTML = toTrigger.innerHTML;
+            toTrigger.innerHTML = temp;
+
+            fromAmount.value = toAmount.value;
+            fetchExchangeRates();
+        }
+
+        // Favorites Management
+        function updateFavoritesGrid() {
+            const grid = document.getElementById('favoritesGrid');
+            grid.innerHTML = '';
+
+            favorites.forEach(code => {
+                const currency = currencies.find(c => c.code === code);
+                if (currency) {
+                    const btn = document.createElement('button');
+                    btn.className = 'favorite-btn';
+                    btn.innerHTML = `
+                        <span class="favorite-flag">${currency.flagImg}</span>
+                        <span>${currency.code}</span>
+                    `;
+                    btn.addEventListener('click', () => {
+                        const fromTrigger = document.querySelector('#fromSelector .currency-trigger');
+                        fromTrigger.innerHTML = `
+                            <span class="currency-trigger-flag">${currency.flagImg}</span>
+                            <span class="currency-code">${currency.code}</span>
+                        `;
+                        document.getElementById('fromAmount').focus();
+                        fetchExchangeRates();
+                    });
+                    grid.appendChild(btn);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
