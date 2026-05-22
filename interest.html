@@ -273,27 +273,27 @@ footer a{color:#2e86ab;text-decoration:none}
   <div class="faq">
     <h2 data-i18n="faq_heading">Frequently Asked Questions</h2>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How do I calculate monthly mortgage repayments? ▾</div>
+      <div class="faq-q" onclick="toggleFaq(this)" data-i18n="faq1_q">How do I calculate monthly mortgage repayments? ▾</div>
       <div class="faq-a">Enter the loan amount, annual interest rate, and loan term. The calculator uses the standard amortisation formula to show your exact monthly repayment, the total interest you'll pay, and the total amount repaid over the loan term.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">What is compound interest? ▾</div>
+      <div class="faq-q" onclick="toggleFaq(this)" data-i18n="faq2_q">What is compound interest? ▾</div>
       <div class="faq-a">Compound interest is interest calculated on both the initial principal and the accumulated interest from previous periods. It's the reason investments grow exponentially — your returns generate further returns. Einstein reportedly called it the eighth wonder of the world.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How much does an extra $100/month save on a mortgage? ▾</div>
+      <div class="faq-q" onclick="toggleFaq(this)" data-i18n="faq3_q">How much does an extra $100/month save on a mortgage? ▾</div>
       <div class="faq-a">It depends on the loan size and interest rate, but extra repayments reduce your principal faster, lowering the interest charged on that principal. On a $500,000 mortgage at 6.5%, an extra $200/month can save over $80,000 in interest and cut 4+ years off the loan.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">What's the difference between simple and compound interest? ▾</div>
+      <div class="faq-q" onclick="toggleFaq(this)" data-i18n="faq4_q">What's the difference between simple and compound interest? ▾</div>
       <div class="faq-a">Simple interest is calculated only on the original principal. Compound interest is calculated on the principal plus any previously earned interest. Most loans and investments use compound interest.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">What does interest-only mean for a mortgage? ▾</div>
+      <div class="faq-q" onclick="toggleFaq(this)" data-i18n="faq5_q">What does interest-only mean for a mortgage? ▾</div>
       <div class="faq-a">Interest-only means your repayments only cover the interest — none of the principal. Your loan balance stays the same. Common for investment properties in Australia. At the end of the interest-only period, repayments jump significantly as you start repaying principal.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How is investment return (compound interest) calculated? ▾</div>
+      <div class="faq-q" onclick="toggleFaq(this)" data-i18n="faq6_q">How is investment return (compound interest) calculated? ▾</div>
       <div class="faq-a">The formula is: A = P(1 + r/n)^(nt), where P is principal, r is annual rate, n is compounding periods per year, and t is years. With monthly contributions, each contribution also compounds. Our calculator handles all of this automatically.</div>
     </div>
   </div>
@@ -518,10 +518,14 @@ var CPRO_TRANSLATIONS = {
     "res_contrib": "Total Contributed",
     "res_roi": "Return on Investment",
     "faq_heading": "Frequently Asked Questions",
-    "faq1_q": "How do I calculate monthly mortgage repayments?",
+    "faq1_q": "How do I calculate monthly mortgage repayments? ▾",
     "faq1_a": "Enter the loan amount, annual interest rate, and loan term. The calculator shows your exact monthly repayment, total interest, and total amount repaid.",
-    "faq2_q": "What is compound interest?",
-    "faq2_a": "Compound interest is calculated on both the initial principal and the accumulated interest. It's why investments grow exponentially over time."
+    "faq2_q": "What is compound interest? ▾",
+    "faq2_a": "Compound interest is calculated on both the initial principal and the accumulated interest. It's why investments grow exponentially over time.",
+    "faq3_q": "How much does an extra $100/month save on a mortgage? ▾",
+    "faq4_q": "What's the difference between simple and compound interest? ▾",
+    "faq5_q": "What does interest-only mean for a mortgage? ▾",
+    "faq6_q": "How is investment return (compound interest) calculated? ▾"
   },
   "zh": {
     "title": "💰 利息与贷款计算器",
@@ -555,10 +559,14 @@ var CPRO_TRANSLATIONS = {
     "res_contrib": "总投入",
     "res_roi": "投资回报率",
     "faq_heading": "常见问题",
-    "faq1_q": "如何计算每月房贷还款额？",
+    "faq1_q": "如何计算每月房贷还款额？ ▾",
     "faq1_a": "输入贷款金额、年利率和贷款期限。计算器显示每月还款额、总利息和总还款额。",
-    "faq2_q": "什么是复利？",
-    "faq2_a": "复利是在本金和已积累利息的基础上计算的。这就是为什么投资随时间呈指数增长。"
+    "faq2_q": "什么是复利？ ▾",
+    "faq2_a": "复利是在本金和已积累利息的基础上计算的。这就是为什么投资随时间呈指数增长。",
+    "faq3_q": "每月额外还款能节省多少？ ▾",
+    "faq4_q": "简单利息和复利有什么区别？ ▾",
+    "faq5_q": "什么是仅利息房贷？ ▾",
+    "faq6_q": "投资回报如何计算？ ▾"
   },
   "hi": {
     "title": "💰 ब्याज और ऋण कैलकुलेटर",
@@ -592,10 +600,14 @@ var CPRO_TRANSLATIONS = {
     "res_contrib": "कुल योगदान",
     "res_roi": "निवेश पर रिटर्न",
     "faq_heading": "अक्सर पूछे जाने वाले प्रश्न",
-    "faq1_q": "मासिक बंधक भुगतान कैसे गणना करें?",
+    "faq1_q": "मासिक बंधक भुगतान कैसे गणना करें? ▾",
     "faq1_a": "ऋण राशि, वार्षिक ब्याज दर और ऋण अवधि दर्ज करें। कैलकुलेटर सटीक मासिक भुगतान दिखाता है।",
-    "faq2_q": "चक्रवृद्धि ब्याज क्या है?",
-    "faq2_a": "चक्रवृद्धि ब्याज मूलधन और संचित ब्याज दोनों पर गणना किया जाता है। इसीलिए निवेश समय के साथ तेजी से बढ़ता है।"
+    "faq2_q": "चक्रवृद्धि ब्याज क्या है? ▾",
+    "faq2_a": "चक्रवृद्धि ब्याज मूलधन और संचित ब्याज दोनों पर गणना किया जाता है। इसीलिए निवेश समय के साथ तेजी से बढ़ता है।",
+    "faq3_q": "अतिरिक्त भुगतान से कितनी बचत? ▾",
+    "faq4_q": "साधारण और चक्रवृद्धि ब्याज में अंतर? ▾",
+    "faq5_q": "केवल-ब्याज बंधक क्या है? ▾",
+    "faq6_q": "निवेश रिटर्न कैसे गणना? ▾"
   },
   "es": {
     "title": "💰 Calculadora de Interés y Préstamos",
@@ -629,10 +641,14 @@ var CPRO_TRANSLATIONS = {
     "res_contrib": "Total Aportado",
     "res_roi": "Retorno sobre Inversión",
     "faq_heading": "Preguntas Frecuentes",
-    "faq1_q": "¿Cómo calculo las cuotas mensuales de una hipoteca?",
+    "faq1_q": "¿Cómo calculo cuotas mensuales de hipoteca? ▾",
     "faq1_a": "Ingresa el monto del préstamo, la tasa de interés anual y el plazo. El calculador muestra tu cuota mensual exacta.",
-    "faq2_q": "¿Qué es el interés compuesto?",
-    "faq2_a": "El interés compuesto se calcula sobre el capital inicial y los intereses acumulados. Por eso las inversiones crecen exponencialmente."
+    "faq2_q": "¿Qué es el interés compuesto? ▾",
+    "faq2_a": "El interés compuesto se calcula sobre el capital inicial y los intereses acumulados. Por eso las inversiones crecen exponencialmente.",
+    "faq3_q": "¿Cuánto ahorra un pago extra mensual? ▾",
+    "faq4_q": "¿Diferencia entre interés simple y compuesto? ▾",
+    "faq5_q": "¿Qué significa solo interés? ▾",
+    "faq6_q": "¿Cómo se calcula el retorno de inversión? ▾"
   },
   "fr": {
     "title": "💰 Calculateur d'Intérêts et Prêts",
@@ -666,10 +682,14 @@ var CPRO_TRANSLATIONS = {
     "res_contrib": "Total Contribué",
     "res_roi": "Retour sur Investissement",
     "faq_heading": "Questions Fréquentes",
-    "faq1_q": "Comment calculer les remboursements mensuels d'un prêt immobilier?",
+    "faq1_q": "Comment calculer les remboursements mensuels? ▾",
     "faq1_a": "Entrez le montant du prêt, le taux d'intérêt annuel et la durée. Le calculateur affiche votre remboursement mensuel exact.",
-    "faq2_q": "Qu'est-ce que l'intérêt composé?",
-    "faq2_a": "L'intérêt composé est calculé sur le capital initial et les intérêts accumulés. C'est pourquoi les investissements croissent exponentiellement."
+    "faq2_q": "Qu'est-ce que l'intérêt composé? ▾",
+    "faq2_a": "L'intérêt composé est calculé sur le capital initial et les intérêts accumulés. C'est pourquoi les investissements croissent exponentiellement.",
+    "faq3_q": "Combien économise un remboursement supplémentaire? ▾",
+    "faq4_q": "Différence entre intérêt simple et composé? ▾",
+    "faq5_q": "Que signifie intérêts seulement? ▾",
+    "faq6_q": "Comment calculer le rendement d'investissement? ▾"
   }
 };
 
