@@ -1243,8 +1243,8 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
-                <h2>Create QR Codes Instantly</h2>
-                <p class="hero-subtitle">Free, professional QR codes for any purpose. No sign up, no limits. Perfect for marketing, contact sharing, and more.</p>
+                <h2 data-i18n="hero_h2">Create QR Codes Instantly</h2>
+                <p class="hero-subtitle" data-i18n="hero_sub">Free, professional QR codes for any purpose. No sign up, no limits. Perfect for marketing, contact sharing, and more.</p>
             </div>
             <div class="phone-mockup">
                 <div class="phone">
@@ -1342,11 +1342,11 @@
                 <!-- Color Pickers -->
                 <div class="color-row">
                     <div class="color-picker">
-                        <label>🎨 Foreground</label>
+                        <label data-i18n="fg">🎨 Foreground</label>
                         <input type="color" id="fgColor" value="#000000">
                     </div>
                     <div class="color-picker">
-                        <label>🎨 Background</label>
+                        <label data-i18n="bg">🎨 Background</label>
                         <input type="color" id="bgColor" value="#ffffff">
                     </div>
                 </div>
@@ -1355,12 +1355,12 @@
                 <div class="shape-selector">
                     <div class="section-header">
                         <span class="section-icon">●</span>
-                        <span>Dot Pattern</span>
+                        <span data-i18n="dot_pattern">Dot Pattern</span>
                     </div>
                     <div class="shape-buttons">
-                        <button class="shape-btn active" data-shape="square">⬜ Square</button>
-                        <button class="shape-btn" data-shape="circle">● Circle</button>
-                        <button class="shape-btn" data-shape="rounded">⬤ Rounded</button>
+                        <button class="shape-btn active" data-shape="square" data-i18n="shape_sq">⬜ Square</button>
+                        <button class="shape-btn" data-shape="circle" data-i18n="shape_ci">● Circle</button>
+                        <button class="shape-btn" data-shape="rounded" data-i18n="shape_ro">⬤ Rounded</button>
                     </div>
                 </div>
 
@@ -1368,11 +1368,11 @@
                 <div class="logo-section">
                     <div class="section-header">
                         <span class="section-icon">📷</span>
-                        <span>Logo</span>
+                        <span data-i18n="logo">Logo</span>
                     </div>
                     <div class="upload-area" id="uploadArea">
-                        <div class="upload-text">Click or drag logo here</div>
-                        <div class="upload-hint">PNG, JPG, SVG (Max 500KB)</div>
+                        <div class="upload-text" data-i18n="upload_text">Click or drag logo here</div>
+                        <div class="upload-hint" data-i18n="upload_hint">PNG, JPG, SVG (Max 500KB)</div>
                         <input type="file" id="logoInput" accept="image/png,image/jpeg,image/svg+xml">
                     </div>
                     <button class="remove-logo-btn" id="removeLogoBtn">✕ Remove Logo</button>
@@ -1416,16 +1416,16 @@
             </div>
 
             <div class="settings-group">
-                <label>Theme</label>
+                <label data-i18n="theme">Theme</label>
                 <div class="theme-buttons">
-                    <button class="theme-btn active" data-theme="default">☀️ Light</button>
-                    <button class="theme-btn" data-theme="dark">🌙 Dark</button>
-                    <button class="theme-btn" data-theme="blue">🔵 Blue</button>
+                    <button class="theme-btn active" data-theme="default" data-i18n="theme_light">☀️ Light</button>
+                    <button class="theme-btn" data-theme="dark" data-i18n="theme_dark">🌙 Dark</button>
+                    <button class="theme-btn" data-theme="blue" data-i18n="theme_blue">🔵 Blue</button>
                 </div>
             </div>
 
             <div class="settings-group">
-                <label>Language</label>
+                <label data-i18n="language">Language</label>
                 <select class="language-select" id="languageSelect">
                     <option value="en">English</option>
                     <option value="es">Español</option>
@@ -1853,7 +1853,7 @@
     </script>
 
 <section class="faq-section" style="max-width:800px;margin:40px auto;padding:20px;font-family:inherit;clear:both;display:block;float:none;position:relative;z-index:1;">
-  <h2 style="font-size:1.5em;margin-bottom:20px;color:inherit;">Frequently Asked Questions</h2>
+  <h2 style="font-size:1.5em;margin-bottom:20px;color:inherit;" data-i18n="faq_heading">Frequently Asked Questions</h2>
   <div itemscope itemtype="https://schema.org/FAQPage">
 
 <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
@@ -1914,7 +1914,108 @@
 </script>
 
 <script id="cpro-translations">
-var CPRO_TRANSLATIONS = {"zh": {"QR Code Generator Pro": "二维码生成器", "Create professional QR codes instantly": "立即创建专业二维码", "Create QR Codes Instantly": "立即生成二维码", "Free, professional QR codes for any purpose. No sign up, no limits. Perfect for marketing, contact sharing, and more.": "免费专业二维码，适用于任何用途。无需注册，无限制。", "Generate QR Code": "生成二维码", "Download PNG": "下载 PNG", "Download SVG": "下载 SVG", "Enter URL, text, WiFi, email...": "输入网址、文字、WiFi、邮件...", "URL": "网址", "Text": "文本", "Email": "邮件", "Phone": "电话", "WiFi": "WiFi", "vCard": "名片", "Foreground": "前景色", "Background": "背景色", "Square": "方形", "Circle": "圆形", "Rounded": "圆角", "Frequently Asked Questions": "常见问题", "Free": "免费", "No sign-up required": "无需注册"}, "es": {"QR Code Generator Pro": "Generador de Código QR", "Create professional QR codes instantly": "Crea códigos QR profesionales al instante", "Create QR Codes Instantly": "Genera Códigos QR al Instante", "Free, professional QR codes for any purpose. No sign up, no limits. Perfect for marketing, contact sharing, and more.": "Códigos QR gratuitos para cualquier propósito. Sin registro, sin límites.", "Generate QR Code": "Generar QR", "Download PNG": "Descargar PNG", "Download SVG": "Descargar SVG", "Frequently Asked Questions": "Preguntas Frecuentes"}, "fr": {"QR Code Generator Pro": "Générateur de QR Code", "Create professional QR codes instantly": "Créez des QR codes professionnels instantanément", "Create QR Codes Instantly": "Générez des QR Codes Instantanément", "Free, professional QR codes for any purpose. No sign up, no limits. Perfect for marketing, contact sharing, and more.": "QR codes gratuits pour tous usages. Sans inscription, sans limites.", "Generate QR Code": "Générer QR", "Download PNG": "Télécharger PNG", "Download SVG": "Télécharger SVG", "Frequently Asked Questions": "Questions Fréquentes"}, "hi": {"QR Code Generator Pro": "QR कोड जनरेटर", "Create professional QR codes instantly": "तुरंत पेशेवर QR कोड बनाएं", "Create QR Codes Instantly": "तुरंत QR कोड बनाएं", "Generate QR Code": "QR कोड बनाएं", "Download PNG": "PNG डाउनलोड करें", "Frequently Asked Questions": "अक्सर पूछे जाने वाले प्रश्न"}};
+var CPRO_TRANSLATIONS = {
+  "en": {
+    "title": "QR Code Generator Pro",
+    "hero_h2": "Create QR Codes Instantly",
+    "hero_sub": "Free, professional QR codes for any purpose. No sign up, no limits. Perfect for marketing, contact sharing, and more.",
+    "fg": "\ud83c\udfa8 Foreground",
+    "bg": "\ud83c\udfa8 Background",
+    "dot_pattern": "Dot Pattern",
+    "shape_sq": "\u2b1c Square",
+    "shape_ci": "\u25cf Circle",
+    "shape_ro": "\u2b24 Rounded",
+    "logo": "Logo",
+    "upload_text": "Click or drag logo here",
+    "upload_hint": "PNG, JPG, SVG (Max 500KB)",
+    "theme": "Theme",
+    "theme_light": "\u2600\ufe0f Light",
+    "theme_dark": "\ud83c\udf19 Dark",
+    "theme_blue": "\ud83d\udd35 Blue",
+    "language": "Language",
+    "faq_heading": "Frequently Asked Questions"
+  },
+  "zh": {
+    "title": "\u4e8c\u7ef4\u7801\u751f\u6210\u5668",
+    "hero_h2": "\u7acb\u5373\u751f\u6210\u4e8c\u7ef4\u7801",
+    "hero_sub": "\u514d\u8d39\u4e13\u4e1a\u4e8c\u7ef4\u7801\uff0c\u9002\u7528\u4e8e\u4efb\u4f55\u7528\u9014\u3002\u65e0\u9700\u6ce8\u518c\uff0c\u65e0\u9650\u5236\u3002",
+    "fg": "\ud83c\udfa8 \u524d\u666f\u8272",
+    "bg": "\ud83c\udfa8 \u80cc\u666f\u8272",
+    "dot_pattern": "\u70b9\u9635\u5217\u6a21\u5f0f",
+    "shape_sq": "\u2b1c \u65b9\u5f62",
+    "shape_ci": "\u25cf \u5706\u5f62",
+    "shape_ro": "\u2b24 \u5706\u89d2",
+    "logo": "\u6807\u5fd7",
+    "upload_text": "\u70b9\u51fb\u6216\u62d6\u653e\u6807\u5fd7",
+    "upload_hint": "PNG, JPG, SVG (\u6700\u5927 500KB)",
+    "theme": "\u4e3b\u9898",
+    "theme_light": "\u2600\ufe0f \u4eae\u8272",
+    "theme_dark": "\ud83c\udf19 \u6697\u8272",
+    "theme_blue": "\ud83d\udd35 \u84dd\u8272",
+    "language": "\u8bed\u8a00",
+    "faq_heading": "\u5e38\u89c1\u95ee\u9898"
+  },
+  "hi": {
+    "title": "QR \u0915\u094b\u0921 \u091c\u0928\u0930\u0947\u091f\u0930",
+    "hero_h2": "\u0924\u0941\u0930\u0902\u0924 QR \u0915\u094b\u0921 \u092c\u0928\u093e\u090f\u0902",
+    "hero_sub": "\u0915\u093f\u0938\u0940 \u092d\u0940 \u0909\u0926\u094d\u0926\u0947\u0936\u094d\u092f \u0915\u0947 \u0932\u093f\u090f \u092e\u0941\u092b\u094d\u0924 \u092a\u0947\u0936\u0947\u0935\u0930 QR \u0915\u094b\u0921\u0964 \u0915\u094b\u0908 \u0938\u093e\u0907\u0928-\u0905\u092a \u0928\u0939\u0940\u0902, \u0915\u094b\u0908 \u0938\u0940\u092e\u093e \u0928\u0939\u0940\u0902\u0964",
+    "fg": "\ud83c\udfa8 \u0905\u0917\u094d\u0930\u092d\u0942\u092e\u093f",
+    "bg": "\ud83c\udfa8 \u092a\u0943\u0937\u094d\u0920\u092d\u0942\u092e\u093f",
+    "dot_pattern": "\u092c\u093f\u0902\u0926\u0941 \u092a\u0948\u091f\u0930\u094d\u0928",
+    "shape_sq": "\u2b1c \u0935\u0930\u094d\u0917",
+    "shape_ci": "\u25cf \u0935\u0943\u0924\u094d\u0924",
+    "shape_ro": "\u2b24 \u0917\u094b\u0932\u093e\u0915\u093e\u0930",
+    "logo": "\u0932\u094b\u0917\u094b",
+    "upload_text": "\u0932\u094b\u0917\u094b \u092f\u0939\u093e\u0902 \u0915\u094d\u0932\u093f\u0915 \u092f\u093e \u0921\u094d\u0930\u0948\u0917 \u0915\u0930\u0947\u0902",
+    "upload_hint": "PNG, JPG, SVG (\u0905\u0927\u093f\u0915\u0924\u092e 500KB)",
+    "theme": "\u0925\u0940\u092e",
+    "theme_light": "\u2600\ufe0f \u0909\u091c\u093e\u0932\u093e",
+    "theme_dark": "\ud83c\udf19 \u0905\u0902\u0927\u0947\u0930\u093e",
+    "theme_blue": "\ud83d\udd35 \u0928\u0940\u0932\u093e",
+    "language": "\u092d\u093e\u0937\u093e",
+    "faq_heading": "\u0905\u0915\u094d\u0938\u0930 \u092a\u0942\u091b\u0947 \u091c\u093e\u0928\u0947 \u0935\u093e\u0932\u0947 \u092a\u094d\u0930\u0936\u094d\u0928"
+  },
+  "es": {
+    "title": "Generador de C\u00f3digo QR",
+    "hero_h2": "Genera C\u00f3digos QR al Instante",
+    "hero_sub": "C\u00f3digos QR gratuitos para cualquier prop\u00f3sito. Sin registro, sin l\u00edmites. Perfecto para marketing, contactos y m\u00e1s.",
+    "fg": "\ud83c\udfa8 Primer Plano",
+    "bg": "\ud83c\udfa8 Fondo",
+    "dot_pattern": "Patr\u00f3n de Puntos",
+    "shape_sq": "\u2b1c Cuadrado",
+    "shape_ci": "\u25cf C\u00edrculo",
+    "shape_ro": "\u2b24 Redondeado",
+    "logo": "Logo",
+    "upload_text": "Haz clic o arrastra el logo aqu\u00ed",
+    "upload_hint": "PNG, JPG, SVG (M\u00e1x 500KB)",
+    "theme": "Tema",
+    "theme_light": "\u2600\ufe0f Claro",
+    "theme_dark": "\ud83c\udf19 Oscuro",
+    "theme_blue": "\ud83d\udd35 Azul",
+    "language": "Idioma",
+    "faq_heading": "Preguntas Frecuentes"
+  },
+  "fr": {
+    "title": "G\u00e9n\u00e9rateur de QR Code",
+    "hero_h2": "G\u00e9n\u00e9rez des QR Codes Instantan\u00e9ment",
+    "hero_sub": "QR codes gratuits pour tous usages. Sans inscription, sans limites. Parfait pour le marketing, le partage de contacts et plus.",
+    "fg": "\ud83c\udfa8 Premier Plan",
+    "bg": "\ud83c\udfa8 Arri\u00e8re-Plan",
+    "dot_pattern": "Motif de Points",
+    "shape_sq": "\u2b1c Carr\u00e9",
+    "shape_ci": "\u25cf Cercle",
+    "shape_ro": "\u2b24 Arrondi",
+    "logo": "Logo",
+    "upload_text": "Cliquez ou faites glisser le logo ici",
+    "upload_hint": "PNG, JPG, SVG (Max 500KB)",
+    "theme": "Th\u00e8me",
+    "theme_light": "\u2600\ufe0f Clair",
+    "theme_dark": "\ud83c\udf19 Sombre",
+    "theme_blue": "\ud83d\udd35 Bleu",
+    "language": "Langue",
+    "faq_heading": "Questions Fr\u00e9quentes"
+  }
+};
 var CPRO_ORIG_LANG = 'en';
 
 function cproWalkAndReplace(node, fromDict, toDict) {
@@ -1958,20 +2059,24 @@ function cproSetLang(lang) {
     b.style.color = active ? '#fff' : '#f1f5f9';
   });
   if (lang === 'en') {
-    // Reload page to restore English
     location.reload();
     return;
   }
   var t = CPRO_TRANSLATIONS[lang];
   if (!t) return;
-  cproWalkAndReplace(document.body, {}, t);
-  // Also update page title
-  var titles = Object.keys(t);
-  for (var i = 0; i < titles.length; i++) {
-    if (document.title.indexOf(titles[i]) !== -1) {
-      document.title = document.title.replace(titles[i], t[titles[i]]);
-      break;
+  // 1. data-i18n tagged elements (fast, precise)
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (t[key] === undefined) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = t[key];
+    } else {
+      el.textContent = t[key];
     }
+  });
+  // 2. page title
+  if (t['title'] && document.title) {
+    document.title = document.title.replace('QR Code Generator Pro', t['title']);
   }
 }
 
