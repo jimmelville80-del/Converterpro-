@@ -209,7 +209,17 @@
         .input-group {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            width: 100%;
+            overflow: hidden;
+        }
+        .input-group .currency-selector {
+            flex: 0 0 auto;
+            max-width: 55%;
+        }
+        .input-group input {
+            flex: 1 1 0;
+            min-width: 0;
         }
 
         .form-group input {
@@ -360,6 +370,7 @@
             text-align: center;
             font-weight: 700;
             font-size: 1.1em;
+            color: #333333;
         }
 
         .results-section {
