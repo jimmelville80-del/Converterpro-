@@ -809,15 +809,15 @@
             </div>
             <div class="header-top">
                 <span class="receipt-icon">🧾</span>
-                <h1>Tip Calculator Pro</h1>
+                <h1 data-i18n="title">Tip Calculator Pro</h1>
             </div>
-            <p class="tagline">Smart tipping & bill splitting</p>
+            <p class="tagline" data-i18n="tagline">Smart tipping & bill splitting</p>
         </header>
 
         <!-- Main Calculator -->
         <div class="main-card">
             <div class="form-group">
-                <label>Bill Amount</label>
+                <label data-i18n="lbl_bill">Bill Amount</label>
                 <div class="input-group">
                     <select class="currency-selector" id="currencySelector" onchange="updateResults()">
                         <option value="AUD">AUD (Australia)</option>
@@ -833,13 +833,13 @@
             </div>
 
             <div class="form-group">
-                <label>Tip Percentage</label>
+                <label data-i18n="lbl_tip">Tip Percentage</label>
                 <div class="tip-buttons" id="tipButtons"></div>
                 <input type="number" class="custom-tip-input" id="customTip" placeholder="Custom %" step="0.1" min="0" max="100" onchange="updateResults()" oninput="onCustomTipInput()">
             </div>
 
             <div class="form-group">
-                <label>Number of People</label>
+                <label data-i18n="lbl_people">Number of People</label>
                 <div class="people-adjuster">
                     <button class="adjuster-btn" onclick="decrementPeople()">−</button>
                     <span class="people-count" id="peopleCount">1</span>
@@ -848,8 +848,8 @@
             </div>
 
             <div class="action-buttons">
-                <button class="btn btn-primary" onclick="roundUp()">💰 Round Up</button>
-                <button class="btn btn-secondary" onclick="resetCalculator()">🔄 Reset</button>
+                <button class="btn btn-primary" onclick="roundUp()" data-i18n="btn_round">💰 Round Up</button>
+                <button class="btn btn-secondary" onclick="resetCalculator()" data-i18n="btn_reset">🔄 Reset</button>
             </div>
         </div>
 
@@ -877,7 +877,7 @@
 
         <!-- History Section -->
         <div class="history-section">
-            <h3>📋 Recent Calculations</h3>
+            <h3 data-i18n="lbl_recent">📋 Recent Calculations</h3>
             <div id="historyContainer" class="empty-state">No calculations yet</div>
             <button class="btn btn-secondary" style="margin-top: 15px; width: 100%;" onclick="clearHistory()">Clear History</button>
         </div>
@@ -887,12 +887,12 @@
     <div id="settingsModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>⚙️ Settings</h2>
+                <h2 data-i18n="settings">⚙️ Settings</h2>
                 <button class="close" onclick="closeSettingsModal()">&times;</button>
             </div>
             
             <div class="form-group">
-                <label id="themeLabel">Theme</label>
+                <label id="themeLabel" data-i18n="lbl_theme">Theme</label>
                 <div class="toggle-group" id="themeToggle">
                     <div class="toggle-option active" id="themeLight" onclick="setTheme('light')">☀️ Light</div>
                     <div class="toggle-option" id="themeDark" onclick="setTheme('dark')">🌙 Dark</div>
@@ -901,7 +901,7 @@
             </div>
 
             <div class="form-group">
-                <label id="langLabel">Language</label>
+                <label id="langLabel" data-i18n="lbl_lang">Language</label>
                 <select id="languageSelect" style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1em; background: white; color: #333; cursor: pointer;">
                     <option value="en">English</option>
                     <option value="es">Español (Spanish)</option>
@@ -913,7 +913,7 @@
                 </select>
             </div>
 
-            <button class="btn-primary-modal" onclick="closeSettingsModal()">Save Settings</button>
+            <button class="btn-primary-modal" onclick="closeSettingsModal()" data-i18n="btn_save">Save Settings</button>
         </div>
     </div>
 
@@ -1295,21 +1295,21 @@
   <div itemscope itemtype="https://schema.org/FAQPage">
 
 <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-  <h3 itemprop="name">How do I calculate a tip?</h3>
+  <h3 itemprop="name" data-i18n="faq1_q">How do I calculate a tip?</h3>
   <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-    <p itemprop="text">Enter the bill total, select your tip percentage (15%, 18%, 20% or custom), and the calculator shows your tip amount and total instantly.</p>
+    <p itemprop="text" data-i18n="faq1_a">Enter the bill total, select your tip percentage (15%, 18%, 20% or custom), and the calculator shows your tip amount and total instantly.</p>
   </div>
 </div>
 <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-  <h3 itemprop="name">How do I split a bill between multiple people?</h3>
+  <h3 itemprop="name" data-i18n="faq2_q">How do I split a bill between multiple people?</h3>
   <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-    <p itemprop="text">Enter the bill total, choose your tip percentage, then enter the number of people. The calculator shows each person's share including tip.</p>
+    <p itemprop="text" data-i18n="faq2_a">Enter the bill total, choose your tip percentage, then enter the number of people. The calculator shows each person's share including tip.</p>
   </div>
 </div>
 <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-  <h3 itemprop="name">What is a standard tip percentage?</h3>
+  <h3 itemprop="name" data-i18n="faq3_q">What is a standard tip percentage?</h3>
   <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-    <p itemprop="text">In Australia, tipping is optional but 10-15% is common for excellent service. In the US, 15-20% is standard for restaurants.</p>
+    <p itemprop="text" data-i18n="faq3_a">In Australia, tipping is optional but 10-15% is common for excellent service. In the US, 15-20% is standard for restaurants.</p>
   </div>
 </div>
 <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
@@ -1352,72 +1352,144 @@
 </script>
 
 <script id="cpro-translations">
-var CPRO_TRANSLATIONS = {"zh": {"Tip Calculator Pro": "小费计算器", "Bill Amount": "账单金额", "Tip Percentage": "小费百分比", "Number of People": "人数", "Calculate": "计算", "Tip Amount": "小费金额", "Total Bill": "总账单", "Per Person": "每人", "Frequently Asked Questions": "常见问题", "Split Bill": "分摊账单", "Custom": "自定义"}, "es": {"Tip Calculator Pro": "Calculadora de Propinas", "Bill Amount": "Monto de la Cuenta", "Tip Percentage": "Porcentaje de Propina", "Number of People": "Número de Personas", "Calculate": "Calcular", "Tip Amount": "Monto de Propina", "Total Bill": "Total de la Cuenta", "Per Person": "Por Persona", "Frequently Asked Questions": "Preguntas Frecuentes"}, "fr": {"Tip Calculator Pro": "Calculateur de Pourboire", "Bill Amount": "Montant de la Facture", "Tip Percentage": "Pourcentage du Pourboire", "Number of People": "Nombre de Personnes", "Calculate": "Calculer", "Tip Amount": "Montant du Pourboire", "Total Bill": "Total de la Facture", "Per Person": "Par Personne", "Frequently Asked Questions": "Questions Fréquentes"}, "hi": {"Tip Calculator Pro": "टिप कैलकुलेटर", "Bill Amount": "बिल राशि", "Tip Percentage": "टिप प्रतिशत", "Number of People": "लोगों की संख्या", "Calculate": "गणना करें", "Tip Amount": "टिप राशि", "Total Bill": "कुल बिल", "Per Person": "प्रति व्यक्ति", "Frequently Asked Questions": "अक्सर पूछे जाने वाले प्रश्न"}};
-var CPRO_ORIG_LANG = 'en';
-
-function cproWalkAndReplace(node, fromDict, toDict) {
-  if (node.nodeType === 3) {
-    var text = node.textContent;
-    var trimmed = text.trim();
-    if (trimmed.length > 1) {
-      var from = fromDict || {};
-      var to = toDict || {};
-      for (var key in to) {
-        if (text === key || trimmed === key) {
-          node.textContent = text.replace(key, to[key]);
-          return;
-        }
-      }
-    }
-    return;
+var CPRO_TRANSLATIONS = {
+  "en": {
+    "title": "Tip Calculator Pro",
+    "tagline": "Smart tipping & bill splitting",
+    "lbl_bill": "Bill Amount",
+    "lbl_tip": "Tip Percentage",
+    "lbl_people": "Number of People",
+    "btn_round": "💰 Round Up",
+    "btn_reset": "🔄 Reset",
+    "lbl_recent": "📋 Recent Calculations",
+    "settings": "⚙️ Settings",
+    "lbl_theme": "Theme",
+    "lbl_lang": "Language",
+    "btn_save": "Save Settings",
+    "faq_heading": "Frequently Asked Questions",
+    "faq1_q": "How do I calculate a tip?",
+    "faq1_a": "Enter the bill total, select your tip percentage (15%, 18%, 20% or custom), and the calculator shows your tip amount and total instantly.",
+    "faq2_q": "How do I split a bill between multiple people?",
+    "faq2_a": "Enter the bill total, choose your tip percentage, then enter the number of people. The calculator shows each person's share including tip.",
+    "faq3_q": "What is a standard tip percentage?",
+    "faq3_a": "In Australia, tipping is optional but 10-15% is common for excellent service. In the US, 15-20% is standard for restaurants."
+  },
+  "zh": {
+    "title": "小费计算器",
+    "tagline": "智能小费与账单分摊",
+    "lbl_bill": "账单金额",
+    "lbl_tip": "小费百分比",
+    "lbl_people": "人数",
+    "btn_round": "💰 四舍五入",
+    "btn_reset": "🔄 重置",
+    "lbl_recent": "📋 最近计算",
+    "settings": "⚙️ 设置",
+    "lbl_theme": "主题",
+    "lbl_lang": "语言",
+    "btn_save": "保存设置",
+    "faq_heading": "常见问题",
+    "faq1_q": "如何计算小费？",
+    "faq1_a": "输入账单总额，选择小费百分比（15%、18%、20%或自定义），计算器立即显示小费金额和总计。",
+    "faq2_q": "如何多人分摊账单？",
+    "faq2_a": "输入账单总额，选择小费百分比，然后输入人数。计算器显示每人应付金额（含小费）。",
+    "faq3_q": "标准小费百分比是多少？",
+    "faq3_a": "在澳大利亚，给小费是可选的，但优质服务通常给10-15%。在美国，餐厅标准是15-20%。"
+  },
+  "hi": {
+    "title": "टिप कैलकुलेटर",
+    "tagline": "स्मार्ट टिपिंग और बिल विभाजन",
+    "lbl_bill": "बिल राशि",
+    "lbl_tip": "टिप प्रतिशत",
+    "lbl_people": "लोगों की संख्या",
+    "btn_round": "💰 राउंड अप",
+    "btn_reset": "🔄 रीसेट",
+    "lbl_recent": "📋 हाल की गणनाएं",
+    "settings": "⚙️ सेटिंग्स",
+    "lbl_theme": "थीम",
+    "lbl_lang": "भाषा",
+    "btn_save": "सेटिंग्स सहेजें",
+    "faq_heading": "अक्सर पूछे जाने वाले प्रश्न",
+    "faq1_q": "टिप कैसे गणना करें?",
+    "faq1_a": "बिल टोटल दर्ज करें, अपना टिप प्रतिशत चुनें और कैलकुलेटर तुरंत राशि दिखाता है।",
+    "faq2_q": "कई लोगों के बीच बिल कैसे विभाजित करें?",
+    "faq2_a": "बिल टोटल, टिप प्रतिशत और लोगों की संख्या दर्ज करें। कैलकुलेटर प्रति व्यक्ति हिस्सा दिखाता है।",
+    "faq3_q": "मानक टिप प्रतिशत क्या है?",
+    "faq3_a": "ऑस्ट्रेलिया में टिप वैकल्पिक है लेकिन 10-15% सामान्य है। अमेरिका में रेस्तरां के लिए 15-20% मानक है।"
+  },
+  "es": {
+    "title": "Calculadora de Propinas",
+    "tagline": "Propinas inteligentes y división de cuenta",
+    "lbl_bill": "Monto de la Cuenta",
+    "lbl_tip": "Porcentaje de Propina",
+    "lbl_people": "Número de Personas",
+    "btn_round": "💰 Redondear",
+    "btn_reset": "🔄 Reiniciar",
+    "lbl_recent": "📋 Cálculos Recientes",
+    "settings": "⚙️ Configuración",
+    "lbl_theme": "Tema",
+    "lbl_lang": "Idioma",
+    "btn_save": "Guardar Configuración",
+    "faq_heading": "Preguntas Frecuentes",
+    "faq1_q": "¿Cómo calculo una propina?",
+    "faq1_a": "Ingresa el total de la cuenta, selecciona el porcentaje de propina y el calculador muestra el resultado al instante.",
+    "faq2_q": "¿Cómo divido una cuenta entre varias personas?",
+    "faq2_a": "Ingresa el total, el porcentaje de propina y el número de personas. El calculador muestra la parte de cada uno.",
+    "faq3_q": "¿Cuál es el porcentaje estándar de propina?",
+    "faq3_a": "En Australia, dar propina es opcional pero 10-15% es común. En EE.UU., 15-20% es estándar en restaurantes."
+  },
+  "fr": {
+    "title": "Calculateur de Pourboire",
+    "tagline": "Pourboires intelligents et partage de facture",
+    "lbl_bill": "Montant de la Facture",
+    "lbl_tip": "Pourcentage du Pourboire",
+    "lbl_people": "Nombre de Personnes",
+    "btn_round": "💰 Arrondir",
+    "btn_reset": "🔄 Réinitialiser",
+    "lbl_recent": "📋 Calculs Récents",
+    "settings": "⚙️ Paramètres",
+    "lbl_theme": "Thème",
+    "lbl_lang": "Langue",
+    "btn_save": "Enregistrer",
+    "faq_heading": "Questions Fréquentes",
+    "faq1_q": "Comment calculer un pourboire?",
+    "faq1_a": "Entrez le total de la facture, sélectionnez le pourcentage de pourboire et le calculateur affiche le résultat instantanément.",
+    "faq2_q": "Comment diviser une facture entre plusieurs personnes?",
+    "faq2_a": "Entrez le total, le pourcentage et le nombre de personnes. Le calculateur affiche la part de chacun.",
+    "faq3_q": "Quel est le pourcentage de pourboire standard?",
+    "faq3_a": "En Australie, le pourboire est facultatif mais 10-15% est courant. Aux États-Unis, 15-20% est standard."
   }
-  if (node.nodeType === 1) {
-    var tag = node.tagName;
-    if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT') return;
-    // Handle placeholders
-    if ((tag === 'INPUT' || tag === 'TEXTAREA') && node.placeholder) {
-      var ph = node.placeholder;
-      var tDict = toDict || {};
-      if (tDict[ph]) node.placeholder = tDict[ph];
-    }
-    for (var i = 0; i < node.childNodes.length; i++) {
-      cproWalkAndReplace(node.childNodes[i], fromDict, toDict);
-    }
-  }
-}
+};
 
 function cproSetLang(lang) {
   localStorage.setItem('cpro_lang', lang);
-  // Update button styles
   document.querySelectorAll('.cpro-lang-btn').forEach(function(b) {
     var active = b.dataset.lang === lang;
     b.style.background = active ? '#6366f1' : '#334155';
     b.style.borderColor = active ? '#6366f1' : '#475569';
     b.style.color = active ? '#fff' : '#f1f5f9';
   });
-  if (lang === 'en') {
-    // Reload page to restore English
-    location.reload();
-    return;
-  }
+  if (lang === 'en') { location.reload(); return; }
   var t = CPRO_TRANSLATIONS[lang];
   if (!t) return;
-  cproWalkAndReplace(document.body, {}, t);
-  // Also update page title
-  var titles = Object.keys(t);
-  for (var i = 0; i < titles.length; i++) {
-    if (document.title.indexOf(titles[i]) !== -1) {
-      document.title = document.title.replace(titles[i], t[titles[i]]);
-      break;
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (t[key] === undefined) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = t[key];
+    } else if (el.tagName === 'OPTION') {
+      el.textContent = t[key];
+    } else {
+      el.textContent = t[key];
     }
+  });
+  if (t['title'] && document.title) {
+    var orig = CPRO_TRANSLATIONS['en']['title'];
+    if (orig) document.title = document.title.replace(orig, t['title']);
   }
 }
-
 document.addEventListener('DOMContentLoaded', function() {
   var saved = localStorage.getItem('cpro_lang') || 'en';
-  if (saved !== 'en') {
-    cproSetLang(saved);
-  }
+  if (saved !== 'en') cproSetLang(saved);
 });
 </script>
 </body>

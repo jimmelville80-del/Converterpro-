@@ -464,28 +464,28 @@
     <!-- CATEGORY ICONS -->
     <div class="icon-row">
         <button class="cat-icon ic-volume active" onclick="filterCat(event,'flour')">
-            🌾<span>Flours</span>
+            🌾<span data-i18n="cat_flour">Flours</span>
         </button>
         <button class="cat-icon ic-weight" onclick="filterCat(event,'fat')">
-            🧈<span>Fats</span>
+            🧈<span data-i18n="cat_fat">Fats</span>
         </button>
         <button class="cat-icon ic-temp" onclick="filterCat(event,'sweet')">
-            🍯<span>Sweet</span>
+            🍯<span data-i18n="cat_sweet">Sweet</span>
         </button>
         <button class="cat-icon ic-time" onclick="filterCat(event,'liquid')">
-            🥛<span>Dairy</span>
+            🥛<span data-i18n="cat_dairy">Dairy</span>
         </button>
         <button class="cat-icon ic-length" onclick="filterCat(event,'herb')">
-            🌿<span>Herbs</span>
+            🌿<span data-i18n="cat_herbs">Herbs</span>
         </button>
     </div>
 
-    <button class="cta-btn" onclick="document.getElementById('calculator').scrollIntoView({behavior:'smooth'})">Convert Units</button>
+    <button class="cta-btn" onclick="document.getElementById('calculator').scrollIntoView({behavior:'smooth'})" data-i18n="btn_convert">Convert Units</button>
 </div>
 
 <!-- CALCULATOR PANEL -->
 <div class="calc-panel" id="calculator">
-    <h2>⚖️ Ingredient Converter</h2>
+    <h2 data-i18n="h2_converter">⚖️ Ingredient Converter</h2>
 
     <!-- INGREDIENT -->
     <label class="field-label" for="ingredient" data-i18n="label_ingredient">Ingredient</label>
@@ -556,7 +556,7 @@
 
     <!-- REFERENCE TABLE -->
     <div class="ref-section">
-        <h3>📊 Quick Reference Chart</h3>
+        <h3 data-i18n="h3_ref">📊 Quick Reference Chart</h3>
         <table>
             <thead>
                 <tr>
@@ -573,7 +573,7 @@
 
     <!-- INGREDIENT BROWSE -->
     <div class="ref-section">
-        <h3>🥄 Browse Ingredients</h3>
+        <h3 data-i18n="h3_browse">🥄 Browse Ingredients</h3>
         <div class="ing-grid" id="ing-grid"></div>
     </div>
 
@@ -581,7 +581,7 @@
 
     <!-- SEO CONTENT -->
     <div class="seo-section">
-        <h3>How to Convert Cups to Grams</h3>
+        <h3 data-i18n="h3_seo">How to Convert Cups to Grams</h3>
         <p>Converting between cups, grams, mL and ounces is essential for accurate baking. Unlike cooking, baking is a science — small measurement errors can ruin a recipe.</p>
         <p>The problem with measuring by cups is that every ingredient has a different density. A cup of almond flour weighs 112g, while a cup of honey weighs 340g — nearly three times heavier in the same measuring cup.</p>
 
@@ -809,15 +809,15 @@
   <div itemscope itemtype="https://schema.org/FAQPage">
 
 <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-  <h3 itemprop="name">How do I convert cups to grams?</h3>
+  <h3 itemprop="name" data-i18n="faq1_q">How do I convert cups to grams?</h3>
   <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-    <p itemprop="text">Select your ingredient (e.g. flour, sugar, butter), enter the amount in cups, and the converter instantly shows the equivalent weight in grams.</p>
+    <p itemprop="text" data-i18n="faq1_a">Select your ingredient (e.g. flour, sugar, butter), enter the amount in cups, and the converter instantly shows the equivalent weight in grams.</p>
   </div>
 </div>
 <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-  <h3 itemprop="name">Why do cups and grams differ by ingredient?</h3>
+  <h3 itemprop="name" data-i18n="faq2_q">Why do cups and grams differ by ingredient?</h3>
   <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-    <p itemprop="text">Because different ingredients have different densities. 1 cup of flour weighs about 125g, while 1 cup of sugar weighs about 200g. Our converter accounts for this automatically.</p>
+    <p itemprop="text" data-i18n="faq2_a">Because different ingredients have different densities. 1 cup of flour weighs about 125g, while 1 cup of sugar weighs about 200g. Our converter accounts for this automatically.</p>
   </div>
 </div>
 <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
@@ -910,72 +910,154 @@
 </script>
 
 <script id="cpro-translations">
-var CPRO_TRANSLATIONS = {"zh": {"Cooking Converter Pro": "烹饪换算器", "Convert between the most common units used in cooking and baking.": "转换烹饪和烘焙中最常用的单位。", "Ingredient Converter": "食材换算器", "Ingredient": "食材", "From": "从", "To": "到", "Result": "结果", "Flours": "面粉", "Fats": "油脂", "Sweet": "甜品", "Dairy": "乳制品", "Herbs": "香草", "Frequently Asked Questions": "常见问题", "Quick Reference Chart": "快速参考表", "Browse Ingredients": "浏览食材", "Advertisement": "广告", "cups": "杯", "grams": "克", "tablespoons": "汤匙", "teaspoons": "茶匙"}, "es": {"Cooking Converter Pro": "Conversor de Cocina", "Convert between the most common units used in cooking and baking.": "Convierte entre las unidades más comunes en cocina y repostería.", "Ingredient Converter": "Conversor de Ingredientes", "Ingredient": "Ingrediente", "From": "De", "To": "A", "Result": "Resultado", "Flours": "Harinas", "Fats": "Grasas", "Sweet": "Dulces", "Dairy": "Lácteos", "Herbs": "Hierbas", "Frequently Asked Questions": "Preguntas Frecuentes", "Quick Reference Chart": "Tabla de Referencia Rápida", "Browse Ingredients": "Ver Ingredientes"}, "fr": {"Cooking Converter Pro": "Convertisseur Culinaire", "Convert between the most common units used in cooking and baking.": "Convertissez entre les unités courantes en cuisine et pâtisserie.", "Ingredient Converter": "Convertisseur d'Ingrédients", "Ingredient": "Ingrédient", "From": "De", "To": "À", "Result": "Résultat", "Flours": "Farines", "Fats": "Graisses", "Sweet": "Sucreries", "Dairy": "Produits Laitiers", "Herbs": "Herbes", "Frequently Asked Questions": "Questions Fréquentes", "Quick Reference Chart": "Tableau de Référence", "Browse Ingredients": "Parcourir les Ingrédients"}, "hi": {"Cooking Converter Pro": "कुकिंग कनवर्टर", "Convert between the most common units used in cooking and baking.": "खाना पकाने और बेकिंग में सामान्य इकाइयों के बीच बदलें।", "Ingredient Converter": "सामग्री कनवर्टर", "Ingredient": "सामग्री", "From": "से", "To": "तक", "Result": "परिणाम", "Flours": "आटे", "Fats": "वसा", "Sweet": "मिठाई", "Dairy": "डेयरी", "Herbs": "जड़ी-बूटियां", "Frequently Asked Questions": "अक्सर पूछे जाने वाले प्रश्न"}};
-var CPRO_ORIG_LANG = 'en';
-
-function cproWalkAndReplace(node, fromDict, toDict) {
-  if (node.nodeType === 3) {
-    var text = node.textContent;
-    var trimmed = text.trim();
-    if (trimmed.length > 1) {
-      var from = fromDict || {};
-      var to = toDict || {};
-      for (var key in to) {
-        if (text === key || trimmed === key) {
-          node.textContent = text.replace(key, to[key]);
-          return;
-        }
-      }
-    }
-    return;
+var CPRO_TRANSLATIONS = {
+  "en": {
+    "title": "Cooking Converter Pro",
+    "tagline": "Convert between the most common units used in cooking and baking.",
+    "cat_flour": "Flours",
+    "cat_fat": "Fats",
+    "cat_sweet": "Sweet",
+    "cat_dairy": "Dairy",
+    "cat_herbs": "Herbs",
+    "btn_convert": "Convert Units",
+    "h2_converter": "⚖️ Ingredient Converter",
+    "label_ingredient": "Ingredient",
+    "label_from": "From",
+    "label_to": "To",
+    "lbl_result": "Result",
+    "h3_ref": "📊 Quick Reference Chart",
+    "h3_browse": "🥄 Browse Ingredients",
+    "h3_seo": "How to Convert Cups to Grams",
+    "faq_heading": "Frequently Asked Questions",
+    "faq1_q": "How do I convert cups to grams?",
+    "faq1_a": "Select your ingredient, enter the amount in cups, and the converter instantly shows the equivalent weight in grams.",
+    "faq2_q": "Why do cups and grams differ by ingredient?",
+    "faq2_a": "Different ingredients have different densities. 1 cup of flour weighs about 125g, while 1 cup of sugar weighs about 200g."
+  },
+  "zh": {
+    "title": "烹饪换算器",
+    "tagline": "转换烹饪和烘焙中最常用的单位。",
+    "cat_flour": "面粉",
+    "cat_fat": "油脂",
+    "cat_sweet": "甜品",
+    "cat_dairy": "乳制品",
+    "cat_herbs": "香草",
+    "btn_convert": "转换单位",
+    "h2_converter": "⚖️ 食材换算器",
+    "label_ingredient": "食材",
+    "label_from": "从",
+    "label_to": "到",
+    "lbl_result": "结果",
+    "h3_ref": "📊 快速参考表",
+    "h3_browse": "🥄 浏览食材",
+    "h3_seo": "如何将杯换算成克",
+    "faq_heading": "常见问题",
+    "faq1_q": "如何将杯换算成克？",
+    "faq1_a": "选择食材，输入杯数，转换器立即显示克数。",
+    "faq2_q": "为什么不同食材的杯克换算不同？",
+    "faq2_a": "不同食材密度不同。1杯面粉约125克，而1杯糖约200克。"
+  },
+  "hi": {
+    "title": "कुकिंग कनवर्टर",
+    "tagline": "खाना पकाने और बेकिंग में सामान्य इकाइयों के बीच बदलें।",
+    "cat_flour": "आटे",
+    "cat_fat": "वसा",
+    "cat_sweet": "मिठाई",
+    "cat_dairy": "डेयरी",
+    "cat_herbs": "जड़ी-बूटियां",
+    "btn_convert": "इकाइयां बदलें",
+    "h2_converter": "⚖️ सामग्री कनवर्टर",
+    "label_ingredient": "सामग्री",
+    "label_from": "से",
+    "label_to": "तक",
+    "lbl_result": "परिणाम",
+    "h3_ref": "📊 त्वरित संदर्भ चार्ट",
+    "h3_browse": "🥄 सामग्री देखें",
+    "h3_seo": "कप को ग्राम में कैसे बदलें",
+    "faq_heading": "अक्सर पूछे जाने वाले प्रश्न",
+    "faq1_q": "कप को ग्राम में कैसे बदलें?",
+    "faq1_a": "अपनी सामग्री चुनें, कप में मात्रा दर्ज करें, और कनवर्टर तुरंत ग्राम में वजन दिखाता है।",
+    "faq2_q": "कप और ग्राम अलग-अलग क्यों होते हैं?",
+    "faq2_a": "अलग-अलग सामग्री की घनत्व अलग होती है। 1 कप आटा लगभग 125g, जबकि 1 कप चीनी लगभग 200g।"
+  },
+  "es": {
+    "title": "Conversor de Cocina",
+    "tagline": "Convierte entre las unidades más comunes en cocina y repostería.",
+    "cat_flour": "Harinas",
+    "cat_fat": "Grasas",
+    "cat_sweet": "Dulces",
+    "cat_dairy": "Lácteos",
+    "cat_herbs": "Hierbas",
+    "btn_convert": "Convertir Unidades",
+    "h2_converter": "⚖️ Conversor de Ingredientes",
+    "label_ingredient": "Ingrediente",
+    "label_from": "De",
+    "label_to": "A",
+    "lbl_result": "Resultado",
+    "h3_ref": "📊 Tabla de Referencia Rápida",
+    "h3_browse": "🥄 Ver Ingredientes",
+    "h3_seo": "Cómo Convertir Tazas a Gramos",
+    "faq_heading": "Preguntas Frecuentes",
+    "faq1_q": "¿Cómo convierto tazas a gramos?",
+    "faq1_a": "Selecciona tu ingrediente, ingresa la cantidad en tazas y el conversor muestra los gramos al instante.",
+    "faq2_q": "¿Por qué tazas y gramos difieren por ingrediente?",
+    "faq2_a": "Diferentes ingredientes tienen diferentes densidades. 1 taza de harina pesa unos 125g, mientras que el azúcar pesa 200g."
+  },
+  "fr": {
+    "title": "Convertisseur Culinaire",
+    "tagline": "Convertissez entre les unités courantes en cuisine et pâtisserie.",
+    "cat_flour": "Farines",
+    "cat_fat": "Graisses",
+    "cat_sweet": "Sucreries",
+    "cat_dairy": "Produits Laitiers",
+    "cat_herbs": "Herbes",
+    "btn_convert": "Convertir les Unités",
+    "h2_converter": "⚖️ Convertisseur d'Ingrédients",
+    "label_ingredient": "Ingrédient",
+    "label_from": "De",
+    "label_to": "À",
+    "lbl_result": "Résultat",
+    "h3_ref": "📊 Tableau de Référence Rapide",
+    "h3_browse": "🥄 Parcourir les Ingrédients",
+    "h3_seo": "Comment Convertir les Tasses en Grammes",
+    "faq_heading": "Questions Fréquentes",
+    "faq1_q": "Comment convertir les tasses en grammes?",
+    "faq1_a": "Sélectionnez votre ingrédient, entrez la quantité en tasses et le convertisseur affiche les grammes instantanément.",
+    "faq2_q": "Pourquoi les tasses et grammes diffèrent-ils selon l'ingrédient?",
+    "faq2_a": "Les ingrédients ont des densités différentes. 1 tasse de farine pèse environ 125g, tandis que le sucre pèse 200g."
   }
-  if (node.nodeType === 1) {
-    var tag = node.tagName;
-    if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT') return;
-    // Handle placeholders
-    if ((tag === 'INPUT' || tag === 'TEXTAREA') && node.placeholder) {
-      var ph = node.placeholder;
-      var tDict = toDict || {};
-      if (tDict[ph]) node.placeholder = tDict[ph];
-    }
-    for (var i = 0; i < node.childNodes.length; i++) {
-      cproWalkAndReplace(node.childNodes[i], fromDict, toDict);
-    }
-  }
-}
+};
 
 function cproSetLang(lang) {
   localStorage.setItem('cpro_lang', lang);
-  // Update button styles
   document.querySelectorAll('.cpro-lang-btn').forEach(function(b) {
     var active = b.dataset.lang === lang;
     b.style.background = active ? '#6366f1' : '#334155';
     b.style.borderColor = active ? '#6366f1' : '#475569';
     b.style.color = active ? '#fff' : '#f1f5f9';
   });
-  if (lang === 'en') {
-    // Reload page to restore English
-    location.reload();
-    return;
-  }
+  if (lang === 'en') { location.reload(); return; }
   var t = CPRO_TRANSLATIONS[lang];
   if (!t) return;
-  cproWalkAndReplace(document.body, {}, t);
-  // Also update page title
-  var titles = Object.keys(t);
-  for (var i = 0; i < titles.length; i++) {
-    if (document.title.indexOf(titles[i]) !== -1) {
-      document.title = document.title.replace(titles[i], t[titles[i]]);
-      break;
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (t[key] === undefined) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = t[key];
+    } else if (el.tagName === 'OPTION') {
+      el.textContent = t[key];
+    } else {
+      el.textContent = t[key];
     }
+  });
+  if (t['title'] && document.title) {
+    var orig = CPRO_TRANSLATIONS['en']['title'];
+    if (orig) document.title = document.title.replace(orig, t['title']);
   }
 }
-
 document.addEventListener('DOMContentLoaded', function() {
   var saved = localStorage.getItem('cpro_lang') || 'en';
-  if (saved !== 'en') {
-    cproSetLang(saved);
-  }
+  if (saved !== 'en') cproSetLang(saved);
 });
 </script>
 </body>

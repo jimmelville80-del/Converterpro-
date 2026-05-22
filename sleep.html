@@ -343,12 +343,12 @@
 
         <!-- Tab 1: Going to sleep now / at a time -->
         <div class="section active" id="bedtime-section">
-            <label>What time are you going to sleep?</label>
+            <label data-i18n="lbl_sleep">What time are you going to sleep?</label>
             <input type="time" id="sleep-time" value="22:30">
-            <button class="now-btn secondary" onclick="setNow('sleep-time')">⏱ Use current time</button>
+            <button class="now-btn secondary" onclick="setNow('sleep-time')" data-i18n="btn_now">⏱ Use current time</button>
             <button class="now-btn" onclick="calcWakeUp()" data-i18n="btn_calc">Calculate Wake Up Times →</button>
             <div class="results" id="wakeup-results" style="display:none;">
-                <h3>Best times to wake up</h3>
+                <h3 data-i18n="res_wake">Best times to wake up</h3>
                 <div class="time-grid" id="wakeup-grid"></div>
                 <div class="info-box">💡 Tap a time to set an alarm. Green = ideal (5-6 cycles). Each cycle is 90 minutes. Allow ~14 min to fall asleep.</div>
             </div>
@@ -356,11 +356,11 @@
 
         <!-- Tab 2: Need to wake up at a time -->
         <div class="section" id="wakeup-section">
-            <label>What time do you need to wake up?</label>
+            <label data-i18n="lbl_wake">What time do you need to wake up?</label>
             <input type="time" id="wake-time" value="07:00">
             <button class="now-btn" onclick="calcBedTime()" data-i18n="btn_calc">Calculate Bedtimes →</button>
             <div class="results" id="bedtime-results" style="display:none;">
-                <h3>Go to sleep at one of these times</h3>
+                <h3 data-i18n="res_bed">Go to sleep at one of these times</h3>
                 <div class="time-grid" id="bedtime-grid"></div>
                 <div class="info-box">💡 Green = ideal (5-6 cycles). Each cycle is 90 minutes. Allow ~14 min to fall asleep.</div>
             </div>
@@ -369,25 +369,25 @@
 
     <!-- FAQ -->
     <div class="faq-section">
-        <h2>Frequently Asked Questions</h2>
+        <h2 data-i18n="faq_heading">Frequently Asked Questions</h2>
         <div class="faq-item">
-            <h3>How does the sleep calculator work?</h3>
+            <h3 data-i18n="faq1_q">How does the sleep calculator work?</h3>
             <p>Sleep happens in 90-minute cycles. Waking at the end of a cycle feels natural and refreshed. The calculator adds multiples of 90 minutes to your bedtime (plus 14 min to fall asleep) to show the ideal wake times.</p>
         </div>
         <div class="faq-item">
-            <h3>How many sleep cycles do I need?</h3>
+            <h3 data-i18n="faq2_q">How many sleep cycles do I need?</h3>
             <p>Most adults need 5–6 sleep cycles per night (7.5–9 hours). The minimum is 4 cycles (6 hours). 3 cycles or fewer will leave you tired.</p>
         </div>
         <div class="faq-item">
-            <h3>Why do I feel groggy after 8 hours?</h3>
+            <h3 data-i18n="faq3_q">Why do I feel groggy after 8 hours?</h3>
             <p>8 hours doesn't align to 90-min cycles — it falls mid-cycle. Try 7.5 hours (5 cycles) or 9 hours (6 cycles) instead.</p>
         </div>
         <div class="faq-item">
-            <h3>What is a sleep cycle?</h3>
+            <h3 data-i18n="faq4_q">What is a sleep cycle?</h3>
             <p>A 90-minute block of light sleep, deep sleep, and REM (dream) sleep. Your brain repeats this all night. Waking mid-cycle causes "sleep inertia" — that groggy, heavy feeling.</p>
         </div>
         <div class="faq-item">
-            <h3>Is Sleep Calculator Pro free?</h3>
+            <h3 data-i18n="faq5_q">Is Sleep Calculator Pro free?</h3>
             <p>Yes, completely free. No account required.</p>
         </div>
     </div>
@@ -500,72 +500,154 @@
 </script>
 
 <script id="cpro-translations">
-var CPRO_TRANSLATIONS = {"zh": {"Sleep Calculator Pro": "睡眠计算器", "Best Bedtime & Wake Up Times": "最佳睡眠和起床时间", "I'm going to sleep now": "我现在去睡觉", "I need to wake up at...": "我需要在某时醒来", "Calculate Wake Up Times": "计算起床时间", "Calculate Bedtimes": "计算就寝时间", "Frequently Asked Questions": "常见问题", "What time should I go to sleep?": "我应该几点睡觉？", "Recommended wake-up times": "推荐的起床时间", "Recommended bedtimes": "推荐的就寝时间", "sleep cycles": "睡眠周期", "hours": "小时"}, "es": {"Sleep Calculator Pro": "Calculadora de Sueño", "I'm going to sleep now": "Me voy a dormir ahora", "I need to wake up at...": "Necesito despertar a las...", "Calculate Wake Up Times": "Calcular Hora de Despertar", "Calculate Bedtimes": "Calcular Hora de Dormir", "Frequently Asked Questions": "Preguntas Frecuentes"}, "fr": {"Sleep Calculator Pro": "Calculateur de Sommeil", "I'm going to sleep now": "Je vais dormir maintenant", "I need to wake up at...": "Je dois me réveiller à...", "Calculate Wake Up Times": "Calculer l'Heure de Réveil", "Calculate Bedtimes": "Calculer l'Heure du Coucher", "Frequently Asked Questions": "Questions Fréquentes"}, "hi": {"Sleep Calculator Pro": "नींद कैलकुलेटर", "I'm going to sleep now": "मैं अभी सोने जा रहा हूं", "I need to wake up at...": "मुझे इस समय उठना है...", "Calculate Wake Up Times": "उठने का समय गणना करें", "Calculate Bedtimes": "सोने का समय गणना करें", "Frequently Asked Questions": "अक्सर पूछे जाने वाले प्रश्न"}};
-var CPRO_ORIG_LANG = 'en';
-
-function cproWalkAndReplace(node, fromDict, toDict) {
-  if (node.nodeType === 3) {
-    var text = node.textContent;
-    var trimmed = text.trim();
-    if (trimmed.length > 1) {
-      var from = fromDict || {};
-      var to = toDict || {};
-      for (var key in to) {
-        if (text === key || trimmed === key) {
-          node.textContent = text.replace(key, to[key]);
-          return;
-        }
-      }
-    }
-    return;
+var CPRO_TRANSLATIONS = {
+  "en": {
+    "title": "Sleep Calculator Pro",
+    "tab1": "😴 I'm going to sleep now",
+    "tab2": "⏰ I need to wake up at...",
+    "lbl_sleep": "What time are you going to sleep?",
+    "btn_now": "⏱ Use current time",
+    "btn_calc": "Calculate Wake Up Times →",
+    "res_wake": "Best times to wake up",
+    "lbl_wake": "What time do you need to wake up?",
+    "btn_calc2": "Calculate Bedtimes →",
+    "res_bed": "Go to sleep at one of these times",
+    "faq_heading": "Frequently Asked Questions",
+    "faq1_q": "How does the sleep calculator work?",
+    "faq1_a": "It calculates optimal wake-up or bedtimes based on 90-minute sleep cycles plus 15 minutes to fall asleep.",
+    "faq2_q": "How many sleep cycles do I need?",
+    "faq2_a": "Most adults need 5-6 cycles (7.5-9 hours). 4 cycles (6 hours) is the minimum for functioning well.",
+    "faq3_q": "Why do I feel groggy after 8 hours?",
+    "faq3_a": "You likely woke mid-cycle. Waking between cycles (at 7.5 hours) feels better than waking mid-cycle (at 8 hours).",
+    "faq4_q": "What is a sleep cycle?",
+    "faq4_a": "A sleep cycle lasts about 90 minutes and includes light sleep, deep sleep, and REM (dreaming) stages.",
+    "faq5_q": "Is Sleep Calculator Pro free?",
+    "faq5_a": "Yes, completely free. No signup, no ads, no limits."
+  },
+  "zh": {
+    "title": "睡眠计算器",
+    "tab1": "😴 我现在去睡觉",
+    "tab2": "⏰ 我需要在某时醒来",
+    "lbl_sleep": "你打算几点睡觉？",
+    "btn_now": "⏱ 使用当前时间",
+    "btn_calc": "计算起床时间 →",
+    "res_wake": "最佳起床时间",
+    "lbl_wake": "你需要几点起床？",
+    "btn_calc2": "计算就寝时间 →",
+    "res_bed": "在以下时间之一入睡",
+    "faq_heading": "常见问题",
+    "faq1_q": "睡眠计算器如何工作？",
+    "faq1_a": "它根据90分钟睡眠周期加上15分钟入睡时间计算最佳起床或就寝时间。",
+    "faq2_q": "我需要多少个睡眠周期？",
+    "faq2_a": "大多数成年人需要5-6个周期（7.5-9小时）。4个周期（6小时）是良好运作的最低标准。",
+    "faq3_q": "为什么睡了8小时还感觉昏沉？",
+    "faq3_a": "你可能在睡眠周期中途醒来。在周期之间醒来（7.5小时）比在周期中途醒来（8小时）感觉更好。",
+    "faq4_q": "什么是睡眠周期？",
+    "faq4_a": "一个睡眠周期约90分钟，包括浅睡眠、深睡眠和REM（做梦）阶段。",
+    "faq5_q": "睡眠计算器Pro是免费的吗？",
+    "faq5_a": "是的，完全免费。无需注册，无广告，无限制。"
+  },
+  "hi": {
+    "title": "नींद कैलकुलेटर",
+    "tab1": "😴 मैं अभी सोने जा रहा हूं",
+    "tab2": "⏰ मुझे इस समय उठना है...",
+    "lbl_sleep": "आप कितने बजे सोने जाएंगे?",
+    "btn_now": "⏱ वर्तमान समय उपयोग करें",
+    "btn_calc": "उठने का समय गणना करें →",
+    "res_wake": "उठने के सर्वोत्तम समय",
+    "lbl_wake": "आपको कितने बजे उठना है?",
+    "btn_calc2": "सोने का समय गणना करें →",
+    "res_bed": "इनमें से किसी एक समय पर सोएं",
+    "faq_heading": "अक्सर पूछे जाने वाले प्रश्न",
+    "faq1_q": "नींद कैलकुलेटर कैसे काम करता है?",
+    "faq1_a": "यह 90 मिनट के नींद चक्र और 15 मिनट सोने के समय के आधार पर इष्टतम समय गणना करता है।",
+    "faq2_q": "मुझे कितने नींद चक्र चाहिए?",
+    "faq2_a": "अधिकांश वयस्कों को 5-6 चक्र (7.5-9 घंटे) की आवश्यकता होती है।",
+    "faq3_q": "8 घंटे के बाद भी सुस्त क्यों महसूस होता है?",
+    "faq3_a": "आप शायद चक्र के बीच में उठे। 7.5 घंटे पर उठना 8 घंटे से बेहतर महसूस होता है।",
+    "faq4_q": "नींद चक्र क्या है?",
+    "faq4_a": "एक नींद चक्र लगभग 90 मिनट का होता है जिसमें हल्की नींद, गहरी नींद और REM चरण शामिल हैं।",
+    "faq5_q": "स्लीप कैलकुलेटर प्रो मुफ्त है?",
+    "faq5_a": "हाँ, पूरी तरह मुफ्त। कोई साइनअप नहीं, कोई विज्ञापन नहीं।"
+  },
+  "es": {
+    "title": "Calculadora de Sueño",
+    "tab1": "😴 Me voy a dormir ahora",
+    "tab2": "⏰ Necesito despertar a las...",
+    "lbl_sleep": "¿A qué hora te vas a dormir?",
+    "btn_now": "⏱ Usar hora actual",
+    "btn_calc": "Calcular Hora de Despertar →",
+    "res_wake": "Mejores horas para despertar",
+    "lbl_wake": "¿A qué hora necesitas despertar?",
+    "btn_calc2": "Calcular Hora de Dormir →",
+    "res_bed": "Duerme a una de estas horas",
+    "faq_heading": "Preguntas Frecuentes",
+    "faq1_q": "¿Cómo funciona la calculadora de sueño?",
+    "faq1_a": "Calcula los horarios óptimos basándose en ciclos de sueño de 90 minutos más 15 minutos para dormirse.",
+    "faq2_q": "¿Cuántos ciclos de sueño necesito?",
+    "faq2_a": "La mayoría de adultos necesita 5-6 ciclos (7.5-9 horas). 4 ciclos (6 horas) es el mínimo.",
+    "faq3_q": "¿Por qué me siento aturdido después de 8 horas?",
+    "faq3_a": "Probablemente te despertaste en medio de un ciclo. Despertar entre ciclos (7.5h) se siente mejor.",
+    "faq4_q": "¿Qué es un ciclo de sueño?",
+    "faq4_a": "Un ciclo de sueño dura unos 90 minutos e incluye sueño ligero, profundo y REM.",
+    "faq5_q": "¿Es gratis Sleep Calculator Pro?",
+    "faq5_a": "Sí, completamente gratis. Sin registro, sin anuncios, sin límites."
+  },
+  "fr": {
+    "title": "Calculateur de Sommeil",
+    "tab1": "😴 Je vais dormir maintenant",
+    "tab2": "⏰ Je dois me réveiller à...",
+    "lbl_sleep": "À quelle heure allez-vous dormir?",
+    "btn_now": "⏱ Utiliser l'heure actuelle",
+    "btn_calc": "Calculer l'Heure de Réveil →",
+    "res_wake": "Meilleures heures de réveil",
+    "lbl_wake": "À quelle heure devez-vous vous réveiller?",
+    "btn_calc2": "Calculer l'Heure du Coucher →",
+    "res_bed": "Dormez à l'une de ces heures",
+    "faq_heading": "Questions Fréquentes",
+    "faq1_q": "Comment fonctionne le calculateur de sommeil?",
+    "faq1_a": "Il calcule les horaires optimaux basés sur des cycles de sommeil de 90 minutes plus 15 minutes pour s'endormir.",
+    "faq2_q": "Combien de cycles de sommeil ai-je besoin?",
+    "faq2_a": "La plupart des adultes ont besoin de 5-6 cycles (7,5-9 heures). 4 cycles (6 heures) est le minimum.",
+    "faq3_q": "Pourquoi je me sens groggy après 8 heures?",
+    "faq3_a": "Vous vous êtes probablement réveillé en milieu de cycle. Se réveiller entre les cycles (7,5h) est mieux.",
+    "faq4_q": "Qu'est-ce qu'un cycle de sommeil?",
+    "faq4_a": "Un cycle de sommeil dure environ 90 minutes et comprend le sommeil léger, profond et REM.",
+    "faq5_q": "Sleep Calculator Pro est-il gratuit?",
+    "faq5_a": "Oui, complètement gratuit. Sans inscription, sans publicités, sans limites."
   }
-  if (node.nodeType === 1) {
-    var tag = node.tagName;
-    if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT') return;
-    // Handle placeholders
-    if ((tag === 'INPUT' || tag === 'TEXTAREA') && node.placeholder) {
-      var ph = node.placeholder;
-      var tDict = toDict || {};
-      if (tDict[ph]) node.placeholder = tDict[ph];
-    }
-    for (var i = 0; i < node.childNodes.length; i++) {
-      cproWalkAndReplace(node.childNodes[i], fromDict, toDict);
-    }
-  }
-}
+};
 
 function cproSetLang(lang) {
   localStorage.setItem('cpro_lang', lang);
-  // Update button styles
   document.querySelectorAll('.cpro-lang-btn').forEach(function(b) {
     var active = b.dataset.lang === lang;
     b.style.background = active ? '#6366f1' : '#334155';
     b.style.borderColor = active ? '#6366f1' : '#475569';
     b.style.color = active ? '#fff' : '#f1f5f9';
   });
-  if (lang === 'en') {
-    // Reload page to restore English
-    location.reload();
-    return;
-  }
+  if (lang === 'en') { location.reload(); return; }
   var t = CPRO_TRANSLATIONS[lang];
   if (!t) return;
-  cproWalkAndReplace(document.body, {}, t);
-  // Also update page title
-  var titles = Object.keys(t);
-  for (var i = 0; i < titles.length; i++) {
-    if (document.title.indexOf(titles[i]) !== -1) {
-      document.title = document.title.replace(titles[i], t[titles[i]]);
-      break;
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (t[key] === undefined) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = t[key];
+    } else if (el.tagName === 'OPTION') {
+      el.textContent = t[key];
+    } else {
+      el.textContent = t[key];
     }
+  });
+  if (t['title'] && document.title) {
+    var orig = CPRO_TRANSLATIONS['en']['title'];
+    if (orig) document.title = document.title.replace(orig, t['title']);
   }
 }
-
 document.addEventListener('DOMContentLoaded', function() {
   var saved = localStorage.getItem('cpro_lang') || 'en';
-  if (saved !== 'en') {
-    cproSetLang(saved);
-  }
+  if (saved !== 'en') cproSetLang(saved);
 });
 </script>
 </body>

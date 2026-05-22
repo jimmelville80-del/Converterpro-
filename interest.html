@@ -148,35 +148,35 @@ footer a{color:#2e86ab;text-decoration:none}
   <!-- LOAN / MORTGAGE -->
   <div class="card">
     <div id="sec-loan" class="section active">
-      <label>Loan Amount</label>
+      <label data-i18n="lbl_principal">Loan Amount</label>
       <div class="input-prefix"><span>$</span><input type="number" id="l-principal" placeholder="e.g. 500000" min="0"></div>
-      <label>Annual Interest Rate (%)</label>
+      <label data-i18n="lbl_rate">Annual Interest Rate (%)</label>
       <input type="number" id="l-rate" placeholder="e.g. 6.5" min="0" step="0.01">
-      <label>Loan Term</label>
+      <label data-i18n="lbl_term">Loan Term</label>
       <div style="display:flex;gap:10px">
         <input type="number" id="l-years" placeholder="Years" min="0" style="flex:2">
         <input type="number" id="l-months-extra" placeholder="Months" min="0" max="11" style="flex:1">
       </div>
-      <label>Loan Type</label>
+      <label data-i18n="lbl_type">Loan Type</label>
       <select id="l-type">
-        <option value="pi">Principal & Interest</option>
-        <option value="io">Interest Only</option>
+        <option value="pi" data-i18n="opt_pi">Principal & Interest</option>
+        <option value="io" data-i18n="opt_io">Interest Only</option>
       </select>
-      <label>Extra Monthly Repayment (optional)</label>
+      <label data-i18n="lbl_extra">Extra Monthly Repayment (optional)</label>
       <div class="input-prefix"><span>$</span><input type="number" id="l-extra" placeholder="0" min="0"></div>
       <button class="btn" onclick="calcLoan()" data-i18n="btn_calc">Calculate Repayments</button>
       <div class="results" id="loan-results">
         <div class="result-grid">
           <div class="result-box highlight">
-            <div class="result-label">Monthly Repayment</div>
+            <div class="result-label" data-i18n="res_monthly">Monthly Repayment</div>
             <div class="result-value" id="l-monthly">-</div>
           </div>
           <div class="result-box highlight">
-            <div class="result-label">Total Interest</div>
+            <div class="result-label" data-i18n="res_interest">Total Interest</div>
             <div class="result-value" id="l-interest">-</div>
           </div>
           <div class="result-box">
-            <div class="result-label">Total Repaid</div>
+            <div class="result-label" data-i18n="res_total">Total Repaid</div>
             <div class="result-value" id="l-total">-</div>
           </div>
           <div class="result-box" id="l-saving-box" style="display:none">
@@ -196,15 +196,15 @@ footer a{color:#2e86ab;text-decoration:none}
 
     <!-- COMPOUND INTEREST / INVESTMENT -->
     <div id="sec-compound" class="section">
-      <label>Initial Investment</label>
+      <label data-i18n="lbl_invest">Initial Investment</label>
       <div class="input-prefix"><span>$</span><input type="number" id="c-principal" placeholder="e.g. 10000" min="0"></div>
-      <label>Annual Interest Rate / Return (%)</label>
+      <label data-i18n="lbl_irate">Annual Interest Rate / Return (%)</label>
       <input type="number" id="c-rate" placeholder="e.g. 7" min="0" step="0.01">
-      <label>Investment Period (Years)</label>
+      <label data-i18n="lbl_years">Investment Period (Years)</label>
       <input type="number" id="c-years" placeholder="e.g. 10" min="1">
-      <label>Regular Contribution (per month, optional)</label>
+      <label data-i18n="lbl_contrib">Regular Contribution (per month, optional)</label>
       <div class="input-prefix"><span>$</span><input type="number" id="c-contrib" placeholder="0" min="0"></div>
-      <label>Compounding Frequency</label>
+      <label data-i18n="lbl_freq">Compounding Frequency</label>
       <select id="c-freq">
         <option value="12">Monthly</option>
         <option value="4">Quarterly</option>
@@ -215,19 +215,19 @@ footer a{color:#2e86ab;text-decoration:none}
       <div class="results" id="compound-results">
         <div class="result-grid">
           <div class="result-box highlight">
-            <div class="result-label">Final Balance</div>
+            <div class="result-label" data-i18n="res_final">Final Balance</div>
             <div class="result-value" id="c-final">-</div>
           </div>
           <div class="result-box highlight">
-            <div class="result-label">Total Interest Earned</div>
+            <div class="result-label" data-i18n="res_earned">Total Interest Earned</div>
             <div class="result-value" id="c-earned">-</div>
           </div>
           <div class="result-box">
-            <div class="result-label">Total Contributed</div>
+            <div class="result-label" data-i18n="res_contrib">Total Contributed</div>
             <div class="result-value" id="c-contributed">-</div>
           </div>
           <div class="result-box">
-            <div class="result-label">Return on Investment</div>
+            <div class="result-label" data-i18n="res_roi">Return on Investment</div>
             <div class="result-value" id="c-roi">-</div>
           </div>
         </div>
@@ -236,11 +236,11 @@ footer a{color:#2e86ab;text-decoration:none}
 
     <!-- SIMPLE INTEREST -->
     <div id="sec-simple" class="section">
-      <label>Principal Amount</label>
+      <label data-i18n="lbl_s_principal">Principal Amount</label>
       <div class="input-prefix"><span>$</span><input type="number" id="s-principal" placeholder="e.g. 5000" min="0"></div>
       <label>Annual Interest Rate (%)</label>
       <input type="number" id="s-rate" placeholder="e.g. 8.5" min="0" step="0.01">
-      <label>Time Period</label>
+      <label data-i18n="lbl_s_period">Time Period</label>
       <div style="display:flex;gap:10px">
         <input type="number" id="s-years" placeholder="Years" min="0" style="flex:1">
         <input type="number" id="s-months" placeholder="Months" min="0" max="11" style="flex:1">
@@ -271,7 +271,7 @@ footer a{color:#2e86ab;text-decoration:none}
 
   <!-- FAQ -->
   <div class="faq">
-    <h2>Frequently Asked Questions</h2>
+    <h2 data-i18n="faq_heading">Frequently Asked Questions</h2>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">How do I calculate monthly mortgage repayments? ▾</div>
       <div class="faq-a">Enter the loan amount, annual interest rate, and loan term. The calculator uses the standard amortisation formula to show your exact monthly repayment, the total interest you'll pay, and the total amount repaid over the loan term.</div>
@@ -485,72 +485,224 @@ function applyTranslations(lang) {
 </script>
 
 <script id="cpro-translations">
-var CPRO_TRANSLATIONS = {"zh": {"Interest & Loan Calculator": "利息与贷款计算器", "Loan / Mortgage": "贷款 / 房贷", "Investment": "投资", "Simple Interest": "简单利息", "Loan Amount": "贷款金额", "Annual Interest Rate (%)": "年利率 (%)", "Loan Term": "贷款期限", "Loan Type": "贷款类型", "Principal & Interest": "本金与利息", "Interest Only": "仅利息", "Extra Monthly Repayment (optional)": "每月额外还款（可选）", "Calculate Repayments": "计算还款额", "Calculate Returns": "计算收益", "Calculate Interest": "计算利息", "Monthly Repayment": "每月还款", "Total Interest": "总利息", "Total Repaid": "总还款额", "Initial Investment": "初始投资", "Investment Period (Years)": "投资期限（年）", "Final Balance": "最终余额", "Frequently Asked Questions": "常见问题"}, "es": {"Interest & Loan Calculator": "Calculadora de Interés y Préstamos", "Loan / Mortgage": "Préstamo / Hipoteca", "Investment": "Inversión", "Simple Interest": "Interés Simple", "Loan Amount": "Monto del Préstamo", "Annual Interest Rate (%)": "Tasa de Interés Anual (%)", "Calculate Repayments": "Calcular Pagos", "Calculate Returns": "Calcular Rendimientos", "Calculate Interest": "Calcular Interés", "Monthly Repayment": "Pago Mensual", "Total Interest": "Interés Total", "Frequently Asked Questions": "Preguntas Frecuentes"}, "fr": {"Interest & Loan Calculator": "Calculateur d'Intérêts et Prêts", "Loan / Mortgage": "Prêt / Hypothèque", "Investment": "Investissement", "Simple Interest": "Intérêt Simple", "Loan Amount": "Montant du Prêt", "Annual Interest Rate (%)": "Taux d'Intérêt Annuel (%)", "Calculate Repayments": "Calculer les Paiements", "Calculate Returns": "Calculer les Rendements", "Calculate Interest": "Calculer l'Intérêt", "Monthly Repayment": "Paiement Mensuel", "Total Interest": "Intérêt Total", "Frequently Asked Questions": "Questions Fréquentes"}, "hi": {"Interest & Loan Calculator": "ब्याज और ऋण कैलकुलेटर", "Loan / Mortgage": "ऋण / बंधक", "Investment": "निवेश", "Simple Interest": "साधारण ब्याज", "Calculate Repayments": "भुगतान गणना करें", "Calculate Returns": "रिटर्न गणना करें", "Calculate Interest": "ब्याज गणना करें", "Frequently Asked Questions": "अक्सर पूछे जाने वाले प्रश्न"}};
-var CPRO_ORIG_LANG = 'en';
-
-function cproWalkAndReplace(node, fromDict, toDict) {
-  if (node.nodeType === 3) {
-    var text = node.textContent;
-    var trimmed = text.trim();
-    if (trimmed.length > 1) {
-      var from = fromDict || {};
-      var to = toDict || {};
-      for (var key in to) {
-        if (text === key || trimmed === key) {
-          node.textContent = text.replace(key, to[key]);
-          return;
-        }
-      }
-    }
-    return;
+var CPRO_TRANSLATIONS = {
+  "en": {
+    "title": "💰 Interest & Loan Calculator",
+    "subtitle": "Mortgage, personal loan, car loan, investment — free, no sign-up",
+    "tab_loan": "🏦 Loan / Mortgage",
+    "tab_invest": "📈 Investment",
+    "tab_simple": "📋 Simple Interest",
+    "lbl_principal": "Loan Amount",
+    "lbl_rate": "Annual Interest Rate (%)",
+    "lbl_term": "Loan Term",
+    "lbl_type": "Loan Type",
+    "opt_pi": "Principal & Interest",
+    "opt_io": "Interest Only",
+    "lbl_extra": "Extra Monthly Repayment (optional)",
+    "btn_calc": "Calculate Repayments",
+    "lbl_invest": "Initial Investment",
+    "lbl_irate": "Annual Interest Rate / Return (%)",
+    "lbl_years": "Investment Period (Years)",
+    "lbl_contrib": "Regular Contribution (per month, optional)",
+    "lbl_freq": "Compounding Frequency",
+    "btn_calc2": "Calculate Returns",
+    "lbl_s_principal": "Principal Amount",
+    "lbl_s_rate": "Annual Interest Rate (%)",
+    "lbl_s_period": "Time Period",
+    "btn_calc3": "Calculate Interest",
+    "res_monthly": "Monthly Repayment",
+    "res_interest": "Total Interest",
+    "res_total": "Total Repaid",
+    "res_final": "Final Balance",
+    "res_earned": "Total Interest Earned",
+    "res_contrib": "Total Contributed",
+    "res_roi": "Return on Investment",
+    "faq_heading": "Frequently Asked Questions",
+    "faq1_q": "How do I calculate monthly mortgage repayments?",
+    "faq1_a": "Enter the loan amount, annual interest rate, and loan term. The calculator shows your exact monthly repayment, total interest, and total amount repaid.",
+    "faq2_q": "What is compound interest?",
+    "faq2_a": "Compound interest is calculated on both the initial principal and the accumulated interest. It's why investments grow exponentially over time."
+  },
+  "zh": {
+    "title": "💰 利息与贷款计算器",
+    "subtitle": "房贷、个人贷款、汽车贷款、投资 — 免费，无需注册",
+    "tab_loan": "🏦 贷款 / 房贷",
+    "tab_invest": "📈 投资",
+    "tab_simple": "📋 简单利息",
+    "lbl_principal": "贷款金额",
+    "lbl_rate": "年利率 (%)",
+    "lbl_term": "贷款期限",
+    "lbl_type": "贷款类型",
+    "opt_pi": "本金与利息",
+    "opt_io": "仅利息",
+    "lbl_extra": "每月额外还款（可选）",
+    "btn_calc": "计算还款额",
+    "lbl_invest": "初始投资",
+    "lbl_irate": "年利率/回报率 (%)",
+    "lbl_years": "投资期限（年）",
+    "lbl_contrib": "每月定期投入（可选）",
+    "lbl_freq": "复利频率",
+    "btn_calc2": "计算收益",
+    "lbl_s_principal": "本金金额",
+    "lbl_s_rate": "年利率 (%)",
+    "lbl_s_period": "时间期限",
+    "btn_calc3": "计算利息",
+    "res_monthly": "每月还款",
+    "res_interest": "总利息",
+    "res_total": "总还款额",
+    "res_final": "最终余额",
+    "res_earned": "总利息收益",
+    "res_contrib": "总投入",
+    "res_roi": "投资回报率",
+    "faq_heading": "常见问题",
+    "faq1_q": "如何计算每月房贷还款额？",
+    "faq1_a": "输入贷款金额、年利率和贷款期限。计算器显示每月还款额、总利息和总还款额。",
+    "faq2_q": "什么是复利？",
+    "faq2_a": "复利是在本金和已积累利息的基础上计算的。这就是为什么投资随时间呈指数增长。"
+  },
+  "hi": {
+    "title": "💰 ब्याज और ऋण कैलकुलेटर",
+    "subtitle": "बंधक, व्यक्तिगत ऋण, कार ऋण, निवेश — मुफ्त",
+    "tab_loan": "🏦 ऋण / बंधक",
+    "tab_invest": "📈 निवेश",
+    "tab_simple": "📋 साधारण ब्याज",
+    "lbl_principal": "ऋण राशि",
+    "lbl_rate": "वार्षिक ब्याज दर (%)",
+    "lbl_term": "ऋण अवधि",
+    "lbl_type": "ऋण का प्रकार",
+    "opt_pi": "मूलधन और ब्याज",
+    "opt_io": "केवल ब्याज",
+    "lbl_extra": "अतिरिक्त मासिक भुगतान (वैकल्पिक)",
+    "btn_calc": "भुगतान गणना करें",
+    "lbl_invest": "प्रारंभिक निवेश",
+    "lbl_irate": "वार्षिक ब्याज दर / रिटर्न (%)",
+    "lbl_years": "निवेश अवधि (वर्ष)",
+    "lbl_contrib": "नियमित योगदान (प्रति माह, वैकल्पिक)",
+    "lbl_freq": "चक्रवृद्धि आवृत्ति",
+    "btn_calc2": "रिटर्न गणना करें",
+    "lbl_s_principal": "मूलधन राशि",
+    "lbl_s_rate": "वार्षिक ब्याज दर (%)",
+    "lbl_s_period": "समय अवधि",
+    "btn_calc3": "ब्याज गणना करें",
+    "res_monthly": "मासिक भुगतान",
+    "res_interest": "कुल ब्याज",
+    "res_total": "कुल चुकाया",
+    "res_final": "अंतिम शेष",
+    "res_earned": "कुल ब्याज अर्जित",
+    "res_contrib": "कुल योगदान",
+    "res_roi": "निवेश पर रिटर्न",
+    "faq_heading": "अक्सर पूछे जाने वाले प्रश्न",
+    "faq1_q": "मासिक बंधक भुगतान कैसे गणना करें?",
+    "faq1_a": "ऋण राशि, वार्षिक ब्याज दर और ऋण अवधि दर्ज करें। कैलकुलेटर सटीक मासिक भुगतान दिखाता है।",
+    "faq2_q": "चक्रवृद्धि ब्याज क्या है?",
+    "faq2_a": "चक्रवृद्धि ब्याज मूलधन और संचित ब्याज दोनों पर गणना किया जाता है। इसीलिए निवेश समय के साथ तेजी से बढ़ता है।"
+  },
+  "es": {
+    "title": "💰 Calculadora de Interés y Préstamos",
+    "subtitle": "Hipoteca, préstamo personal, coche, inversión — gratis",
+    "tab_loan": "🏦 Préstamo / Hipoteca",
+    "tab_invest": "📈 Inversión",
+    "tab_simple": "📋 Interés Simple",
+    "lbl_principal": "Monto del Préstamo",
+    "lbl_rate": "Tasa de Interés Anual (%)",
+    "lbl_term": "Plazo del Préstamo",
+    "lbl_type": "Tipo de Préstamo",
+    "opt_pi": "Capital e Interés",
+    "opt_io": "Solo Interés",
+    "lbl_extra": "Pago Mensual Extra (opcional)",
+    "btn_calc": "Calcular Pagos",
+    "lbl_invest": "Inversión Inicial",
+    "lbl_irate": "Tasa de Interés / Retorno Anual (%)",
+    "lbl_years": "Período de Inversión (Años)",
+    "lbl_contrib": "Aportación Regular (por mes, opcional)",
+    "lbl_freq": "Frecuencia de Capitalización",
+    "btn_calc2": "Calcular Rendimientos",
+    "lbl_s_principal": "Monto Principal",
+    "lbl_s_rate": "Tasa de Interés Anual (%)",
+    "lbl_s_period": "Período de Tiempo",
+    "btn_calc3": "Calcular Interés",
+    "res_monthly": "Pago Mensual",
+    "res_interest": "Interés Total",
+    "res_total": "Total Pagado",
+    "res_final": "Balance Final",
+    "res_earned": "Interés Total Ganado",
+    "res_contrib": "Total Aportado",
+    "res_roi": "Retorno sobre Inversión",
+    "faq_heading": "Preguntas Frecuentes",
+    "faq1_q": "¿Cómo calculo las cuotas mensuales de una hipoteca?",
+    "faq1_a": "Ingresa el monto del préstamo, la tasa de interés anual y el plazo. El calculador muestra tu cuota mensual exacta.",
+    "faq2_q": "¿Qué es el interés compuesto?",
+    "faq2_a": "El interés compuesto se calcula sobre el capital inicial y los intereses acumulados. Por eso las inversiones crecen exponencialmente."
+  },
+  "fr": {
+    "title": "💰 Calculateur d'Intérêts et Prêts",
+    "subtitle": "Hypothèque, prêt personnel, voiture, investissement — gratuit",
+    "tab_loan": "🏦 Prêt / Hypothèque",
+    "tab_invest": "📈 Investissement",
+    "tab_simple": "📋 Intérêt Simple",
+    "lbl_principal": "Montant du Prêt",
+    "lbl_rate": "Taux d'Intérêt Annuel (%)",
+    "lbl_term": "Durée du Prêt",
+    "lbl_type": "Type de Prêt",
+    "opt_pi": "Capital et Intérêts",
+    "opt_io": "Intérêts Seulement",
+    "lbl_extra": "Remboursement Mensuel Supplémentaire (optionnel)",
+    "btn_calc": "Calculer les Paiements",
+    "lbl_invest": "Investissement Initial",
+    "lbl_irate": "Taux d'Intérêt / Rendement Annuel (%)",
+    "lbl_years": "Période d'Investissement (Années)",
+    "lbl_contrib": "Contribution Régulière (par mois, optionnel)",
+    "lbl_freq": "Fréquence de Capitalisation",
+    "btn_calc2": "Calculer les Rendements",
+    "lbl_s_principal": "Montant Principal",
+    "lbl_s_rate": "Taux d'Intérêt Annuel (%)",
+    "lbl_s_period": "Période",
+    "btn_calc3": "Calculer l'Intérêt",
+    "res_monthly": "Paiement Mensuel",
+    "res_interest": "Intérêt Total",
+    "res_total": "Total Remboursé",
+    "res_final": "Solde Final",
+    "res_earned": "Intérêts Totaux Gagnés",
+    "res_contrib": "Total Contribué",
+    "res_roi": "Retour sur Investissement",
+    "faq_heading": "Questions Fréquentes",
+    "faq1_q": "Comment calculer les remboursements mensuels d'un prêt immobilier?",
+    "faq1_a": "Entrez le montant du prêt, le taux d'intérêt annuel et la durée. Le calculateur affiche votre remboursement mensuel exact.",
+    "faq2_q": "Qu'est-ce que l'intérêt composé?",
+    "faq2_a": "L'intérêt composé est calculé sur le capital initial et les intérêts accumulés. C'est pourquoi les investissements croissent exponentiellement."
   }
-  if (node.nodeType === 1) {
-    var tag = node.tagName;
-    if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT') return;
-    // Handle placeholders
-    if ((tag === 'INPUT' || tag === 'TEXTAREA') && node.placeholder) {
-      var ph = node.placeholder;
-      var tDict = toDict || {};
-      if (tDict[ph]) node.placeholder = tDict[ph];
-    }
-    for (var i = 0; i < node.childNodes.length; i++) {
-      cproWalkAndReplace(node.childNodes[i], fromDict, toDict);
-    }
-  }
-}
+};
 
 function cproSetLang(lang) {
   localStorage.setItem('cpro_lang', lang);
-  // Update button styles
   document.querySelectorAll('.cpro-lang-btn').forEach(function(b) {
     var active = b.dataset.lang === lang;
     b.style.background = active ? '#6366f1' : '#334155';
     b.style.borderColor = active ? '#6366f1' : '#475569';
     b.style.color = active ? '#fff' : '#f1f5f9';
   });
-  if (lang === 'en') {
-    // Reload page to restore English
-    location.reload();
-    return;
-  }
+  if (lang === 'en') { location.reload(); return; }
   var t = CPRO_TRANSLATIONS[lang];
   if (!t) return;
-  cproWalkAndReplace(document.body, {}, t);
-  // Also update page title
-  var titles = Object.keys(t);
-  for (var i = 0; i < titles.length; i++) {
-    if (document.title.indexOf(titles[i]) !== -1) {
-      document.title = document.title.replace(titles[i], t[titles[i]]);
-      break;
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (t[key] === undefined) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = t[key];
+    } else if (el.tagName === 'OPTION') {
+      el.textContent = t[key];
+    } else {
+      el.textContent = t[key];
     }
+  });
+  if (t['title'] && document.title) {
+    var orig = CPRO_TRANSLATIONS['en']['title'];
+    if (orig) document.title = document.title.replace(orig, t['title']);
   }
 }
-
 document.addEventListener('DOMContentLoaded', function() {
   var saved = localStorage.getItem('cpro_lang') || 'en';
-  if (saved !== 'en') {
-    cproSetLang(saved);
-  }
+  if (saved !== 'en') cproSetLang(saved);
 });
 </script>
 </body>

@@ -567,12 +567,12 @@
         </div>
 
         <div class="categories">
-            <button class="category-btn active" onclick="switchCategory('length')">📏 Length</button>
-            <button class="category-btn" onclick="switchCategory('weight')">⚖️ Weight</button>
-            <button class="category-btn" onclick="switchCategory('temperature')">🌡️ Temp</button>
-            <button class="category-btn" onclick="switchCategory('volume')">🧪 Volume</button>
-            <button class="category-btn" onclick="switchCategory('speed')">⚡ Speed</button>
-            <button class="category-btn" onclick="switchCategory('area')">📐 Area</button>
+            <button class="category-btn active" onclick="switchCategory('length')" data-i18n="cat_length">📏 Length</button>
+            <button class="category-btn" onclick="switchCategory('weight')" data-i18n="cat_weight">⚖️ Weight</button>
+            <button class="category-btn" onclick="switchCategory('temperature')" data-i18n="cat_temp">🌡️ Temp</button>
+            <button class="category-btn" onclick="switchCategory('volume')" data-i18n="cat_vol">🧪 Volume</button>
+            <button class="category-btn" onclick="switchCategory('speed')" data-i18n="cat_speed">⚡ Speed</button>
+            <button class="category-btn" onclick="switchCategory('area')" data-i18n="cat_area">📐 Area</button>
         </div>
 
         <div class="content">
@@ -778,10 +778,10 @@
     <div class="settings-modal" id="settings-modal">
         <div class="settings-content">
             <button class="close-settings" onclick="toggleSettings()">✕</button>
-            <div class="settings-title" id="settings-title">Settings</div>
+            <div class="settings-title" id="settings-title" data-i18n="settings_title">Settings</div>
 
             <div class="settings-group">
-                <div class="settings-group-title" id="theme-label">Theme</div>
+                <div class="settings-group-title" id="theme-label" data-i18n="theme_label">Theme</div>
                 <div class="theme-options">
                     <button class="theme-btn active" onclick="setTheme('purple')">🟣 Purple</button>
                     <button class="theme-btn" onclick="setTheme('dark')">🌙 Dark</button>
@@ -790,7 +790,7 @@
             </div>
 
             <div class="settings-group">
-                <div class="settings-group-title" id="lang-label">Language</div>
+                <div class="settings-group-title" id="lang-label" data-i18n="lang_label">Language</div>
                 <div class="language-options">
                     <button class="language-btn active" onclick="setLanguage('en')">English</button>
                     <button class="language-btn" onclick="setLanguage('es')">Español</button>
@@ -1192,72 +1192,119 @@
 </script>
 
 <script id="cpro-translations">
-var CPRO_TRANSLATIONS = {"zh": {"Unit Converter Pro": "单位换算器", "Length": "长度", "Weight": "重量", "Temperature": "温度", "Volume": "体积", "Speed": "速度", "Area": "面积", "Convert": "转换", "From": "从", "To": "到", "Frequently Asked Questions": "常见问题"}, "es": {"Unit Converter Pro": "Conversor de Unidades", "Length": "Longitud", "Weight": "Peso", "Temperature": "Temperatura", "Volume": "Volumen", "Speed": "Velocidad", "Area": "Área", "Frequently Asked Questions": "Preguntas Frecuentes"}, "fr": {"Unit Converter Pro": "Convertisseur d'Unités", "Length": "Longueur", "Weight": "Poids", "Temperature": "Température", "Volume": "Volume", "Speed": "Vitesse", "Area": "Superficie", "Frequently Asked Questions": "Questions Fréquentes"}, "hi": {"Unit Converter Pro": "यूनिट कनवर्टर", "Length": "लंबाई", "Weight": "वजन", "Temperature": "तापमान", "Volume": "आयतन", "Speed": "गति", "Area": "क्षेत्रफल", "Frequently Asked Questions": "अक्सर पूछे जाने वाले प्रश्न"}};
-var CPRO_ORIG_LANG = 'en';
-
-function cproWalkAndReplace(node, fromDict, toDict) {
-  if (node.nodeType === 3) {
-    var text = node.textContent;
-    var trimmed = text.trim();
-    if (trimmed.length > 1) {
-      var from = fromDict || {};
-      var to = toDict || {};
-      for (var key in to) {
-        if (text === key || trimmed === key) {
-          node.textContent = text.replace(key, to[key]);
-          return;
-        }
-      }
-    }
-    return;
+var CPRO_TRANSLATIONS = {
+  "en": {
+    "title": "Unit Converter Pro",
+    "cat_length": "📏 Length",
+    "cat_weight": "⚖️ Weight",
+    "cat_temp": "🌡️ Temp",
+    "cat_vol": "🧪 Volume",
+    "cat_speed": "⚡ Speed",
+    "cat_area": "📐 Area",
+    "lbl_from": "From",
+    "settings_title": "Settings",
+    "theme_label": "Theme",
+    "lang_label": "Language",
+    "faq_heading": "Frequently Asked Questions",
+    "faq1_q": "What units can I convert?",
+    "faq1_a": "Length, weight, temperature, volume, speed, and area. Including metric and imperial units."
+  },
+  "zh": {
+    "title": "单位换算器",
+    "cat_length": "📏 长度",
+    "cat_weight": "⚖️ 重量",
+    "cat_temp": "🌡️ 温度",
+    "cat_vol": "🧪 体积",
+    "cat_speed": "⚡ 速度",
+    "cat_area": "📐 面积",
+    "lbl_from": "从",
+    "settings_title": "设置",
+    "theme_label": "主题",
+    "lang_label": "语言",
+    "faq_heading": "常见问题",
+    "faq1_q": "可以转换哪些单位？",
+    "faq1_a": "长度、重量、温度、体积、速度和面积，包括公制和英制单位。"
+  },
+  "hi": {
+    "title": "यूनिट कनवर्टर",
+    "cat_length": "📏 लंबाई",
+    "cat_weight": "⚖️ वजन",
+    "cat_temp": "🌡️ तापमान",
+    "cat_vol": "🧪 आयतन",
+    "cat_speed": "⚡ गति",
+    "cat_area": "📐 क्षेत्रफल",
+    "lbl_from": "से",
+    "settings_title": "सेटिंग्स",
+    "theme_label": "थीम",
+    "lang_label": "भाषा",
+    "faq_heading": "अक्सर पूछे जाने वाले प्रश्न",
+    "faq1_q": "मैं कौन सी इकाइयां बदल सकता हूं?",
+    "faq1_a": "लंबाई, वजन, तापमान, आयतन, गति और क्षेत्रफल। मेट्रिक और इम्पीरियल दोनों।"
+  },
+  "es": {
+    "title": "Conversor de Unidades",
+    "cat_length": "📏 Longitud",
+    "cat_weight": "⚖️ Peso",
+    "cat_temp": "🌡️ Temp",
+    "cat_vol": "🧪 Volumen",
+    "cat_speed": "⚡ Velocidad",
+    "cat_area": "📐 Área",
+    "lbl_from": "De",
+    "settings_title": "Configuración",
+    "theme_label": "Tema",
+    "lang_label": "Idioma",
+    "faq_heading": "Preguntas Frecuentes",
+    "faq1_q": "¿Qué unidades puedo convertir?",
+    "faq1_a": "Longitud, peso, temperatura, volumen, velocidad y área. Incluye unidades métricas e imperiales."
+  },
+  "fr": {
+    "title": "Convertisseur d'Unités",
+    "cat_length": "📏 Longueur",
+    "cat_weight": "⚖️ Poids",
+    "cat_temp": "🌡️ Temp",
+    "cat_vol": "🧪 Volume",
+    "cat_speed": "⚡ Vitesse",
+    "cat_area": "📐 Superficie",
+    "lbl_from": "De",
+    "settings_title": "Paramètres",
+    "theme_label": "Thème",
+    "lang_label": "Langue",
+    "faq_heading": "Questions Fréquentes",
+    "faq1_q": "Quelles unités puis-je convertir?",
+    "faq1_a": "Longueur, poids, température, volume, vitesse et superficie. Métriques et impériales."
   }
-  if (node.nodeType === 1) {
-    var tag = node.tagName;
-    if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT') return;
-    // Handle placeholders
-    if ((tag === 'INPUT' || tag === 'TEXTAREA') && node.placeholder) {
-      var ph = node.placeholder;
-      var tDict = toDict || {};
-      if (tDict[ph]) node.placeholder = tDict[ph];
-    }
-    for (var i = 0; i < node.childNodes.length; i++) {
-      cproWalkAndReplace(node.childNodes[i], fromDict, toDict);
-    }
-  }
-}
+};
 
 function cproSetLang(lang) {
   localStorage.setItem('cpro_lang', lang);
-  // Update button styles
   document.querySelectorAll('.cpro-lang-btn').forEach(function(b) {
     var active = b.dataset.lang === lang;
     b.style.background = active ? '#6366f1' : '#334155';
     b.style.borderColor = active ? '#6366f1' : '#475569';
     b.style.color = active ? '#fff' : '#f1f5f9';
   });
-  if (lang === 'en') {
-    // Reload page to restore English
-    location.reload();
-    return;
-  }
+  if (lang === 'en') { location.reload(); return; }
   var t = CPRO_TRANSLATIONS[lang];
   if (!t) return;
-  cproWalkAndReplace(document.body, {}, t);
-  // Also update page title
-  var titles = Object.keys(t);
-  for (var i = 0; i < titles.length; i++) {
-    if (document.title.indexOf(titles[i]) !== -1) {
-      document.title = document.title.replace(titles[i], t[titles[i]]);
-      break;
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (t[key] === undefined) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = t[key];
+    } else if (el.tagName === 'OPTION') {
+      el.textContent = t[key];
+    } else {
+      el.textContent = t[key];
     }
+  });
+  if (t['title'] && document.title) {
+    var orig = CPRO_TRANSLATIONS['en']['title'];
+    if (orig) document.title = document.title.replace(orig, t['title']);
   }
 }
-
 document.addEventListener('DOMContentLoaded', function() {
   var saved = localStorage.getItem('cpro_lang') || 'en';
-  if (saved !== 'en') {
-    cproSetLang(saved);
-  }
+  if (saved !== 'en') cproSetLang(saved);
 });
 </script>
 </body>

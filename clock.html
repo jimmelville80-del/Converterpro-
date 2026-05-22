@@ -995,7 +995,7 @@
                 <span class="globe-icon" style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">🌍</span>
                 <h1 data-i18n="title">World Clock Pro</h1>
             </div>
-            <p class="tagline">Real-time timezone converter for 1000+ cities</p>
+            <p class="tagline" data-i18n="tagline">Real-time timezone converter for 1000+ cities</p>
             <div class="search-container">
                 <div class="search-box">
                     <input type="text" id="citySearch" placeholder="Search cities..." autocomplete="off">
@@ -1017,7 +1017,7 @@
         <section class="clocks-grid" id="clocksGrid"></section>
 
         <section class="frequently-searched">
-            <h3>⭐ Frequently Searched</h3>
+            <h3 data-i18n="popular">⭐ Frequently Searched</h3>
             <div class="city-buttons" id="frequentCities"></div>
         </section>
     </div>
@@ -1026,7 +1026,7 @@
     <div id="editCitiesModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Edit My Cities</h2>
+                <h2 data-i18n="edit_cities">Edit My Cities</h2>
                 <button class="close" onclick="closeEditCitiesModal()">&times;</button>
             </div>
             <div class="search-add-group">
@@ -1036,7 +1036,7 @@
             <div id="addCityDropdown" class="dropdown-list" style="position: relative; box-shadow: none; margin-bottom: 20px;"></div>
             <h3 style="margin-bottom: 15px; font-size: 1.1em;">Current Cities:</h3>
             <div class="city-list" id="citiesList"></div>
-            <button class="btn-primary" onclick="closeEditCitiesModal()">Done</button>
+            <button class="btn-primary" onclick="closeEditCitiesModal()" data-i18n="btn_done">Done</button>
         </div>
     </div>
 
@@ -1044,12 +1044,12 @@
     <div id="settingsModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Settings</h2>
+                <h2 data-i18n="settings">Settings</h2>
                 <button class="close" onclick="closeSettingsModal()">&times;</button>
             </div>
             
             <div class="form-group">
-                <label id="langLabel">Language</label>
+                <label id="langLabel" data-i18n="lbl_lang">Language</label>
                 <select id="languageSelect" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 1em; background: white; color: #333;">
                     <option value="en">English</option>
                     <option value="es">Español (Spanish)</option>
@@ -1062,7 +1062,7 @@
             </div>
 
             <div class="form-group">
-                <label>Theme</label>
+                <label data-i18n="lbl_theme">Theme</label>
                 <div class="toggle-group">
                     <div class="toggle-option active" id="themeLight" onclick="setTheme('light')">☀️ Light</div>
                     <div class="toggle-option" id="themeDark" onclick="setTheme('dark')">🌙 Dark</div>
@@ -1070,14 +1070,14 @@
             </div>
 
             <div class="form-group">
-                <label>Time Format</label>
+                <label data-i18n="lbl_fmt">Time Format</label>
                 <div class="toggle-group">
                     <div class="toggle-option active" id="format24" onclick="setTimeFormat('24')">24-Hour</div>
                     <div class="toggle-option" id="format12" onclick="setTimeFormat('12')">12-Hour (AM/PM)</div>
                 </div>
             </div>
 
-            <button class="btn-primary" onclick="closeSettingsModal()">Save Settings</button>
+            <button class="btn-primary" onclick="closeSettingsModal()" data-i18n="btn_save">Save Settings</button>
         </div>
     </div>
 
@@ -1282,21 +1282,21 @@
   <div itemscope itemtype="https://schema.org/FAQPage">
 
 <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-  <h3 itemprop="name">What is World Clock Pro?</h3>
+  <h3 itemprop="name" data-i18n="faq1_q">What is World Clock Pro?</h3>
   <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-    <p itemprop="text">World Clock Pro is a free online tool that shows the current time in cities worldwide and lets you convert times between different time zones instantly.</p>
+    <p itemprop="text" data-i18n="faq1_a">World Clock Pro is a free online tool that shows the current time in cities worldwide and lets you convert times between different time zones instantly.</p>
   </div>
 </div>
 <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-  <h3 itemprop="name">How do I convert time zones?</h3>
+  <h3 itemprop="name" data-i18n="faq2_q">How do I convert time zones?</h3>
   <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-    <p itemprop="text">Select your home city, then add the cities you want to compare. The tool automatically shows the current local time for each location in real time.</p>
+    <p itemprop="text" data-i18n="faq2_a">Select your home city, then add the cities you want to compare. The tool automatically shows the current local time for each location in real time.</p>
   </div>
 </div>
 <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-  <h3 itemprop="name">Is World Clock Pro free to use?</h3>
+  <h3 itemprop="name" data-i18n="faq3_q">Is World Clock Pro free to use?</h3>
   <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-    <p itemprop="text">Yes, completely free. No signup, no downloads, no limits.</p>
+    <p itemprop="text" data-i18n="faq3_a">Yes, completely free. No signup, no downloads, no limits.</p>
   </div>
 </div>
 <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
@@ -1339,72 +1339,134 @@
 </script>
 
 <script id="cpro-translations">
-var CPRO_TRANSLATIONS = {"zh": {"World Clock Pro": "世界时钟", "Search city...": "搜索城市...", "Add City": "添加城市", "Frequently Asked Questions": "常见问题"}, "es": {"World Clock Pro": "Reloj Mundial", "Search city...": "Buscar ciudad...", "Add City": "Agregar Ciudad", "Frequently Asked Questions": "Preguntas Frecuentes"}, "fr": {"World Clock Pro": "Horloge Mondiale", "Search city...": "Rechercher ville...", "Add City": "Ajouter Ville", "Frequently Asked Questions": "Questions Fréquentes"}, "hi": {"World Clock Pro": "विश्व घड़ी", "Search city...": "शहर खोजें...", "Add City": "शहर जोड़ें", "Frequently Asked Questions": "अक्सर पूछे जाने वाले प्रश्न"}};
-var CPRO_ORIG_LANG = 'en';
-
-function cproWalkAndReplace(node, fromDict, toDict) {
-  if (node.nodeType === 3) {
-    var text = node.textContent;
-    var trimmed = text.trim();
-    if (trimmed.length > 1) {
-      var from = fromDict || {};
-      var to = toDict || {};
-      for (var key in to) {
-        if (text === key || trimmed === key) {
-          node.textContent = text.replace(key, to[key]);
-          return;
-        }
-      }
-    }
-    return;
+var CPRO_TRANSLATIONS = {
+  "en": {
+    "title": "World Clock Pro",
+    "tagline": "Real-time timezone converter for 1000+ cities",
+    "popular": "⭐ Frequently Searched",
+    "edit_cities": "Edit My Cities",
+    "btn_done": "Done",
+    "settings": "Settings",
+    "lbl_lang": "Language",
+    "lbl_theme": "Theme",
+    "lbl_fmt": "Time Format",
+    "btn_save": "Save Settings",
+    "faq_heading": "Frequently Asked Questions",
+    "faq1_q": "What is World Clock Pro?",
+    "faq1_a": "World Clock Pro is a free online tool that shows the current time in cities worldwide and lets you convert times between different time zones instantly.",
+    "faq2_q": "How do I convert time zones?",
+    "faq2_a": "Select your home city, then add the cities you want to compare. The tool automatically shows the current local time for each location.",
+    "faq3_q": "Is World Clock Pro free to use?",
+    "faq3_a": "Yes, completely free. No signup, no downloads, no limits."
+  },
+  "zh": {
+    "title": "世界时钟",
+    "tagline": "1000+城市实时时区转换器",
+    "popular": "⭐ 热门搜索",
+    "edit_cities": "编辑我的城市",
+    "btn_done": "完成",
+    "settings": "设置",
+    "lbl_lang": "语言",
+    "lbl_theme": "主题",
+    "lbl_fmt": "时间格式",
+    "btn_save": "保存设置",
+    "faq_heading": "常见问题",
+    "faq1_q": "什么是World Clock Pro？",
+    "faq1_a": "World Clock Pro是一款免费在线工具，显示全球城市的当前时间，并可即时在不同时区之间转换时间。",
+    "faq2_q": "如何转换时区？",
+    "faq2_a": "选择您的城市，然后添加要比较的城市。工具自动显示每个地点的当前本地时间。",
+    "faq3_q": "World Clock Pro免费使用吗？",
+    "faq3_a": "是的，完全免费。无需注册，无需下载，无限制。"
+  },
+  "hi": {
+    "title": "विश्व घड़ी",
+    "tagline": "1000+ शहरों के लिए रियल-टाइम टाइमज़ोन कनवर्टर",
+    "popular": "⭐ अक्सर खोजे जाने वाले",
+    "edit_cities": "मेरे शहर संपादित करें",
+    "btn_done": "हो गया",
+    "settings": "सेटिंग्स",
+    "lbl_lang": "भाषा",
+    "lbl_theme": "थीम",
+    "lbl_fmt": "समय प्रारूप",
+    "btn_save": "सेटिंग्स सहेजें",
+    "faq_heading": "अक्सर पूछे जाने वाले प्रश्न",
+    "faq1_q": "वर्ल्ड क्लॉक प्रो क्या है?",
+    "faq1_a": "वर्ल्ड क्लॉक प्रो एक मुफ्त ऑनलाइन टूल है जो दुनिया भर के शहरों में वर्तमान समय दिखाता है।",
+    "faq2_q": "टाइम ज़ोन कैसे बदलें?",
+    "faq2_a": "अपना शहर चुनें, फिर तुलना के लिए शहर जोड़ें। टूल स्वचालित रूप से प्रत्येक स्थान का समय दिखाता है।",
+    "faq3_q": "क्या वर्ल्ड क्लॉक प्रो मुफ्त है?",
+    "faq3_a": "हाँ, पूरी तरह मुफ्त। कोई साइनअप नहीं, कोई डाउनलोड नहीं।"
+  },
+  "es": {
+    "title": "Reloj Mundial",
+    "tagline": "Conversor de zona horaria en tiempo real para 1000+ ciudades",
+    "popular": "⭐ Más Buscados",
+    "edit_cities": "Editar Mis Ciudades",
+    "btn_done": "Listo",
+    "settings": "Configuración",
+    "lbl_lang": "Idioma",
+    "lbl_theme": "Tema",
+    "lbl_fmt": "Formato de Hora",
+    "btn_save": "Guardar",
+    "faq_heading": "Preguntas Frecuentes",
+    "faq1_q": "¿Qué es World Clock Pro?",
+    "faq1_a": "World Clock Pro es una herramienta gratuita que muestra la hora actual en ciudades de todo el mundo y convierte zonas horarias al instante.",
+    "faq2_q": "¿Cómo convierto zonas horarias?",
+    "faq2_a": "Selecciona tu ciudad, luego agrega las ciudades que quieres comparar. La herramienta muestra automáticamente la hora local de cada lugar.",
+    "faq3_q": "¿Es gratuito World Clock Pro?",
+    "faq3_a": "Sí, completamente gratis. Sin registro, sin descargas, sin límites."
+  },
+  "fr": {
+    "title": "Horloge Mondiale",
+    "tagline": "Convertisseur de fuseau horaire en temps réel pour 1000+ villes",
+    "popular": "⭐ Les Plus Recherchés",
+    "edit_cities": "Modifier Mes Villes",
+    "btn_done": "Terminé",
+    "settings": "Paramètres",
+    "lbl_lang": "Langue",
+    "lbl_theme": "Thème",
+    "lbl_fmt": "Format d'Heure",
+    "btn_save": "Enregistrer",
+    "faq_heading": "Questions Fréquentes",
+    "faq1_q": "Qu'est-ce que World Clock Pro?",
+    "faq1_a": "World Clock Pro est un outil gratuit qui affiche l'heure actuelle dans les villes du monde et convertit les fuseaux horaires instantanément.",
+    "faq2_q": "Comment convertir les fuseaux horaires?",
+    "faq2_a": "Sélectionnez votre ville, puis ajoutez les villes à comparer. L'outil affiche automatiquement l'heure locale de chaque endroit.",
+    "faq3_q": "World Clock Pro est-il gratuit?",
+    "faq3_a": "Oui, complètement gratuit. Sans inscription, sans téléchargements, sans limites."
   }
-  if (node.nodeType === 1) {
-    var tag = node.tagName;
-    if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT') return;
-    // Handle placeholders
-    if ((tag === 'INPUT' || tag === 'TEXTAREA') && node.placeholder) {
-      var ph = node.placeholder;
-      var tDict = toDict || {};
-      if (tDict[ph]) node.placeholder = tDict[ph];
-    }
-    for (var i = 0; i < node.childNodes.length; i++) {
-      cproWalkAndReplace(node.childNodes[i], fromDict, toDict);
-    }
-  }
-}
+};
 
 function cproSetLang(lang) {
   localStorage.setItem('cpro_lang', lang);
-  // Update button styles
   document.querySelectorAll('.cpro-lang-btn').forEach(function(b) {
     var active = b.dataset.lang === lang;
     b.style.background = active ? '#6366f1' : '#334155';
     b.style.borderColor = active ? '#6366f1' : '#475569';
     b.style.color = active ? '#fff' : '#f1f5f9';
   });
-  if (lang === 'en') {
-    // Reload page to restore English
-    location.reload();
-    return;
-  }
+  if (lang === 'en') { location.reload(); return; }
   var t = CPRO_TRANSLATIONS[lang];
   if (!t) return;
-  cproWalkAndReplace(document.body, {}, t);
-  // Also update page title
-  var titles = Object.keys(t);
-  for (var i = 0; i < titles.length; i++) {
-    if (document.title.indexOf(titles[i]) !== -1) {
-      document.title = document.title.replace(titles[i], t[titles[i]]);
-      break;
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (t[key] === undefined) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = t[key];
+    } else if (el.tagName === 'OPTION') {
+      el.textContent = t[key];
+    } else {
+      el.textContent = t[key];
     }
+  });
+  if (t['title'] && document.title) {
+    var orig = CPRO_TRANSLATIONS['en']['title'];
+    if (orig) document.title = document.title.replace(orig, t['title']);
   }
 }
-
 document.addEventListener('DOMContentLoaded', function() {
   var saved = localStorage.getItem('cpro_lang') || 'en';
-  if (saved !== 'en') {
-    cproSetLang(saved);
-  }
+  if (saved !== 'en') cproSetLang(saved);
 });
 </script>
 </body>

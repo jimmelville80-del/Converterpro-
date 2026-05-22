@@ -1562,72 +1562,119 @@
 </script>
 
 <script id="cpro-translations">
-var CPRO_TRANSLATIONS = {"zh": {"Currency Converter Pro": "货币转换器", "Real-time exchange rates for 49 currencies": "49种货币实时汇率", "Amount": "金额", "From": "从", "To": "到", "Swap": "交换", "Frequently Asked Questions": "常见问题", "Convert": "转换", "Favorites": "收藏", "Settings": "设置"}, "es": {"Currency Converter Pro": "Conversor de Divisas", "Real-time exchange rates for 49 currencies": "Tipos de cambio en tiempo real para 49 divisas", "Amount": "Cantidad", "From": "De", "To": "A", "Swap": "Cambiar", "Frequently Asked Questions": "Preguntas Frecuentes"}, "fr": {"Currency Converter Pro": "Convertisseur de Devises", "Real-time exchange rates for 49 currencies": "Taux de change en temps réel pour 49 devises", "Amount": "Montant", "From": "De", "To": "À", "Swap": "Inverser", "Frequently Asked Questions": "Questions Fréquentes"}, "hi": {"Currency Converter Pro": "मुद्रा परिवर्तक", "Real-time exchange rates for 49 currencies": "49 मुद्राओं के लिए रीयल-टाइम विनिमय दरें", "Amount": "राशि", "From": "से", "To": "तक", "Swap": "बदलें", "Frequently Asked Questions": "अक्सर पूछे जाने वाले प्रश्न"}};
-var CPRO_ORIG_LANG = 'en';
-
-function cproWalkAndReplace(node, fromDict, toDict) {
-  if (node.nodeType === 3) {
-    var text = node.textContent;
-    var trimmed = text.trim();
-    if (trimmed.length > 1) {
-      var from = fromDict || {};
-      var to = toDict || {};
-      for (var key in to) {
-        if (text === key || trimmed === key) {
-          node.textContent = text.replace(key, to[key]);
-          return;
-        }
-      }
-    }
-    return;
+var CPRO_TRANSLATIONS = {
+  "en": {
+    "title": "Currency Converter Pro",
+    "subtitle": "Real-time exchange rates for 49 currencies",
+    "converter": "Converter",
+    "from": "From",
+    "to": "To",
+    "favorites": "Quick Access",
+    "settings": "Settings",
+    "theme": "Theme",
+    "themeLight": "☀️ Light",
+    "themeDark": "🌙 Dark",
+    "themeBlue": "🌊 Blue",
+    "language": "Language",
+    "manageFavorites": "Manage Favorites",
+    "faq_heading": "Frequently Asked Questions"
+  },
+  "zh": {
+    "title": "货币转换器",
+    "subtitle": "49种货币实时汇率",
+    "converter": "转换器",
+    "from": "从",
+    "to": "到",
+    "favorites": "快速访问",
+    "settings": "设置",
+    "theme": "主题",
+    "themeLight": "☀️ 亮色",
+    "themeDark": "🌙 暗色",
+    "themeBlue": "🌊 蓝色",
+    "language": "语言",
+    "manageFavorites": "管理收藏",
+    "faq_heading": "常见问题"
+  },
+  "hi": {
+    "title": "मुद्रा परिवर्तक",
+    "subtitle": "49 मुद्राओं की रियल-टाइम विनिमय दरें",
+    "converter": "कनवर्टर",
+    "from": "से",
+    "to": "तक",
+    "favorites": "त्वरित पहुँच",
+    "settings": "सेटिंग्स",
+    "theme": "थीम",
+    "themeLight": "☀️ लाइट",
+    "themeDark": "🌙 डार्क",
+    "themeBlue": "🌊 नीला",
+    "language": "भाषा",
+    "manageFavorites": "पसंदीदा प्रबंधित करें",
+    "faq_heading": "अक्सर पूछे जाने वाले प्रश्न"
+  },
+  "es": {
+    "title": "Conversor de Divisas",
+    "subtitle": "Tipos de cambio en tiempo real — 49 divisas",
+    "converter": "Conversor",
+    "from": "De",
+    "to": "A",
+    "favorites": "Acceso Rápido",
+    "settings": "Configuración",
+    "theme": "Tema",
+    "themeLight": "☀️ Claro",
+    "themeDark": "🌙 Oscuro",
+    "themeBlue": "🌊 Azul",
+    "language": "Idioma",
+    "manageFavorites": "Gestionar Favoritos",
+    "faq_heading": "Preguntas Frecuentes"
+  },
+  "fr": {
+    "title": "Convertisseur de Devises",
+    "subtitle": "Taux de change en temps réel — 49 devises",
+    "converter": "Convertisseur",
+    "from": "De",
+    "to": "À",
+    "favorites": "Accès Rapide",
+    "settings": "Paramètres",
+    "theme": "Thème",
+    "themeLight": "☀️ Clair",
+    "themeDark": "🌙 Sombre",
+    "themeBlue": "🌊 Bleu",
+    "language": "Langue",
+    "manageFavorites": "Gérer les Favoris",
+    "faq_heading": "Questions Fréquentes"
   }
-  if (node.nodeType === 1) {
-    var tag = node.tagName;
-    if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT') return;
-    // Handle placeholders
-    if ((tag === 'INPUT' || tag === 'TEXTAREA') && node.placeholder) {
-      var ph = node.placeholder;
-      var tDict = toDict || {};
-      if (tDict[ph]) node.placeholder = tDict[ph];
-    }
-    for (var i = 0; i < node.childNodes.length; i++) {
-      cproWalkAndReplace(node.childNodes[i], fromDict, toDict);
-    }
-  }
-}
+};
 
 function cproSetLang(lang) {
   localStorage.setItem('cpro_lang', lang);
-  // Update button styles
   document.querySelectorAll('.cpro-lang-btn').forEach(function(b) {
     var active = b.dataset.lang === lang;
     b.style.background = active ? '#6366f1' : '#334155';
     b.style.borderColor = active ? '#6366f1' : '#475569';
     b.style.color = active ? '#fff' : '#f1f5f9';
   });
-  if (lang === 'en') {
-    // Reload page to restore English
-    location.reload();
-    return;
-  }
+  if (lang === 'en') { location.reload(); return; }
   var t = CPRO_TRANSLATIONS[lang];
   if (!t) return;
-  cproWalkAndReplace(document.body, {}, t);
-  // Also update page title
-  var titles = Object.keys(t);
-  for (var i = 0; i < titles.length; i++) {
-    if (document.title.indexOf(titles[i]) !== -1) {
-      document.title = document.title.replace(titles[i], t[titles[i]]);
-      break;
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (t[key] === undefined) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = t[key];
+    } else if (el.tagName === 'OPTION') {
+      el.textContent = t[key];
+    } else {
+      el.textContent = t[key];
     }
+  });
+  if (t['title'] && document.title) {
+    var orig = CPRO_TRANSLATIONS['en']['title'];
+    if (orig) document.title = document.title.replace(orig, t['title']);
   }
 }
-
 document.addEventListener('DOMContentLoaded', function() {
   var saved = localStorage.getItem('cpro_lang') || 'en';
-  if (saved !== 'en') {
-    cproSetLang(saved);
-  }
+  if (saved !== 'en') cproSetLang(saved);
 });
 </script>
 </body>
