@@ -352,7 +352,12 @@ function applyTranslations(lang) {
     const t = TRANSLATIONS[lang] || TRANSLATIONS['en'];
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.dataset.i18n;
-        if (t[key]) el.textContent = t[key];
+        if (!t[key]) return;
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = t[key];
+        } else {
+            el.textContent = t[key];
+        }
     });
     // Update page title
     if (t.title) document.title = t.title + ' | ConverterPro';
@@ -370,14 +375,14 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="container">
     <header>
         <span class="moon">🌙</span>
-        <h1>Sleep Calculator Pro</h1>
+        <h1 data-i18n="title">Sleep Calculator Pro</h1>
         <p>Wake up refreshed by sleeping in complete 90-minute cycles</p>
     </header>
 
     <div class="card">
         <div class="tab-row">
-            <button class="tab-btn active" onclick="switchTab('bedtime')">😴 I'm going to sleep now</button>
-            <button class="tab-btn" onclick="switchTab('wakeup')">⏰ I need to wake up at...</button>
+            <button class="tab-btn active" onclick="switchTab('bedtime')" data-i18n="tab1">😴 I'm going to sleep now</button>
+            <button class="tab-btn" onclick="switchTab('wakeup')" data-i18n="tab2">⏰ I need to wake up at...</button>
         </div>
 
         <!-- Tab 1: Going to sleep now / at a time -->
@@ -385,7 +390,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <label>What time are you going to sleep?</label>
             <input type="time" id="sleep-time" value="22:30">
             <button class="now-btn secondary" onclick="setNow('sleep-time')">⏱ Use current time</button>
-            <button class="now-btn" onclick="calcWakeUp()">Calculate Wake Up Times →</button>
+            <button class="now-btn" onclick="calcWakeUp()" data-i18n="btn_calc">Calculate Wake Up Times →</button>
             <div class="results" id="wakeup-results" style="display:none;">
                 <h3>Best times to wake up</h3>
                 <div class="time-grid" id="wakeup-grid"></div>
@@ -397,7 +402,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="section" id="wakeup-section">
             <label>What time do you need to wake up?</label>
             <input type="time" id="wake-time" value="07:00">
-            <button class="now-btn" onclick="calcBedTime()">Calculate Bedtimes →</button>
+            <button class="now-btn" onclick="calcBedTime()" data-i18n="btn_calc">Calculate Bedtimes →</button>
             <div class="results" id="bedtime-results" style="display:none;">
                 <h3>Go to sleep at one of these times</h3>
                 <div class="time-grid" id="bedtime-grid"></div>

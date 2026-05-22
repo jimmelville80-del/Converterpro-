@@ -1251,7 +1251,12 @@ function applyTranslations(lang) {
     const t = TRANSLATIONS[lang] || TRANSLATIONS['en'];
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.dataset.i18n;
-        if (t[key]) el.textContent = t[key];
+        if (!t[key]) return;
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = t[key];
+        } else {
+            el.textContent = t[key];
+        }
     });
     // Update page title
     if (t.title) document.title = t.title + ' | ConverterPro';
@@ -1274,7 +1279,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="header-content">
 
-                <h1>QR Code Generator Pro</h1>
+                <h1 data-i18n="title">QR Code Generator Pro</h1>
                 <p class="tagline">Create professional QR codes instantly</p>
             </div>
         </header>

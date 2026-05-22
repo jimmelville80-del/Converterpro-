@@ -106,13 +106,24 @@ input:focus,select:focus{border-color:#2e86ab}
 footer{text-align:center;padding:24px 16px;font-size:.8rem;color:#888;margin-top:32px}
 footer a{color:#2e86ab;text-decoration:none}
 @media(max-width:500px){.result-grid{grid-template-columns:1fr}}
+.lang-bar{background:#1a5276;padding:8px;text-align:center}
+.lang-btn{background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff;padding:4px 10px;border-radius:20px;cursor:pointer;font-size:.8rem;margin:2px}
+.lang-btn.active{background:rgba(255,255,255,.25);border-color:#fff}
+.lang-btn:hover{background:rgba(255,255,255,.15)}
 </style>
 </head>
 <body>
 <header>
-  <h1>💰 Interest & Loan Calculator</h1>
-  <p>Mortgage, personal loan, car loan, investment — free, no sign-up</p>
+  <h1 data-i18n="title">💰 Interest & Loan Calculator</h1>
+  <p data-i18n="subtitle">Mortgage, personal loan, car loan, investment — free, no sign-up</p>
 </header>
+<div class="lang-bar">
+<button class="lang-btn active" onclick="setLang('en')" data-lang="en">🇬🇧 EN</button>
+<button class="lang-btn" onclick="setLang('zh')" data-lang="zh">🇨🇳 中文</button>
+<button class="lang-btn" onclick="setLang('hi')" data-lang="hi">🇮🇳 हि</button>
+<button class="lang-btn" onclick="setLang('es')" data-lang="es">🇪🇸 ES</button>
+<button class="lang-btn" onclick="setLang('fr')" data-lang="fr">🇫🇷 FR</button>
+</div>
 <nav>
   <a href="/index.html">🏠 Home</a> |
   <a href="/converter.html">💱 Currency</a> |
@@ -126,9 +137,9 @@ footer a{color:#2e86ab;text-decoration:none}
 </nav>
 <div class="container">
   <div class="tabs">
-    <div class="tab active" onclick="switchTab('loan')">🏦 Loan / Mortgage</div>
-    <div class="tab" onclick="switchTab('compound')">📈 Investment</div>
-    <div class="tab" onclick="switchTab('simple')">📋 Simple Interest</div>
+    <div class="tab active" onclick="switchTab('loan')" data-i18n="tab_loan">🏦 Loan / Mortgage</div>
+    <div class="tab" onclick="switchTab('compound')" data-i18n="tab_invest">📈 Investment</div>
+    <div class="tab" onclick="switchTab('simple')" data-i18n="tab_simple">📋 Simple Interest</div>
   </div>
 
   <!-- LOAN / MORTGAGE -->
@@ -150,7 +161,7 @@ footer a{color:#2e86ab;text-decoration:none}
       </select>
       <label>Extra Monthly Repayment (optional)</label>
       <div class="input-prefix"><span>$</span><input type="number" id="l-extra" placeholder="0" min="0"></div>
-      <button class="btn" onclick="calcLoan()">Calculate Repayments</button>
+      <button class="btn" onclick="calcLoan()" data-i18n="btn_calc">Calculate Repayments</button>
       <div class="results" id="loan-results">
         <div class="result-grid">
           <div class="result-box highlight">
@@ -197,7 +208,7 @@ footer a{color:#2e86ab;text-decoration:none}
         <option value="2">Semi-Annually</option>
         <option value="1">Annually</option>
       </select>
-      <button class="btn" onclick="calcCompound()">Calculate Returns</button>
+      <button class="btn" onclick="calcCompound()" data-i18n="btn_calc2">Calculate Returns</button>
       <div class="results" id="compound-results">
         <div class="result-grid">
           <div class="result-box highlight">
@@ -231,7 +242,7 @@ footer a{color:#2e86ab;text-decoration:none}
         <input type="number" id="s-years" placeholder="Years" min="0" style="flex:1">
         <input type="number" id="s-months" placeholder="Months" min="0" max="11" style="flex:1">
       </div>
-      <button class="btn" onclick="calcSimple()">Calculate Interest</button>
+      <button class="btn" onclick="calcSimple()" data-i18n="btn_calc3">Calculate Interest</button>
       <div class="results" id="simple-results">
         <div class="result-grid">
           <div class="result-box highlight">
@@ -441,7 +452,35 @@ function toggleFaq(el) {
   ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
 }
 
-// Language switcher (EN only shown, structure kept for consistency)
+// Language switcher
+const TRANSLATIONS = {
+  en: {title:"💰 Interest & Loan Calculator", subtitle:"Mortgage, personal loan, car loan, investment — free, no sign-up", tab_loan:"🏦 Loan / Mortgage", tab_invest:"📈 Investment", tab_simple:"📋 Simple Interest", btn_calc:"Calculate Repayments", btn_calc2:"Calculate Returns", btn_calc3:"Calculate Interest", faq_heading:"Frequently Asked Questions"},
+  zh: {title:"💰 利息与贷款计算器", subtitle:"房贷、个人贷款、汽车贷款、投资 — 免费，无需注册", tab_loan:"🏦 贷款 / 房贷", tab_invest:"📈 投资", tab_simple:"📋 简单利息", btn_calc:"计算还款额", btn_calc2:"计算收益", btn_calc3:"计算利息", faq_heading:"常见问题"},
+  hi: {title:"💰 ब्याज और ऋण कैलकुलेटर", subtitle:"बंधक, व्यक्तिगत ऋण, कार ऋण, निवेश — मुफ्त", tab_loan:"🏦 ऋण / बंधक", tab_invest:"📈 निवेश", tab_simple:"📋 साधारण ब्याज", btn_calc:"भुगतान गणना करें", btn_calc2:"रिटर्न गणना करें", btn_calc3:"ब्याज गणना करें", faq_heading:"अक्सर पूछे जाने वाले प्रश्न"},
+  es: {title:"💰 Calculadora de Interés y Préstamos", subtitle:"Hipoteca, préstamo personal, coche, inversión — gratis", tab_loan:"🏦 Préstamo / Hipoteca", tab_invest:"📈 Inversión", tab_simple:"📋 Interés Simple", btn_calc:"Calcular Pagos", btn_calc2:"Calcular Retornos", btn_calc3:"Calcular Interés", faq_heading:"Preguntas Frecuentes"},
+  fr: {title:"💰 Calculateur d'Intérêts et Prêts", subtitle:"Hypothèque, prêt personnel, voiture, investissement — gratuit", tab_loan:"🏦 Prêt / Hypothèque", tab_invest:"📈 Investissement", tab_simple:"📋 Intérêt Simple", btn_calc:"Calculer les Paiements", btn_calc2:"Calculer les Rendements", btn_calc3:"Calculer l'Intérêt", faq_heading:"Questions Fréquentes"}
+};
+let currentLang = localStorage.getItem('cpro_lang') || 'en';
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('cpro_lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  applyTranslations(lang);
+}
+function applyTranslations(lang) {
+  const t = TRANSLATIONS[lang] || TRANSLATIONS['en'];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (!t[key]) return;
+    if (el.tagName==='INPUT'||el.tagName==='TEXTAREA') el.placeholder=t[key];
+    else el.textContent=t[key];
+  });
+  if (t.title) document.title = t.title + ' | ConverterPro';
+  document.querySelectorAll('.faq h2').forEach(el => { if (t.faq_heading) el.textContent=t.faq_heading; });
+}
+document.addEventListener('DOMContentLoaded', function() {
+  if (currentLang !== 'en') setLang(currentLang);
+});
 </script>
 </body>
 </html>
