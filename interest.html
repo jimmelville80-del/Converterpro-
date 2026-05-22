@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Free interest calculator for mortgages, personal loans, car loans and investments. Calculate monthly repayments, total interest, and compare loan options instantly.">
+<meta name="keywords" content="interest calculator, mortgage calculator, loan repayment calculator, personal loan calculator, investment return calculator, compound interest calculator, monthly repayment calculator">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://converterpro.co/interest">
+<meta property="og:title" content="Interest & Loan Calculator - Mortgage, Personal Loan, Investment | ConverterPro">
+<meta property="og:description" content="Calculate loan repayments, total interest, and investment returns instantly. Free, no sign-up.">
+<meta property="og:url" content="https://converterpro.co/interest">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Interest & Loan Calculator | ConverterPro">
+<meta name="twitter:description" content="Free mortgage, loan and investment interest calculator. No sign-up required.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Interest & Loan Calculator",
+  "description": "Free online calculator for mortgages, personal loans, car loans, and investment returns",
+  "url": "https://converterpro.co/interest",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I calculate monthly mortgage repayments?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Enter your loan amount, interest rate, and loan term in years. The calculator shows your exact monthly repayment, total interest paid, and total amount repaid."}
+    },
+    {
+      "@type": "Question",
+      "name": "What is compound interest?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Compound interest is interest calculated on both the initial principal and the accumulated interest. For investments, it means your returns generate further returns over time."}
+    },
+    {
+      "@type": "Question",
+      "name": "How much does an extra repayment save on a mortgage?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Extra repayments reduce your principal faster, which reduces the interest you owe on that principal. Even small extra repayments on a mortgage can save thousands in interest over the loan term."}
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between simple and compound interest?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Simple interest is calculated only on the principal. Compound interest is calculated on the principal plus any interest already accrued. Most loans use compound interest; savings accounts and investments also use compound interest."}
+    },
+    {
+      "@type": "Question",
+      "name": "Is this calculator free?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Yes, completely free with no sign-up required."}
+    }
+  ]
+}
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interest & Loan Calculator - Mortgage, Personal Loan, Investment | ConverterPro</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f4f8;color:#1a1a2e;min-height:100vh}
+header{background:linear-gradient(135deg,#1a5276,#2e86ab);color:#fff;padding:20px;text-align:center}
+header h1{font-size:1.6rem;font-weight:700}
+header p{opacity:.85;font-size:.95rem;margin-top:4px}
+nav{background:#fff;padding:10px;text-align:center;border-bottom:1px solid #e0e0e0;font-size:.85rem;overflow-x:auto;white-space:nowrap}
+nav a{color:#2e86ab;text-decoration:none;margin:0 8px}nav a:hover{text-decoration:underline}
+.container{max-width:780px;margin:24px auto;padding:0 16px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.tab{padding:9px 18px;border:2px solid #2e86ab;border-radius:24px;cursor:pointer;font-size:.9rem;background:#fff;color:#2e86ab;transition:.2s}
+.tab.active{background:#2e86ab;color:#fff}
+.card{background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.section{display:none}.section.active{display:block}
+label{display:block;font-size:.85rem;font-weight:600;color:#555;margin-bottom:5px;margin-top:16px}
+label:first-of-type{margin-top:0}
+input,select{width:100%;padding:11px 14px;border:2px solid #e0e0e0;border-radius:10px;font-size:1rem;outline:none;transition:.2s}
+input:focus,select:focus{border-color:#2e86ab}
+.input-prefix{position:relative}
+.input-prefix span{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#888;font-size:1rem}
+.input-prefix input{padding-left:28px}
+.btn{width:100%;margin-top:20px;padding:13px;background:#2e86ab;color:#fff;border:none;border-radius:10px;font-size:1.05rem;font-weight:700;cursor:pointer;transition:.2s}
+.btn:hover{background:#1a5276}
+.results{margin-top:20px;display:none}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.result-box{background:#f0f7ff;border-radius:12px;padding:16px;text-align:center}
+.result-box.highlight{background:#2e86ab;color:#fff}
+.result-label{font-size:.78rem;font-weight:600;opacity:.75;text-transform:uppercase;letter-spacing:.5px}
+.result-value{font-size:1.5rem;font-weight:800;margin-top:4px}
+.result-box.highlight .result-label{opacity:.85}
+.amort-toggle{margin-top:16px;font-size:.85rem;color:#2e86ab;cursor:pointer;text-decoration:underline;display:inline-block}
+.amort-table{margin-top:16px;overflow-x:auto;display:none}
+.amort-table table{width:100%;border-collapse:collapse;font-size:.82rem}
+.amort-table th{background:#1a5276;color:#fff;padding:8px 10px;text-align:right}
+.amort-table th:first-child{text-align:left}
+.amort-table td{padding:7px 10px;border-bottom:1px solid #f0f0f0;text-align:right}
+.amort-table td:first-child{text-align:left}
+.amort-table tr:nth-child(even){background:#f8fafc}
+.faq{margin-top:32px}
+.faq h2{font-size:1.15rem;font-weight:700;margin-bottom:16px;color:#1a5276}
+.faq-item{border-bottom:1px solid #eee;padding:14px 0}
+.faq-q{font-weight:600;font-size:.92rem;cursor:pointer;color:#1a5276}
+.faq-a{font-size:.88rem;color:#555;line-height:1.6;margin-top:8px;display:none}
+footer{text-align:center;padding:24px 16px;font-size:.8rem;color:#888;margin-top:32px}
+footer a{color:#2e86ab;text-decoration:none}
+@media(max-width:500px){.result-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <h1>💰 Interest & Loan Calculator</h1>
+  <p>Mortgage, personal loan, car loan, investment — free, no sign-up</p>
+</header>
+<nav>
+  <a href="/index.html">🏠 Home</a> |
+  <a href="/converter.html">💱 Currency</a> |
+  <a href="/tip.html">💰 Tip</a> |
+  <a href="/sleep.html">😴 Sleep</a> |
+  <a href="/password.html">🔐 Password</a> |
+  <a href="/qr.html">📱 QR Code</a> |
+  <a href="/unit.html">📐 Units</a> |
+  <a href="/clock.html">🕐 Clock</a> |
+  <a href="/cooking.html">🍳 Cooking</a>
+</nav>
+<div class="container">
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('loan')">🏦 Loan / Mortgage</div>
+    <div class="tab" onclick="switchTab('compound')">📈 Investment</div>
+    <div class="tab" onclick="switchTab('simple')">📋 Simple Interest</div>
+  </div>
+
+  <!-- LOAN / MORTGAGE -->
+  <div class="card">
+    <div id="sec-loan" class="section active">
+      <label>Loan Amount</label>
+      <div class="input-prefix"><span>$</span><input type="number" id="l-principal" placeholder="e.g. 500000" min="0"></div>
+      <label>Annual Interest Rate (%)</label>
+      <input type="number" id="l-rate" placeholder="e.g. 6.5" min="0" step="0.01">
+      <label>Loan Term</label>
+      <div style="display:flex;gap:10px">
+        <input type="number" id="l-years" placeholder="Years" min="0" style="flex:2">
+        <input type="number" id="l-months-extra" placeholder="Months" min="0" max="11" style="flex:1">
+      </div>
+      <label>Loan Type</label>
+      <select id="l-type">
+        <option value="pi">Principal & Interest</option>
+        <option value="io">Interest Only</option>
+      </select>
+      <label>Extra Monthly Repayment (optional)</label>
+      <div class="input-prefix"><span>$</span><input type="number" id="l-extra" placeholder="0" min="0"></div>
+      <button class="btn" onclick="calcLoan()">Calculate Repayments</button>
+      <div class="results" id="loan-results">
+        <div class="result-grid">
+          <div class="result-box highlight">
+            <div class="result-label">Monthly Repayment</div>
+            <div class="result-value" id="l-monthly">-</div>
+          </div>
+          <div class="result-box highlight">
+            <div class="result-label">Total Interest</div>
+            <div class="result-value" id="l-interest">-</div>
+          </div>
+          <div class="result-box">
+            <div class="result-label">Total Repaid</div>
+            <div class="result-value" id="l-total">-</div>
+          </div>
+          <div class="result-box" id="l-saving-box" style="display:none">
+            <div class="result-label">Interest Saved (extra repayments)</div>
+            <div class="result-value" id="l-saving">-</div>
+          </div>
+        </div>
+        <span class="amort-toggle" onclick="toggleAmort()">▼ Show year-by-year breakdown</span>
+        <div class="amort-table" id="amort-table">
+          <table>
+            <thead><tr><th>Year</th><th>Opening Balance</th><th>Principal Paid</th><th>Interest Paid</th><th>Closing Balance</th></tr></thead>
+            <tbody id="amort-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPOUND INTEREST / INVESTMENT -->
+    <div id="sec-compound" class="section">
+      <label>Initial Investment</label>
+      <div class="input-prefix"><span>$</span><input type="number" id="c-principal" placeholder="e.g. 10000" min="0"></div>
+      <label>Annual Interest Rate / Return (%)</label>
+      <input type="number" id="c-rate" placeholder="e.g. 7" min="0" step="0.01">
+      <label>Investment Period (Years)</label>
+      <input type="number" id="c-years" placeholder="e.g. 10" min="1">
+      <label>Regular Contribution (per month, optional)</label>
+      <div class="input-prefix"><span>$</span><input type="number" id="c-contrib" placeholder="0" min="0"></div>
+      <label>Compounding Frequency</label>
+      <select id="c-freq">
+        <option value="12">Monthly</option>
+        <option value="4">Quarterly</option>
+        <option value="2">Semi-Annually</option>
+        <option value="1">Annually</option>
+      </select>
+      <button class="btn" onclick="calcCompound()">Calculate Returns</button>
+      <div class="results" id="compound-results">
+        <div class="result-grid">
+          <div class="result-box highlight">
+            <div class="result-label">Final Balance</div>
+            <div class="result-value" id="c-final">-</div>
+          </div>
+          <div class="result-box highlight">
+            <div class="result-label">Total Interest Earned</div>
+            <div class="result-value" id="c-earned">-</div>
+          </div>
+          <div class="result-box">
+            <div class="result-label">Total Contributed</div>
+            <div class="result-value" id="c-contributed">-</div>
+          </div>
+          <div class="result-box">
+            <div class="result-label">Return on Investment</div>
+            <div class="result-value" id="c-roi">-</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIMPLE INTEREST -->
+    <div id="sec-simple" class="section">
+      <label>Principal Amount</label>
+      <div class="input-prefix"><span>$</span><input type="number" id="s-principal" placeholder="e.g. 5000" min="0"></div>
+      <label>Annual Interest Rate (%)</label>
+      <input type="number" id="s-rate" placeholder="e.g. 8.5" min="0" step="0.01">
+      <label>Time Period</label>
+      <div style="display:flex;gap:10px">
+        <input type="number" id="s-years" placeholder="Years" min="0" style="flex:1">
+        <input type="number" id="s-months" placeholder="Months" min="0" max="11" style="flex:1">
+      </div>
+      <button class="btn" onclick="calcSimple()">Calculate Interest</button>
+      <div class="results" id="simple-results">
+        <div class="result-grid">
+          <div class="result-box highlight">
+            <div class="result-label">Total Interest</div>
+            <div class="result-value" id="s-interest">-</div>
+          </div>
+          <div class="result-box highlight">
+            <div class="result-label">Total Amount</div>
+            <div class="result-value" id="s-total">-</div>
+          </div>
+          <div class="result-box">
+            <div class="result-label">Daily Interest</div>
+            <div class="result-value" id="s-daily">-</div>
+          </div>
+          <div class="result-box">
+            <div class="result-label">Monthly Interest</div>
+            <div class="result-value" id="s-monthly">-</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I calculate monthly mortgage repayments? ▾</div>
+      <div class="faq-a">Enter the loan amount, annual interest rate, and loan term. The calculator uses the standard amortisation formula to show your exact monthly repayment, the total interest you'll pay, and the total amount repaid over the loan term.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is compound interest? ▾</div>
+      <div class="faq-a">Compound interest is interest calculated on both the initial principal and the accumulated interest from previous periods. It's the reason investments grow exponentially — your returns generate further returns. Einstein reportedly called it the eighth wonder of the world.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How much does an extra $100/month save on a mortgage? ▾</div>
+      <div class="faq-a">It depends on the loan size and interest rate, but extra repayments reduce your principal faster, lowering the interest charged on that principal. On a $500,000 mortgage at 6.5%, an extra $200/month can save over $80,000 in interest and cut 4+ years off the loan.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What's the difference between simple and compound interest? ▾</div>
+      <div class="faq-a">Simple interest is calculated only on the original principal. Compound interest is calculated on the principal plus any previously earned interest. Most loans and investments use compound interest.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What does interest-only mean for a mortgage? ▾</div>
+      <div class="faq-a">Interest-only means your repayments only cover the interest — none of the principal. Your loan balance stays the same. Common for investment properties in Australia. At the end of the interest-only period, repayments jump significantly as you start repaying principal.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How is investment return (compound interest) calculated? ▾</div>
+      <div class="faq-a">The formula is: A = P(1 + r/n)^(nt), where P is principal, r is annual rate, n is compounding periods per year, and t is years. With monthly contributions, each contribution also compounds. Our calculator handles all of this automatically.</div>
+    </div>
+  </div>
+</div>
+<footer>
+  <p>© 2025 <a href="/index.html">ConverterPro</a> — Free online tools. No sign-up required.</p>
+  <p style="margin-top:6px"><a href="/converter.html">Currency</a> · <a href="/clock.html">Clock</a> · <a href="/tip.html">Tip</a> · <a href="/sleep.html">Sleep</a> · <a href="/unit.html">Units</a> · <a href="/qr.html">QR Code</a> · <a href="/password.html">Password</a> · <a href="/cooking.html">Cooking</a></p>
+</footer>
+<script>
+const fmt = (n, dec=0) => '$' + n.toFixed(dec).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const fmtN = (n, dec=2) => n.toFixed(dec).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    const tabs = ['loan','compound','simple'];
+    t.classList.toggle('active', tabs[i] === tab);
+  });
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-' + tab).classList.add('active');
+}
+
+function calcLoan() {
+  const P = parseFloat(document.getElementById('l-principal').value);
+  const annualRate = parseFloat(document.getElementById('l-rate').value);
+  const years = parseFloat(document.getElementById('l-years').value) || 0;
+  const monthsExtra = parseFloat(document.getElementById('l-months-extra').value) || 0;
+  const extra = parseFloat(document.getElementById('l-extra').value) || 0;
+  const type = document.getElementById('l-type').value;
+  if (!P || !annualRate || (!years && !monthsExtra)) { alert('Please fill in all required fields.'); return; }
+
+  const r = annualRate / 100 / 12;
+  const n = years * 12 + monthsExtra;
+
+  let monthly, totalInterest, totalPaid;
+
+  if (type === 'io') {
+    monthly = P * r;
+    totalInterest = monthly * n;
+    totalPaid = totalInterest + P;
+  } else {
+    if (r === 0) {
+      monthly = P / n;
+    } else {
+      monthly = P * r * Math.pow(1+r, n) / (Math.pow(1+r, n) - 1);
+    }
+    totalPaid = monthly * n;
+    totalInterest = totalPaid - P;
+  }
+
+  document.getElementById('l-monthly').textContent = fmt(monthly);
+  document.getElementById('l-interest').textContent = fmt(totalInterest);
+  document.getElementById('l-total').textContent = fmt(totalPaid);
+
+  // Extra repayment saving
+  if (extra > 0 && type === 'pi') {
+    let balance = P, totalIntWithExtra = 0, months = 0;
+    while (balance > 0 && months < n) {
+      const intCharge = balance * r;
+      totalIntWithExtra += intCharge;
+      const principalPaid = Math.min(monthly + extra - intCharge, balance);
+      balance -= principalPaid;
+      months++;
+    }
+    const saved = totalInterest - totalIntWithExtra;
+    const monthsSaved = n - months;
+    document.getElementById('l-saving').textContent = fmt(saved) + (monthsSaved > 0 ? ` · ${Math.floor(monthsSaved/12)}y ${monthsSaved%12}m faster` : '');
+    document.getElementById('l-saving-box').style.display = '';
+  } else {
+    document.getElementById('l-saving-box').style.display = 'none';
+  }
+
+  // Amortisation
+  if (type === 'pi') {
+    const tbody = document.getElementById('amort-body');
+    tbody.innerHTML = '';
+    let bal = P;
+    for (let y = 1; y <= Math.ceil(n/12); y++) {
+      const startBal = bal;
+      let yearInt = 0, yearPrin = 0;
+      for (let m = 0; m < 12 && (y-1)*12+m < n; m++) {
+        const intCharge = bal * r;
+        const prinPaid = Math.min(monthly - intCharge, bal);
+        yearInt += intCharge;
+        yearPrin += prinPaid;
+        bal -= prinPaid;
+        if (bal < 0.01) bal = 0;
+      }
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>Year ${y}</td><td>${fmt(startBal)}</td><td>${fmt(yearPrin)}</td><td>${fmt(yearInt)}</td><td>${fmt(Math.max(bal,0))}</td>`;
+      tbody.appendChild(tr);
+      if (bal <= 0) break;
+    }
+  }
+
+  document.getElementById('loan-results').style.display = 'block';
+}
+
+function toggleAmort() {
+  const t = document.getElementById('amort-table');
+  const btn = document.querySelector('.amort-toggle');
+  const shown = t.style.display === 'block';
+  t.style.display = shown ? 'none' : 'block';
+  btn.textContent = (shown ? '▼' : '▲') + ' ' + (shown ? 'Show' : 'Hide') + ' year-by-year breakdown';
+}
+
+function calcCompound() {
+  const P = parseFloat(document.getElementById('c-principal').value) || 0;
+  const rate = parseFloat(document.getElementById('c-rate').value);
+  const years = parseFloat(document.getElementById('c-years').value);
+  const contrib = parseFloat(document.getElementById('c-contrib').value) || 0;
+  const n = parseFloat(document.getElementById('c-freq').value);
+  if (!rate || !years) { alert('Please fill in all required fields.'); return; }
+
+  const r = rate / 100 / n;
+  const periods = n * years;
+  let balance = P * Math.pow(1+r, periods);
+  if (contrib > 0) {
+    const monthlyPeriods = years * 12;
+    const rMonthly = rate / 100 / 12;
+    balance = P * Math.pow(1+rMonthly, monthlyPeriods);
+    for (let m = 1; m <= monthlyPeriods; m++) {
+      balance += contrib * Math.pow(1+rMonthly, monthlyPeriods - m + 1);
+    }
+  }
+
+  const totalContributed = P + contrib * years * 12;
+  const earned = balance - totalContributed;
+  const roi = ((balance - totalContributed) / totalContributed * 100);
+
+  document.getElementById('c-final').textContent = fmt(balance);
+  document.getElementById('c-earned').textContent = fmt(earned);
+  document.getElementById('c-contributed').textContent = fmt(totalContributed);
+  document.getElementById('c-roi').textContent = fmtN(roi, 1) + '%';
+  document.getElementById('compound-results').style.display = 'block';
+}
+
+function calcSimple() {
+  const P = parseFloat(document.getElementById('s-principal').value);
+  const rate = parseFloat(document.getElementById('s-rate').value);
+  const years = parseFloat(document.getElementById('s-years').value) || 0;
+  const months = parseFloat(document.getElementById('s-months').value) || 0;
+  if (!P || !rate || (!years && !months)) { alert('Please fill in all required fields.'); return; }
+
+  const t = years + months/12;
+  const interest = P * (rate/100) * t;
+  const total = P + interest;
+  const daily = P * (rate/100) / 365;
+  const monthly = P * (rate/100) / 12;
+
+  document.getElementById('s-interest').textContent = fmt(interest);
+  document.getElementById('s-total').textContent = fmt(total);
+  document.getElementById('s-daily').textContent = fmt(daily, 2);
+  document.getElementById('s-monthly').textContent = fmt(monthly, 2);
+  document.getElementById('simple-results').style.display = 'block';
+}
+
+function toggleFaq(el) {
+  const ans = el.nextElementSibling;
+  ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
+}
+
+// Language switcher (EN only shown, structure kept for consistency)
+</script>
+</body>
+</html>
