@@ -869,7 +869,7 @@
             </div>
             <div class="total-row">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span class="total-label">Total Bill (<span id="currencyDisplay">AUD</span>)</span>
+                    <span class="total-label"><span data-i18n="res_total_bill">Total Bill</span> (<span id="currencyDisplay">AUD</span>)</span>
                     <span class="total-value" id="totalDisplay">0.00</span>
                 </div>
             </div>
@@ -879,7 +879,7 @@
         <div class="history-section">
             <h3 data-i18n="lbl_recent">📋 Recent Calculations</h3>
             <div id="historyContainer" class="empty-state" data-i18n="no_calc">No calculations yet</div>
-            <button class="btn btn-secondary" style="margin-top: 15px; width: 100%;" onclick="clearHistory()">Clear History</button>
+            <button class="btn btn-secondary" style="margin-top: 15px; width: 100%;" onclick="clearHistory()" data-i18n="btn_clear">Clear History</button>
         </div>
     </div>
 
@@ -1291,7 +1291,7 @@
     </script>
 
 <section class="faq-section" style="max-width:800px;margin:40px auto;padding:20px;font-family:inherit;clear:both;display:block;float:none;position:relative;z-index:1;">
-  <h2 style="font-size:1.5em;margin-bottom:20px;color:inherit;">Frequently Asked Questions</h2>
+  <h2 style="font-size:1.5em;margin-bottom:20px;color:inherit;" data-i18n="faq_heading">Frequently Asked Questions</h2>
   <div itemscope itemtype="https://schema.org/FAQPage">
 
 <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
@@ -1380,7 +1380,9 @@ var CPRO_TRANSLATIONS = {
     "faq4_q": "Is the tip calculator free?",
     "faq4_a": "Yes, completely free with no signup required.",
     "faq5_q": "Can I use a custom tip percentage?",
-    "faq5_a": "Yes. Enter any tip percentage you want, not just the preset options."
+    "faq5_a": "Yes. Enter any tip percentage you want, not just the preset options.",
+    "res_total_bill": "Total Bill",
+    "btn_clear": "Clear History"
   },
   "zh": {
     "title": "小费计算器",
@@ -1409,7 +1411,9 @@ var CPRO_TRANSLATIONS = {
     "faq4_q": "小费计算器免费吗？",
     "faq4_a": "是的，完全免费，无需注册。",
     "faq5_q": "可以使用自定义小费百分比吗？",
-    "faq5_a": "是的。可以输入任意小费百分比。"
+    "faq5_a": "是的。可以输入任意小费百分比。",
+    "res_total_bill": "总账单",
+    "btn_clear": "清除历史记录"
   },
   "hi": {
     "title": "टिप कैलकुलेटर",
@@ -1438,7 +1442,9 @@ var CPRO_TRANSLATIONS = {
     "faq4_q": "क्या टिप कैलकुलेटर मुफ्त है?",
     "faq4_a": "हाँ, पूरी तरह मुफ्त, कोई साइनअप नहीं।",
     "faq5_q": "क्या मैं कस्टम टिप प्रतिशत उपयोग कर सकता हूं?",
-    "faq5_a": "हाँ। कोई भी टिप प्रतिशत दर्ज करें।"
+    "faq5_a": "हाँ। कोई भी टिप प्रतिशत दर्ज करें।",
+    "res_total_bill": "कुल बिल",
+    "btn_clear": "इतिहास साफ करें"
   },
   "es": {
     "title": "Calculadora de Propinas",
@@ -1467,7 +1473,9 @@ var CPRO_TRANSLATIONS = {
     "faq4_q": "¿Es gratuita la calculadora?",
     "faq4_a": "Sí, completamente gratis, sin registro.",
     "faq5_q": "¿Puedo usar un porcentaje personalizado?",
-    "faq5_a": "Sí. Ingresa cualquier porcentaje de propina."
+    "faq5_a": "Sí. Ingresa cualquier porcentaje de propina.",
+    "res_total_bill": "Cuenta Total",
+    "btn_clear": "Borrar Historial"
   },
   "fr": {
     "title": "Calculateur de Pourboire",
@@ -1496,7 +1504,9 @@ var CPRO_TRANSLATIONS = {
     "faq4_q": "La calculatrice est-elle gratuite?",
     "faq4_a": "Oui, complètement gratuit, sans inscription.",
     "faq5_q": "Puis-je utiliser un pourcentage personnalisé?",
-    "faq5_a": "Oui. Entrez n'importe quel pourcentage."
+    "faq5_a": "Oui. Entrez n'importe quel pourcentage.",
+    "res_total_bill": "Facture Totale",
+    "btn_clear": "Effacer l'Historique"
   }
 };
 
