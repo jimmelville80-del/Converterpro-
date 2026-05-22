@@ -856,15 +856,15 @@
         <!-- Results Display -->
         <div class="results-section">
             <div class="result-item">
-                <span class="result-label">Tip Amount</span>
+                <span class="result-label" data-i18n="res_tip_amt">Tip Amount</span>
                 <span class="result-value" id="tipAmount">0.00</span>
             </div>
             <div class="result-item">
-                <span class="result-label">Subtotal with Tip</span>
+                <span class="result-label" data-i18n="res_subtotal">Subtotal with Tip</span>
                 <span class="result-value" id="totalBill">0.00</span>
             </div>
             <div class="result-item">
-                <span class="result-label">Per Person</span>
+                <span class="result-label" data-i18n="res_per_person">Per Person</span>
                 <span class="result-value" id="perPerson">0.00</span>
             </div>
             <div class="total-row">
@@ -878,7 +878,7 @@
         <!-- History Section -->
         <div class="history-section">
             <h3 data-i18n="lbl_recent">📋 Recent Calculations</h3>
-            <div id="historyContainer" class="empty-state">No calculations yet</div>
+            <div id="historyContainer" class="empty-state" data-i18n="no_calc">No calculations yet</div>
             <button class="btn btn-secondary" style="margin-top: 15px; width: 100%;" onclick="clearHistory()">Clear History</button>
         </div>
     </div>
@@ -1313,15 +1313,15 @@
   </div>
 </div>
 <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-  <h3 itemprop="name">Is the tip calculator free?</h3>
+  <h3 itemprop="name" data-i18n="faq4_q">Is the tip calculator free?</h3>
   <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-    <p itemprop="text">Yes, completely free with no signup required.</p>
+    <p itemprop="text" data-i18n="faq4_a">Yes, completely free with no signup required.</p>
   </div>
 </div>
 <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-  <h3 itemprop="name">Can I use a custom tip percentage?</h3>
+  <h3 itemprop="name" data-i18n="faq5_q">Can I use a custom tip percentage?</h3>
   <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-    <p itemprop="text">Yes. Enter any tip percentage you want, not just the preset options.</p>
+    <p itemprop="text" data-i18n="faq5_a">Yes. Enter any tip percentage you want, not just the preset options.</p>
   </div>
 </div>
   </div>
@@ -1372,7 +1372,15 @@ var CPRO_TRANSLATIONS = {
     "faq2_q": "How do I split a bill between multiple people?",
     "faq2_a": "Enter the bill total, choose your tip percentage, then enter the number of people. The calculator shows each person's share including tip.",
     "faq3_q": "What is a standard tip percentage?",
-    "faq3_a": "In Australia, tipping is optional but 10-15% is common for excellent service. In the US, 15-20% is standard for restaurants."
+    "faq3_a": "In Australia, tipping is optional but 10-15% is common for excellent service. In the US, 15-20% is standard for restaurants.",
+    "res_tip_amt": "Tip Amount",
+    "res_subtotal": "Subtotal with Tip",
+    "res_per_person": "Per Person",
+    "no_calc": "No calculations yet",
+    "faq4_q": "Is the tip calculator free?",
+    "faq4_a": "Yes, completely free with no signup required.",
+    "faq5_q": "Can I use a custom tip percentage?",
+    "faq5_a": "Yes. Enter any tip percentage you want, not just the preset options."
   },
   "zh": {
     "title": "小费计算器",
@@ -1393,7 +1401,15 @@ var CPRO_TRANSLATIONS = {
     "faq2_q": "如何多人分摊账单？",
     "faq2_a": "输入账单总额，选择小费百分比，然后输入人数。计算器显示每人应付金额（含小费）。",
     "faq3_q": "标准小费百分比是多少？",
-    "faq3_a": "在澳大利亚，给小费是可选的，但优质服务通常给10-15%。在美国，餐厅标准是15-20%。"
+    "faq3_a": "在澳大利亚，给小费是可选的，但优质服务通常给10-15%。在美国，餐厅标准是15-20%。",
+    "res_tip_amt": "小费金额",
+    "res_subtotal": "含小费小计",
+    "res_per_person": "每人",
+    "no_calc": "暂无计算记录",
+    "faq4_q": "小费计算器免费吗？",
+    "faq4_a": "是的，完全免费，无需注册。",
+    "faq5_q": "可以使用自定义小费百分比吗？",
+    "faq5_a": "是的。可以输入任意小费百分比。"
   },
   "hi": {
     "title": "टिप कैलकुलेटर",
@@ -1414,7 +1430,15 @@ var CPRO_TRANSLATIONS = {
     "faq2_q": "कई लोगों के बीच बिल कैसे विभाजित करें?",
     "faq2_a": "बिल टोटल, टिप प्रतिशत और लोगों की संख्या दर्ज करें। कैलकुलेटर प्रति व्यक्ति हिस्सा दिखाता है।",
     "faq3_q": "मानक टिप प्रतिशत क्या है?",
-    "faq3_a": "ऑस्ट्रेलिया में टिप वैकल्पिक है लेकिन 10-15% सामान्य है। अमेरिका में रेस्तरां के लिए 15-20% मानक है।"
+    "faq3_a": "ऑस्ट्रेलिया में टिप वैकल्पिक है लेकिन 10-15% सामान्य है। अमेरिका में रेस्तरां के लिए 15-20% मानक है।",
+    "res_tip_amt": "टिप राशि",
+    "res_subtotal": "टिप सहित उपकुल",
+    "res_per_person": "प्रति व्यक्ति",
+    "no_calc": "अभी तक कोई गणना नहीं",
+    "faq4_q": "क्या टिप कैलकुलेटर मुफ्त है?",
+    "faq4_a": "हाँ, पूरी तरह मुफ्त, कोई साइनअप नहीं।",
+    "faq5_q": "क्या मैं कस्टम टिप प्रतिशत उपयोग कर सकता हूं?",
+    "faq5_a": "हाँ। कोई भी टिप प्रतिशत दर्ज करें।"
   },
   "es": {
     "title": "Calculadora de Propinas",
@@ -1435,7 +1459,15 @@ var CPRO_TRANSLATIONS = {
     "faq2_q": "¿Cómo divido una cuenta entre varias personas?",
     "faq2_a": "Ingresa el total, el porcentaje de propina y el número de personas. El calculador muestra la parte de cada uno.",
     "faq3_q": "¿Cuál es el porcentaje estándar de propina?",
-    "faq3_a": "En Australia, dar propina es opcional pero 10-15% es común. En EE.UU., 15-20% es estándar en restaurantes."
+    "faq3_a": "En Australia, dar propina es opcional pero 10-15% es común. En EE.UU., 15-20% es estándar en restaurantes.",
+    "res_tip_amt": "Monto de Propina",
+    "res_subtotal": "Subtotal con Propina",
+    "res_per_person": "Por Persona",
+    "no_calc": "Sin cálculos aún",
+    "faq4_q": "¿Es gratuita la calculadora?",
+    "faq4_a": "Sí, completamente gratis, sin registro.",
+    "faq5_q": "¿Puedo usar un porcentaje personalizado?",
+    "faq5_a": "Sí. Ingresa cualquier porcentaje de propina."
   },
   "fr": {
     "title": "Calculateur de Pourboire",
@@ -1456,7 +1488,15 @@ var CPRO_TRANSLATIONS = {
     "faq2_q": "Comment diviser une facture entre plusieurs personnes?",
     "faq2_a": "Entrez le total, le pourcentage et le nombre de personnes. Le calculateur affiche la part de chacun.",
     "faq3_q": "Quel est le pourcentage de pourboire standard?",
-    "faq3_a": "En Australie, le pourboire est facultatif mais 10-15% est courant. Aux États-Unis, 15-20% est standard."
+    "faq3_a": "En Australie, le pourboire est facultatif mais 10-15% est courant. Aux États-Unis, 15-20% est standard.",
+    "res_tip_amt": "Montant du Pourboire",
+    "res_subtotal": "Sous-total avec Pourboire",
+    "res_per_person": "Par Personne",
+    "no_calc": "Aucun calcul pour l'instant",
+    "faq4_q": "La calculatrice est-elle gratuite?",
+    "faq4_a": "Oui, complètement gratuit, sans inscription.",
+    "faq5_q": "Puis-je utiliser un pourcentage personnalisé?",
+    "faq5_a": "Oui. Entrez n'importe quel pourcentage."
   }
 };
 
