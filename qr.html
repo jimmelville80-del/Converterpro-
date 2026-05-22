@@ -1226,11 +1226,11 @@
 .lang-btn:hover { background: #475569; }
 </style>
 <div class="lang-bar" id="lang-bar">
-<button class="lang-btn active" onclick="setLang('en')" data-lang="en">🇬🇧 English</button>
-<button class="lang-btn" onclick="setLang('zh')" data-lang="zh">🇨🇳 中文</button>
-<button class="lang-btn" onclick="setLang('hi')" data-lang="hi">🇮🇳 हिन्दी</button>
-<button class="lang-btn" onclick="setLang('es')" data-lang="es">🇪🇸 Español</button>
-<button class="lang-btn" onclick="setLang('fr')" data-lang="fr">🇫🇷 Français</button>
+<button class="lang-btn active" onclick=\"setLangGT('en')\" data-lang="en">🇬🇧 English</button>
+<button class="lang-btn" onclick=\"setLangGT('zh')\" data-lang="zh">🇨🇳 中文</button>
+<button class="lang-btn" onclick=\"setLangGT('hi')\" data-lang="hi">🇮🇳 हिन्दी</button>
+<button class="lang-btn" onclick=\"setLangGT('es')\" data-lang="es">🇪🇸 Español</button>
+<button class="lang-btn" onclick=\"setLangGT('fr')\" data-lang="fr">🇫🇷 Français</button>
 
 </div>
 <script>
@@ -1951,5 +1951,46 @@ document.addEventListener('DOMContentLoaded', function() {
     <a href="password.html" style="display:block;background:#334155;color:#cbd5e1;text-decoration:none;padding:12px 16px;border-radius:8px;margin-bottom:0;font-family:sans-serif;font-size:14px;">🔐 Password Generator</a>
   </div>
 </div>
+
+<!-- Google Translate Widget -->
+<div id="google_translate_element" style="display:none"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'zh-CN,hi,es,fr',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+function setLangGT(langCode) {
+  var map = {'en':'','zh':'zh-CN','hi':'hi','es':'es','fr':'fr'};
+  var gtLang = map[langCode] !== undefined ? map[langCode] : langCode;
+  document.querySelectorAll('.lang-btn').forEach(function(b) {
+    b.classList.toggle('active', b.dataset.lang === langCode);
+  });
+  localStorage.setItem('cpro_lang', langCode);
+  function trySet(attempts) {
+    var sel = document.querySelector('.goog-te-combo');
+    if (sel) {
+      sel.value = gtLang;
+      sel.dispatchEvent(new Event('change'));
+    } else if (attempts > 0) {
+      setTimeout(function(){ trySet(attempts-1); }, 600);
+    }
+  }
+  trySet(10);
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var saved = localStorage.getItem('cpro_lang');
+  if (saved && saved !== 'en') {
+    setTimeout(function(){ setLangGT(saved); }, 1500);
+  }
+});
+</script>
+
 </body>
 </html>
