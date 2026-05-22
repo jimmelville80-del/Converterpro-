@@ -822,6 +822,11 @@
     background: #1e293b;
     padding: 16px 20px;
     text-align: center;
+    position: relative;
+    z-index: 10;
+    clear: both;
+    width: 100%;
+    box-sizing: border-box;
 }
 .tools-nav p {
     color: #94a3b8;
@@ -830,12 +835,14 @@
     letter-spacing: 1px;
     margin-bottom: 10px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    white-space: nowrap;
 }
 .tools-nav-links {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 8px;
+    width: 100%;
 }
 .tools-nav-links a {
     color: #cbd5e1;
@@ -846,6 +853,7 @@
     padding: 6px 12px;
     border-radius: 20px;
     transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
 }
 .tools-nav-links a:hover {
     background: #667eea;
