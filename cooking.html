@@ -530,7 +530,7 @@
 
     <!-- RESULT -->
     <div class="result-card">
-        <div class="res-label">Result</div>
+        <div class="res-label" data-i18n="lbl_result">Result</div>
         <div class="res-desc" id="res-desc">1 cup of Almond flour</div>
         <div>
             <span class="res-value" id="res-val">112</span><span class="res-unit" id="res-unit">g</span>
@@ -539,7 +539,7 @@
 
     <!-- ALL CONVERSIONS -->
     <div class="all-conv">
-        <div class="all-conv-title">All conversions for 1 cup of <span id="conv-name">Almond flour</span></div>
+        <div class="all-conv-title"><span data-i18n="lbl_all_conv">All conversions for 1 cup of</span> <span id="conv-name">Almond flour</span></div>
         <div class="all-conv-grid">
             <div class="conv-chip"><span class="chip-label">Grams</span><span class="chip-val" id="c-g">—</span></div>
             <div class="conv-chip"><span class="chip-label">mL</span><span class="chip-val" id="c-ml">—</span></div>
@@ -560,11 +560,11 @@
         <table>
             <thead>
                 <tr>
-                    <th>Cups</th>
-                    <th>Grams</th>
-                    <th>mL</th>
-                    <th>Oz</th>
-                    <th>Tbsp</th>
+                    <th data-i18n="th_cups">Cups</th>
+                    <th data-i18n="th_grams">Grams</th>
+                    <th data-i18n="th_ml">mL</th>
+                    <th data-i18n="th_oz">Oz</th>
+                    <th data-i18n="th_tbsp">Tbsp</th>
                 </tr>
             </thead>
             <tbody id="ref-body"></tbody>
@@ -649,12 +649,26 @@
         ["Baking powder", 125]
     ];
 
+    const INGREDIENTS_ZH = [["杏仁粉",112],["中筋面粉",125],["高筋面粉",120],["低筋面粉",100],["全麦面粉",120],["无麸质面粉",100],["白砂糖",200],["红糖（压实）",220],["糖粉",120],["细砂糖",200],["黄油",227],["牛奶",240],["水",240],["奶油",240],["酸奶",245],["蜂蜜",340],["金黄糖浆",322],["枫糖浆",322],["花生酱",218],["燕麦片",90],["生米",185],["玉米淀粉",128],["食盐",230],["可可粉",115],["巧克力豆",170],["椰蓉",160],["椰子油",218],["橄榄油",216],["面包糠",145],["泡打粉",125]];
+    const INGREDIENTS_HI = [["बादाम आटा",112],["मैदा",125],["ब्रेड आटा",120],["केक आटा",100],["गेहूं का आटा",120],["ग्लूटेन-फ्री आटा",100],["सफेद चीनी",200],["ब्राउन शुगर",220],["पिसी चीनी",120],["कास्टर शुगर",200],["मक्खन",227],["दूध",240],["पानी",240],["क्रीम",240],["दही",245],["शहद",340],["गोल्डन सिरप",322],["मेपल सिरप",322],["पीनट बटर",218],["रोल्ड ओट्स",90],["कच्चा चावल",185],["कॉर्नस्टार्च",128],["नमक",230],["कोको पाउडर",115],["चॉकलेट चिप्स",170],["नारियल बुरादा",160],["नारियल तेल",218],["जैतून तेल",216],["ब्रेडक्रंब",145],["बेकिंग पाउडर",125]];
+    const INGREDIENTS_ES = [["Harina de almendras",112],["Harina para todo uso",125],["Harina de pan",120],["Harina de repostería",100],["Harina integral",120],["Harina sin gluten",100],["Azúcar blanca",200],["Azúcar morena (compacta)",220],["Azúcar glas",120],["Azúcar caster",200],["Mantequilla",227],["Leche",240],["Agua",240],["Crema",240],["Yogur",245],["Miel",340],["Jarabe dorado",322],["Jarabe de arce",322],["Mantequilla de maní",218],["Avena",90],["Arroz (crudo)",185],["Almidón de maíz",128],["Sal",230],["Cacao en polvo",115],["Chips de chocolate",170],["Coco rallado",160],["Aceite de coco",218],["Aceite de oliva",216],["Pan rallado",145],["Levadura en polvo",125]];
+    const INGREDIENTS_FR = [["Farine d'amandes",112],["Farine tout usage",125],["Farine à pain",120],["Farine à gâteau",100],["Farine complète",120],["Farine sans gluten",100],["Sucre blanc",200],["Cassonade (tassée)",220],["Sucre glace",120],["Sucre fin",200],["Beurre",227],["Lait",240],["Eau",240],["Crème",240],["Yaourt",245],["Miel",340],["Sirop doré",322],["Sirop d'érable",322],["Beurre de cacahuète",218],["Flocons d'avoine",90],["Riz (cru)",185],["Fécule de maïs",128],["Sel",230],["Poudre de cacao",115],["Pépites de chocolat",170],["Noix de coco râpée",160],["Huile de coco",218],["Huile d'olive",216],["Chapelure",145],["Levure chimique",125]];
+
+    function getIngredients() {
+        const lang = localStorage.getItem('cpro_lang') || 'en';
+        if (lang === 'zh') return INGREDIENTS_ZH;
+        if (lang === 'hi') return INGREDIENTS_HI;
+        if (lang === 'es') return INGREDIENTS_ES;
+        if (lang === 'fr') return INGREDIENTS_FR;
+        return INGREDIENTS;
+    }
+
     const ML_PER_CUP = 236.6;
     const G_PER_OZ   = 28.3495;
     const G_PER_LB   = 453.592;
 
-    function gpC() { return INGREDIENTS[document.getElementById('ingredient').selectedIndex][1]; }
-    function ingName() { return INGREDIENTS[document.getElementById('ingredient').selectedIndex][0]; }
+    function gpC() { return getIngredients()[document.getElementById('ingredient').selectedIndex][1]; }
+    function ingName() { return getIngredients()[document.getElementById('ingredient').selectedIndex][0]; }
 
     function toG(v, u, gpc) {
         switch(u) {
@@ -681,7 +695,15 @@
     }
 
     function ulabel(u) {
-        return {cup:'cups',g:'g',ml:'mL',oz:'oz',tbsp:'tbsp',tsp:'tsp',lb:'lb'}[u];
+        const lang = localStorage.getItem('cpro_lang') || 'en';
+        const maps = {
+            en: {cup:'cups',g:'g',ml:'mL',oz:'oz',tbsp:'tbsp',tsp:'tsp',lb:'lb'},
+            zh: {cup:'杯',g:'克',ml:'毫升',oz:'盎司',tbsp:'汤匙',tsp:'茶匙',lb:'磅'},
+            hi: {cup:'कप',g:'ग्राम',ml:'मिली',oz:'ऑउंस',tbsp:'टेबलस्पून',tsp:'चम्मच',lb:'पाउंड'},
+            es: {cup:'tazas',g:'g',ml:'mL',oz:'oz',tbsp:'cda',tsp:'cdta',lb:'lb'},
+            fr: {cup:'tasses',g:'g',ml:'mL',oz:'oz',tbsp:'c.à.s.',tsp:'c.à.c.',lb:'lb'},
+        };
+        return (maps[lang] || maps.en)[u];
     }
 
     function fmt(n) {
@@ -705,7 +727,8 @@
         document.getElementById('res-unit').textContent = ulabel(toUnit);
 
         const fLabel = fromVal === 1 ? '1 ' + ulabel(fromUnit).replace(/s$/, '') : fromVal + ' ' + ulabel(fromUnit);
-        document.getElementById('res-desc').textContent = fLabel + ' of ' + name;
+        const ofWord = {'zh':'的','hi':'का','es':'de','fr':'de'}[localStorage.getItem('cpro_lang')] || 'of';
+        document.getElementById('res-desc').textContent = fLabel + ' ' + ofWord + ' ' + name;
 
         // All conversions (per 1 cup basis)
         document.getElementById('conv-name').textContent = name;
@@ -716,8 +739,9 @@
         document.getElementById('c-tsp').textContent  = '48 tsp';
         document.getElementById('c-lb').textContent   = fmt(gpc / G_PER_LB) + ' lb';
 
+        const cupOf = {'zh':'1杯','hi':'1 कप','es':'1 taza de','fr':'1 tasse de'}[localStorage.getItem('cpro_lang')] || '1 cup of';
         document.getElementById('info-pill').innerHTML =
-            '💡 1 cup of <strong>' + name.toLowerCase() + '</strong> = <strong>' + gpc + 'g</strong> · ' +
+            '💡 ' + cupOf + ' <strong>' + name.toLowerCase() + '</strong> = <strong>' + gpc + 'g</strong> · ' +
             fmt(ML_PER_CUP) + ' mL · ' + fmt(gpc / G_PER_OZ) + ' oz';
 
         // Reference table
@@ -728,7 +752,9 @@
             const ml   = fmt(c * ML_PER_CUP);
             const oz   = fmt(c * gpc / G_PER_OZ);
             const tbsp = fmt(c * 16);
-            return `<tr><td>${labels[i]} cup${c!==1?'s':''}</td><td><strong>${g}g</strong></td><td>${ml}</td><td>${oz}</td><td>${tbsp}</td></tr>`;
+            const cupWord = {'zh':'杯','hi':'कप','es':'taza','fr':'tasse'}[localStorage.getItem('cpro_lang')] || 'cup';
+            const cupsWord = {'zh':'杯','hi':'कप','es':'tazas','fr':'tasses'}[localStorage.getItem('cpro_lang')] || 'cups';
+            return `<tr><td>${labels[i]} ${c!==1?cupsWord:cupWord}</td><td><strong>${g}g</strong></td><td>${ml}</td><td>${oz}</td><td>${tbsp}</td></tr>`;
         }).join('');
     }
 
@@ -736,8 +762,8 @@
     function buildIngredients() {
         const sel  = document.getElementById('ingredient');
         const grid = document.getElementById('ing-grid');
-        sel.innerHTML  = INGREDIENTS.map(([n], i) => `<option value="${i}">${n}</option>`).join('');
-        grid.innerHTML = INGREDIENTS.map(([n], i) =>
+        sel.innerHTML  = getIngredients().map(([n], i) => `<option value="${i}">${n}</option>`).join('');
+        grid.innerHTML = getIngredients().map(([n], i) =>
             `<button class="ing-chip" onclick="selectIng(${i})">${n}</button>`
         ).join('');
     }
@@ -938,7 +964,13 @@ var CPRO_TRANSLATIONS = {
     "faq4_q": "Can I convert tablespoons to teaspoons?",
     "faq4_a": "Yes. 1 tablespoon equals 3 teaspoons.",
     "faq5_q": "Is the cooking converter free?",
-    "faq5_a": "Yes, completely free. No account needed."
+    "faq5_a": "Yes, completely free. No account needed.",
+    "th_cups": "Cups",
+    "th_grams": "Grams",
+    "th_ml": "mL",
+    "th_oz": "Oz",
+    "th_tbsp": "Tbsp",
+    "lbl_all_conv": "All conversions for 1 cup of"
   },
   "zh": {
     "title": "烹饪换算器",
@@ -967,7 +999,13 @@ var CPRO_TRANSLATIONS = {
     "faq4_q": "可以将汤匙转换为茶匙吗？",
     "faq4_a": "可以、1汤匙=3茶匙。",
     "faq5_q": "烹饪换算器免费吗？",
-    "faq5_a": "是的，完全免费。无需账户。"
+    "faq5_a": "是的，完全免费。无需账户。",
+    "th_cups": "杯",
+    "th_grams": "克",
+    "th_ml": "毫升",
+    "th_oz": "盎司",
+    "th_tbsp": "汤匙",
+    "lbl_all_conv": "1杯的所有换算"
   },
   "hi": {
     "title": "कुकिंग कनवर्टर",
@@ -996,7 +1034,13 @@ var CPRO_TRANSLATIONS = {
     "faq4_q": "क्या मैं टेबलस्पून से टीस्पून बदल सकता हूं?",
     "faq4_a": "हाँ। 1 टेबलस्पून=3 टीस्पून।",
     "faq5_q": "क्या कुकिंग कनवर्टर मुफ्त है?",
-    "faq5_a": "हाँ, मुफ्त। कोई खाता नहीं।"
+    "faq5_a": "हाँ, मुफ्त। कोई खाता नहीं।",
+    "th_cups": "कप",
+    "th_grams": "ग्राम",
+    "th_ml": "मिली",
+    "th_oz": "ऑउंस",
+    "th_tbsp": "टेबलस्पून",
+    "lbl_all_conv": "1 कप की सभी रूपांतरण"
   },
   "es": {
     "title": "Conversor de Cocina",
@@ -1025,7 +1069,13 @@ var CPRO_TRANSLATIONS = {
     "faq4_q": "¿Puedo convertir cucharadas a cucharaditas?",
     "faq4_a": "Sí. 1 cucharada=3 cucharaditas.",
     "faq5_q": "¿Es gratuito el conversor?",
-    "faq5_a": "Sí, completamente gratis."
+    "faq5_a": "Sí, completamente gratis.",
+    "th_cups": "Tazas",
+    "th_grams": "Gramos",
+    "th_ml": "mL",
+    "th_oz": "Oz",
+    "th_tbsp": "Cda",
+    "lbl_all_conv": "Todas las conversiones para 1 taza de"
   },
   "fr": {
     "title": "Convertisseur Culinaire",
@@ -1054,7 +1104,13 @@ var CPRO_TRANSLATIONS = {
     "faq4_q": "Puis-je convertir des cuillères?",
     "faq4_a": "Oui. 1 cuillère à soupe=3 cuillères à café.",
     "faq5_q": "Le convertisseur est-il gratuit?",
-    "faq5_a": "Oui, complètement gratuit."
+    "faq5_a": "Oui, complètement gratuit.",
+    "th_cups": "Tasses",
+    "th_grams": "Grammes",
+    "th_ml": "mL",
+    "th_oz": "Oz",
+    "th_tbsp": "C.à.s.",
+    "lbl_all_conv": "Toutes les conversions pour 1 tasse de"
   }
 };
 
@@ -1083,6 +1139,10 @@ function cproSetLang(lang) {
   if (t['title'] && document.title) {
     var orig = CPRO_TRANSLATIONS['en']['title'];
     if (orig) document.title = document.title.replace(orig, t['title']);
+  }
+  // Rebuild ingredient dropdown and grid in new language, then refresh result
+  if (typeof buildIngredients === 'function') {
+    try { buildIngredients(); update(); } catch(e) {}
   }
 }
 document.addEventListener('DOMContentLoaded', function() {
