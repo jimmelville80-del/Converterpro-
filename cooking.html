@@ -459,7 +459,7 @@
 <!-- HERO -->
 <div class="hero">
     <h1 style="font-size:2.8em;font-weight:800;" data-i18n="title">Cooking Converter Pro</h1>
-    <p>Convert between the most common units used in cooking and baking.</p>
+    <p data-i18n="tagline">Convert between the most common units used in cooking and baking.</p>
 
     <!-- CATEGORY ICONS -->
     <div class="icon-row">
@@ -582,16 +582,16 @@
     <!-- SEO CONTENT -->
     <div class="seo-section">
         <h3 data-i18n="h3_seo">How to Convert Cups to Grams</h3>
-        <p>Converting between cups, grams, mL and ounces is essential for accurate baking. Unlike cooking, baking is a science — small measurement errors can ruin a recipe.</p>
-        <p>The problem with measuring by cups is that every ingredient has a different density. A cup of almond flour weighs 112g, while a cup of honey weighs 340g — nearly three times heavier in the same measuring cup.</p>
+        <p data-i18n="seo_p1">Converting between cups, grams, mL and ounces is essential for accurate baking. Unlike cooking, baking is a science — small measurement errors can ruin a recipe.</p>
+        <p data-i18n="seo_p2">The problem with measuring by cups is that every ingredient has a different density. A cup of almond flour weighs 112g, while a cup of honey weighs 340g — nearly three times heavier in the same measuring cup.</p>
 
-        <h4>Why Grams Are Better</h4>
-        <p>Professional bakers always measure by weight. It's faster (no measuring cups to wash), more accurate, and gives consistent results every time.</p>
+        <h4 data-i18n="seo_h4_1">Why Grams Are Better</h4>
+        <p data-i18n="seo_p3">Professional bakers always measure by weight. It's faster (no measuring cups to wash), more accurate, and gives consistent results every time.</p>
 
-        <h4>US vs Australian Cups</h4>
-        <p>A US cup = 236.6mL. An Australian cup = 250mL. Most online recipes use US cups. When in doubt, use our converter and weigh your ingredients.</p>
+        <h4 data-i18n="seo_h4_2">US vs Australian Cups</h4>
+        <p data-i18n="seo_p4">A US cup = 236.6mL. An Australian cup = 250mL. Most online recipes use US cups. When in doubt, use our converter and weigh your ingredients.</p>
 
-        <h4>Common Conversions</h4>
+        <h4 data-i18n="seo_h4_3">Common Conversions</h4>
         <ul>
             <li>1 cup almond flour = 112g</li>
             <li>1 cup plain flour = 125g</li>
@@ -756,6 +756,25 @@
             const cupsWord = {'zh':'杯','hi':'कप','es':'tazas','fr':'tasses'}[localStorage.getItem('cpro_lang')] || 'cups';
             return `<tr><td>${labels[i]} ${c!==1?cupsWord:cupWord}</td><td><strong>${g}g</strong></td><td>${ml}</td><td>${oz}</td><td>${tbsp}</td></tr>`;
         }).join('');
+    }
+
+    // Translate unit select dropdowns
+    function updateUnitSelects(lang) {
+        const unitLabels = {
+            en: {cup:'cups',g:'grams',ml:'mL',oz:'oz',tbsp:'tbsp',tsp:'tsp',lb:'lb'},
+            zh: {cup:'杯',g:'克',ml:'毫升',oz:'盎司',tbsp:'汤匙',tsp:'茶匙',lb:'磅'},
+            hi: {cup:'कप',g:'ग्राम',ml:'मिली',oz:'ऑउंस',tbsp:'टेबलस्पून',tsp:'चम्मच',lb:'पाउंड'},
+            es: {cup:'tazas',g:'gramos',ml:'mL',oz:'oz',tbsp:'cda',tsp:'cdta',lb:'lb'},
+            fr: {cup:'tasses',g:'grammes',ml:'mL',oz:'oz',tbsp:'c.à.s.',tsp:'c.à.c.',lb:'lb'},
+        };
+        const labels = unitLabels[lang] || unitLabels.en;
+        ['from-unit','to-unit'].forEach(function(id) {
+            var sel = document.getElementById(id);
+            if (!sel) return;
+            Array.from(sel.options).forEach(function(opt) {
+                if (labels[opt.value]) opt.textContent = labels[opt.value];
+            });
+        });
     }
 
     // Build ingredient dropdown + grid
@@ -970,7 +989,14 @@ var CPRO_TRANSLATIONS = {
     "th_ml": "mL",
     "th_oz": "Oz",
     "th_tbsp": "Tbsp",
-    "lbl_all_conv": "All conversions for 1 cup of"
+    "lbl_all_conv": "All conversions for 1 cup of",
+    "seo_p1": "Converting between cups, grams, mL and ounces is essential for accurate baking. Unlike cooking, baking is a science — small measurement errors can ruin a recipe.",
+    "seo_p2": "The problem with measuring by cups is that every ingredient has a different density. A cup of almond flour weighs 112g, while a cup of honey weighs 340g — nearly three times heavier in the same measuring cup.",
+    "seo_h4_1": "Why Grams Are Better",
+    "seo_p3": "Professional bakers always measure by weight. It's faster (no measuring cups to wash), more accurate, and gives consistent results every time.",
+    "seo_h4_2": "US vs Australian Cups",
+    "seo_p4": "A US cup = 236.6mL. An Australian cup = 250mL. Most online recipes use US cups. When in doubt, use our converter and weigh your ingredients.",
+    "seo_h4_3": "Common Conversions"
   },
   "zh": {
     "title": "烹饪换算器",
@@ -1005,11 +1031,18 @@ var CPRO_TRANSLATIONS = {
     "th_ml": "毫升",
     "th_oz": "盎司",
     "th_tbsp": "汤匙",
-    "lbl_all_conv": "1杯的所有换算"
+    "lbl_all_conv": "1杯的所有换算",
+    "seo_p1": "在杯、克、毫升和盎司之间换算对于精确烘焙至关重要。烘焙是一门科学——细小的测量误差可能毁掉一道食谱。",
+    "seo_p2": "用杯量食材的问题在于每种食材密度不同。一杯杏仁粉重112克，而一杯蜂蜜重340克——在同一个量杯中重近三倍。",
+    "seo_h4_1": "为什么克更好",
+    "seo_p3": "专业烘焙师总是按重量计量。更快（无需洗量杯），更精确，每次结果一致。",
+    "seo_h4_2": "美制杯 vs 澳大利亚杯",
+    "seo_p4": "美制1杯 = 236.6毫升。澳大利亚1杯 = 250毫升。大多数在线食谱使用美制杯。如有疑问，请使用我们的换算器并称量食材。",
+    "seo_h4_3": "常见换算"
   },
   "hi": {
     "title": "कुकिंग कनवर्टर",
-    "tagline": "खाना पकाने और बेकिंग में सामान्य इकाइयों के बीच बदलें।",
+    "tagline": "खाना पकाने और बेकिंग में सबसे आम इकाइयों के बीच कनवर्ट करें।",
     "cat_flour": "आटे",
     "cat_fat": "वसा",
     "cat_sweet": "मिठाई",
@@ -1040,7 +1073,14 @@ var CPRO_TRANSLATIONS = {
     "th_ml": "मिली",
     "th_oz": "ऑउंस",
     "th_tbsp": "टेबलस्पून",
-    "lbl_all_conv": "1 कप की सभी रूपांतरण"
+    "lbl_all_conv": "1 कप की सभी रूपांतरण",
+    "seo_p1": "कप, ग्राम, mL और औंस के बीच रूपांतरण सटीक बेकिंग के लिए आवश्यक है।",
+    "seo_p2": "कप से मापने की समस्या यह है कि हर सामग्री का घनत्व अलग होता है। 1 कप बादाम आटा = 112g, 1 कप शहद = 340g।",
+    "seo_h4_1": "ग्राम क्यों बेहतर हैं",
+    "seo_p3": "पेशेवर बेकर हमेशा वजन से मापते हैं। यह तेज़, अधिक सटीक है और हर बार एक जैसे परिणाम देता है।",
+    "seo_h4_2": "US बनाम ऑस्ट्रेलियाई कप",
+    "seo_p4": "US कप = 236.6mL। ऑस्ट्रेलियाई कप = 250mL। अधिकांश ऑनलाइन रेसिपी US कप का उपयोग करती हैं।",
+    "seo_h4_3": "सामान्य रूपांतरण"
   },
   "es": {
     "title": "Conversor de Cocina",
@@ -1075,11 +1115,18 @@ var CPRO_TRANSLATIONS = {
     "th_ml": "mL",
     "th_oz": "Oz",
     "th_tbsp": "Cda",
-    "lbl_all_conv": "Todas las conversiones para 1 taza de"
+    "lbl_all_conv": "Todas las conversiones para 1 taza de",
+    "seo_p1": "Convertir entre tazas, gramos, mL y onzas es esencial para una repostería precisa. La repostería es una ciencia — los pequeños errores de medición pueden arruinar una receta.",
+    "seo_p2": "El problema con medir en tazas es que cada ingrediente tiene una densidad diferente. Una taza de harina de almendras pesa 112g, mientras que una taza de miel pesa 340g.",
+    "seo_h4_1": "Por qué los gramos son mejores",
+    "seo_p3": "Los panaderos profesionales siempre miden por peso. Es más rápido, más preciso y da resultados consistentes.",
+    "seo_h4_2": "Tazas US vs Australianas",
+    "seo_p4": "1 taza US = 236,6mL. 1 taza australiana = 250mL. La mayoría de recetas usan tazas US.",
+    "seo_h4_3": "Conversiones Comunes"
   },
   "fr": {
     "title": "Convertisseur Culinaire",
-    "tagline": "Convertissez entre les unités courantes en cuisine et pâtisserie.",
+    "tagline": "Convertissez entre les unités les plus courantes en cuisine et pâtisserie.",
     "cat_flour": "Farines",
     "cat_fat": "Graisses",
     "cat_sweet": "Sucreries",
@@ -1110,7 +1157,14 @@ var CPRO_TRANSLATIONS = {
     "th_ml": "mL",
     "th_oz": "Oz",
     "th_tbsp": "C.à.s.",
-    "lbl_all_conv": "Toutes les conversions pour 1 tasse de"
+    "lbl_all_conv": "Toutes les conversions pour 1 tasse de",
+    "seo_p1": "Convertir entre tasses, grammes, mL et onces est essentiel pour une pâtisserie précise. La pâtisserie est une science — de petites erreurs peuvent ruiner une recette.",
+    "seo_p2": "Le problème avec la mesure en tasses est que chaque ingrédient a une densité différente. Une tasse de farine d'amandes pèse 112g, une tasse de miel 340g.",
+    "seo_h4_1": "Pourquoi les grammes sont meilleurs",
+    "seo_p3": "Les boulangers professionnels mesurent toujours par poids. C'est plus rapide, plus précis et donne des résultats cohérents.",
+    "seo_h4_2": "Tasses US vs Australiennes",
+    "seo_p4": "1 tasse US = 236,6mL. 1 tasse australienne = 250mL. La plupart des recettes utilisent des tasses US.",
+    "seo_h4_3": "Conversions Courantes"
   }
 };
 
@@ -1140,14 +1194,19 @@ function cproSetLang(lang) {
     var orig = CPRO_TRANSLATIONS['en']['title'];
     if (orig) document.title = document.title.replace(orig, t['title']);
   }
-  // Rebuild ingredient dropdown and grid in new language, then refresh result
+  // Rebuild ingredient dropdown, unit selects and grid in new language
   if (typeof buildIngredients === 'function') {
-    try { buildIngredients(); update(); } catch(e) {}
+    try {
+      buildIngredients();
+      updateUnitSelects(lang);
+      update();
+    } catch(e) {}
   }
 }
 document.addEventListener('DOMContentLoaded', function() {
   var saved = localStorage.getItem('cpro_lang') || 'en';
   if (saved !== 'en') cproSetLang(saved);
+  else { buildIngredients(); update(); }
 });
 </script>
 </body>
